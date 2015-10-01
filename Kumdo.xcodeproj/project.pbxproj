@@ -1,0 +1,519 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4E3EC3011BBD105700C73CFE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3EC3001BBD105700C73CFE /* main.m */; };
+		4E3EC3041BBD105700C73CFE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3EC3031BBD105700C73CFE /* AppDelegate.m */; };
+		4E3EC3071BBD105700C73CFE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3EC3061BBD105700C73CFE /* ViewController.m */; };
+		4E3EC30A1BBD105700C73CFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E3EC3081BBD105700C73CFE /* Main.storyboard */; };
+		4E3EC30C1BBD105700C73CFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E3EC30B1BBD105700C73CFE /* Assets.xcassets */; };
+		4E3EC30F1BBD105700C73CFE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E3EC30D1BBD105700C73CFE /* LaunchScreen.storyboard */; };
+		4E3EC31A1BBD105700C73CFE /* KumdoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3EC3191BBD105700C73CFE /* KumdoTests.m */; };
+		4E3EC3251BBD105700C73CFE /* KumdoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3EC3241BBD105700C73CFE /* KumdoUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4E3EC3161BBD105700C73CFE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E3EC2F41BBD105700C73CFE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E3EC2FB1BBD105700C73CFE;
+			remoteInfo = Kumdo;
+		};
+		4E3EC3211BBD105700C73CFE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E3EC2F41BBD105700C73CFE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E3EC2FB1BBD105700C73CFE;
+			remoteInfo = Kumdo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4E3EC2FC1BBD105700C73CFE /* Kumdo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kumdo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E3EC3001BBD105700C73CFE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4E3EC3021BBD105700C73CFE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4E3EC3031BBD105700C73CFE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4E3EC3051BBD105700C73CFE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		4E3EC3061BBD105700C73CFE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		4E3EC3091BBD105700C73CFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4E3EC30B1BBD105700C73CFE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4E3EC30E1BBD105700C73CFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4E3EC3101BBD105700C73CFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E3EC3151BBD105700C73CFE /* KumdoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KumdoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E3EC3191BBD105700C73CFE /* KumdoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KumdoTests.m; sourceTree = "<group>"; };
+		4E3EC31B1BBD105700C73CFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E3EC3201BBD105700C73CFE /* KumdoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KumdoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E3EC3241BBD105700C73CFE /* KumdoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KumdoUITests.m; sourceTree = "<group>"; };
+		4E3EC3261BBD105700C73CFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4E3EC2F91BBD105700C73CFE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E3EC3121BBD105700C73CFE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E3EC31D1BBD105700C73CFE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4E3EC2F31BBD105700C73CFE = {
+			isa = PBXGroup;
+			children = (
+				4E3EC2FE1BBD105700C73CFE /* Kumdo */,
+				4E3EC3181BBD105700C73CFE /* KumdoTests */,
+				4E3EC3231BBD105700C73CFE /* KumdoUITests */,
+				4E3EC2FD1BBD105700C73CFE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4E3EC2FD1BBD105700C73CFE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4E3EC2FC1BBD105700C73CFE /* Kumdo.app */,
+				4E3EC3151BBD105700C73CFE /* KumdoTests.xctest */,
+				4E3EC3201BBD105700C73CFE /* KumdoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4E3EC2FE1BBD105700C73CFE /* Kumdo */ = {
+			isa = PBXGroup;
+			children = (
+				4E3EC3021BBD105700C73CFE /* AppDelegate.h */,
+				4E3EC3031BBD105700C73CFE /* AppDelegate.m */,
+				4E3EC3051BBD105700C73CFE /* ViewController.h */,
+				4E3EC3061BBD105700C73CFE /* ViewController.m */,
+				4E3EC3081BBD105700C73CFE /* Main.storyboard */,
+				4E3EC30B1BBD105700C73CFE /* Assets.xcassets */,
+				4E3EC30D1BBD105700C73CFE /* LaunchScreen.storyboard */,
+				4E3EC3101BBD105700C73CFE /* Info.plist */,
+				4E3EC2FF1BBD105700C73CFE /* Supporting Files */,
+			);
+			path = Kumdo;
+			sourceTree = "<group>";
+		};
+		4E3EC2FF1BBD105700C73CFE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4E3EC3001BBD105700C73CFE /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4E3EC3181BBD105700C73CFE /* KumdoTests */ = {
+			isa = PBXGroup;
+			children = (
+				4E3EC3191BBD105700C73CFE /* KumdoTests.m */,
+				4E3EC31B1BBD105700C73CFE /* Info.plist */,
+			);
+			path = KumdoTests;
+			sourceTree = "<group>";
+		};
+		4E3EC3231BBD105700C73CFE /* KumdoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4E3EC3241BBD105700C73CFE /* KumdoUITests.m */,
+				4E3EC3261BBD105700C73CFE /* Info.plist */,
+			);
+			path = KumdoUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4E3EC2FB1BBD105700C73CFE /* Kumdo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E3EC3291BBD105700C73CFE /* Build configuration list for PBXNativeTarget "Kumdo" */;
+			buildPhases = (
+				4E3EC2F81BBD105700C73CFE /* Sources */,
+				4E3EC2F91BBD105700C73CFE /* Frameworks */,
+				4E3EC2FA1BBD105700C73CFE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Kumdo;
+			productName = Kumdo;
+			productReference = 4E3EC2FC1BBD105700C73CFE /* Kumdo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4E3EC3141BBD105700C73CFE /* KumdoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E3EC32C1BBD105700C73CFE /* Build configuration list for PBXNativeTarget "KumdoTests" */;
+			buildPhases = (
+				4E3EC3111BBD105700C73CFE /* Sources */,
+				4E3EC3121BBD105700C73CFE /* Frameworks */,
+				4E3EC3131BBD105700C73CFE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4E3EC3171BBD105700C73CFE /* PBXTargetDependency */,
+			);
+			name = KumdoTests;
+			productName = KumdoTests;
+			productReference = 4E3EC3151BBD105700C73CFE /* KumdoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4E3EC31F1BBD105700C73CFE /* KumdoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E3EC32F1BBD105700C73CFE /* Build configuration list for PBXNativeTarget "KumdoUITests" */;
+			buildPhases = (
+				4E3EC31C1BBD105700C73CFE /* Sources */,
+				4E3EC31D1BBD105700C73CFE /* Frameworks */,
+				4E3EC31E1BBD105700C73CFE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4E3EC3221BBD105700C73CFE /* PBXTargetDependency */,
+			);
+			name = KumdoUITests;
+			productName = KumdoUITests;
+			productReference = 4E3EC3201BBD105700C73CFE /* KumdoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4E3EC2F41BBD105700C73CFE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Jang Young bin";
+				TargetAttributes = {
+					4E3EC2FB1BBD105700C73CFE = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					4E3EC3141BBD105700C73CFE = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 4E3EC2FB1BBD105700C73CFE;
+					};
+					4E3EC31F1BBD105700C73CFE = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 4E3EC2FB1BBD105700C73CFE;
+					};
+				};
+			};
+			buildConfigurationList = 4E3EC2F71BBD105700C73CFE /* Build configuration list for PBXProject "Kumdo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4E3EC2F31BBD105700C73CFE;
+			productRefGroup = 4E3EC2FD1BBD105700C73CFE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4E3EC2FB1BBD105700C73CFE /* Kumdo */,
+				4E3EC3141BBD105700C73CFE /* KumdoTests */,
+				4E3EC31F1BBD105700C73CFE /* KumdoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4E3EC2FA1BBD105700C73CFE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E3EC30F1BBD105700C73CFE /* LaunchScreen.storyboard in Resources */,
+				4E3EC30C1BBD105700C73CFE /* Assets.xcassets in Resources */,
+				4E3EC30A1BBD105700C73CFE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E3EC3131BBD105700C73CFE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E3EC31E1BBD105700C73CFE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4E3EC2F81BBD105700C73CFE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E3EC3071BBD105700C73CFE /* ViewController.m in Sources */,
+				4E3EC3041BBD105700C73CFE /* AppDelegate.m in Sources */,
+				4E3EC3011BBD105700C73CFE /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E3EC3111BBD105700C73CFE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E3EC31A1BBD105700C73CFE /* KumdoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E3EC31C1BBD105700C73CFE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E3EC3251BBD105700C73CFE /* KumdoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4E3EC3171BBD105700C73CFE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4E3EC2FB1BBD105700C73CFE /* Kumdo */;
+			targetProxy = 4E3EC3161BBD105700C73CFE /* PBXContainerItemProxy */;
+		};
+		4E3EC3221BBD105700C73CFE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4E3EC2FB1BBD105700C73CFE /* Kumdo */;
+			targetProxy = 4E3EC3211BBD105700C73CFE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4E3EC3081BBD105700C73CFE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4E3EC3091BBD105700C73CFE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4E3EC30D1BBD105700C73CFE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4E3EC30E1BBD105700C73CFE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4E3EC3271BBD105700C73CFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		4E3EC3281BBD105700C73CFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4E3EC32A1BBD105700C73CFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Kumdo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nhnnext.osx.Kumdo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4E3EC32B1BBD105700C73CFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Kumdo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nhnnext.osx.Kumdo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		4E3EC32D1BBD105700C73CFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = KumdoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nhnnext.osx.KumdoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kumdo.app/Kumdo";
+			};
+			name = Debug;
+		};
+		4E3EC32E1BBD105700C73CFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = KumdoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nhnnext.osx.KumdoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kumdo.app/Kumdo";
+			};
+			name = Release;
+		};
+		4E3EC3301BBD105700C73CFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = KumdoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nhnnext.osx.KumdoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Kumdo;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		4E3EC3311BBD105700C73CFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = KumdoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nhnnext.osx.KumdoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Kumdo;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4E3EC2F71BBD105700C73CFE /* Build configuration list for PBXProject "Kumdo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E3EC3271BBD105700C73CFE /* Debug */,
+				4E3EC3281BBD105700C73CFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4E3EC3291BBD105700C73CFE /* Build configuration list for PBXNativeTarget "Kumdo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E3EC32A1BBD105700C73CFE /* Debug */,
+				4E3EC32B1BBD105700C73CFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		4E3EC32C1BBD105700C73CFE /* Build configuration list for PBXNativeTarget "KumdoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E3EC32D1BBD105700C73CFE /* Debug */,
+				4E3EC32E1BBD105700C73CFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		4E3EC32F1BBD105700C73CFE /* Build configuration list for PBXNativeTarget "KumdoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E3EC3301BBD105700C73CFE /* Debug */,
+				4E3EC3311BBD105700C73CFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4E3EC2F41BBD105700C73CFE /* Project object */;
+}
