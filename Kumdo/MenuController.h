@@ -10,4 +10,6 @@
 
 @interface MenuController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *mySegmentedControl;
+
 @end

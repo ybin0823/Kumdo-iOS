@@ -97,7 +97,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="mySegmentControl" destination="iOg-fG-Ess" id="p8n-fa-B3F"/>
+                        <outlet property="mySegmentedControl" destination="iOg-fG-Ess" id="RaI-FC-UYM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IlE-vf-6Vm" userLabel="First Responder" sceneMemberID="firstResponder"/>
