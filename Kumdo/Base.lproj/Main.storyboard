@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="SNSLoginController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -62,7 +62,7 @@
         <!--Title-->
         <scene sceneID="XIs-jW-lrO">
             <objects>
-                <viewController id="uVi-z7-st5" sceneMemberID="viewController">
+                <viewController id="uVi-z7-st5" customClass="MenuController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Tj-fV-BGX"/>
                         <viewControllerLayoutGuide type="bottom" id="d5v-sr-41o"/>
@@ -96,6 +96,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mySegmentControl" destination="iOg-fG-Ess" id="p8n-fa-B3F"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IlE-vf-6Vm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -121,7 +124,7 @@
         <!--Detail-->
         <scene sceneID="awZ-HQ-5wE">
             <objects>
-                <viewController id="qL3-S2-h5m" sceneMemberID="viewController">
+                <viewController id="qL3-S2-h5m" customClass="DetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="16F-tU-zfL"/>
                         <viewControllerLayoutGuide type="bottom" id="ptW-Jr-jij"/>
@@ -164,7 +167,7 @@
         <!--Write-->
         <scene sceneID="Rju-Ky-U92">
             <objects>
-                <viewController id="K8f-dZ-Vfz" sceneMemberID="viewController">
+                <viewController id="K8f-dZ-Vfz" customClass="WriteViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mxg-ki-71y"/>
                         <viewControllerLayoutGuide type="bottom" id="zIS-aY-txP"/>

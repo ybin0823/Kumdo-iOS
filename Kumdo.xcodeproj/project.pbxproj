@@ -15,6 +15,10 @@
 		4E3EC30F1BBD105700C73CFE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E3EC30D1BBD105700C73CFE /* LaunchScreen.storyboard */; };
 		4E3EC31A1BBD105700C73CFE /* KumdoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3EC3191BBD105700C73CFE /* KumdoTests.m */; };
 		4E3EC3251BBD105700C73CFE /* KumdoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3EC3241BBD105700C73CFE /* KumdoUITests.m */; };
+		4E6688991BCB87F600D25A7C /* WriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6688981BCB87F600D25A7C /* WriteViewController.m */; settings = {ASSET_TAGS = (); }; };
+		4E66889C1BCB880600D25A7C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E66889B1BCB880600D25A7C /* DetailViewController.m */; settings = {ASSET_TAGS = (); }; };
+		4E66889F1BCB882200D25A7C /* SNSLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E66889E1BCB882200D25A7C /* SNSLoginController.m */; settings = {ASSET_TAGS = (); }; };
+		4E6688A21BCB883B00D25A7C /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6688A11BCB883B00D25A7C /* MenuController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,14 @@
 		4E3EC3201BBD105700C73CFE /* KumdoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KumdoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E3EC3241BBD105700C73CFE /* KumdoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KumdoUITests.m; sourceTree = "<group>"; };
 		4E3EC3261BBD105700C73CFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E6688971BCB87F600D25A7C /* WriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteViewController.h; sourceTree = "<group>"; };
+		4E6688981BCB87F600D25A7C /* WriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteViewController.m; sourceTree = "<group>"; };
+		4E66889A1BCB880600D25A7C /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		4E66889B1BCB880600D25A7C /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		4E66889D1BCB882200D25A7C /* SNSLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNSLoginController.h; sourceTree = "<group>"; };
+		4E66889E1BCB882200D25A7C /* SNSLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNSLoginController.m; sourceTree = "<group>"; };
+		4E6688A01BCB883B00D25A7C /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
+		4E6688A11BCB883B00D25A7C /* MenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +122,14 @@
 				4E3EC30D1BBD105700C73CFE /* LaunchScreen.storyboard */,
 				4E3EC3101BBD105700C73CFE /* Info.plist */,
 				4E3EC2FF1BBD105700C73CFE /* Supporting Files */,
+				4E6688971BCB87F600D25A7C /* WriteViewController.h */,
+				4E6688981BCB87F600D25A7C /* WriteViewController.m */,
+				4E66889A1BCB880600D25A7C /* DetailViewController.h */,
+				4E66889B1BCB880600D25A7C /* DetailViewController.m */,
+				4E66889D1BCB882200D25A7C /* SNSLoginController.h */,
+				4E66889E1BCB882200D25A7C /* SNSLoginController.m */,
+				4E6688A01BCB883B00D25A7C /* MenuController.h */,
+				4E6688A11BCB883B00D25A7C /* MenuController.m */,
 			);
 			path = Kumdo;
 			sourceTree = "<group>";
@@ -270,8 +290,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E6688A21BCB883B00D25A7C /* MenuController.m in Sources */,
+				4E66889C1BCB880600D25A7C /* DetailViewController.m in Sources */,
 				4E3EC3071BBD105700C73CFE /* ViewController.m in Sources */,
 				4E3EC3041BBD105700C73CFE /* AppDelegate.m in Sources */,
+				4E6688991BCB87F600D25A7C /* WriteViewController.m in Sources */,
+				4E66889F1BCB882200D25A7C /* SNSLoginController.m in Sources */,
 				4E3EC3011BBD105700C73CFE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
