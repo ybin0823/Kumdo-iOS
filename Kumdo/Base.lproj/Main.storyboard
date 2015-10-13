@@ -47,9 +47,14 @@
             <objects>
                 <navigationController id="erv-Ug-tez" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="F2Q-XA-Oyq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="F2Q-XA-Oyq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.019020821569999999" green="0.65540436580000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="uVi-z7-st5" kind="relationship" relationship="rootViewController" id="z9M-Iy-SOC"/>
@@ -68,17 +73,9 @@
                         <viewControllerLayoutGuide type="bottom" id="d5v-sr-41o"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5UK-tS-cMq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="iOg-fG-Ess">
-                                <rect key="frame" x="0.0" y="72" width="375" height="29"/>
-                                <segments>
-                                    <segment title="Home"/>
-                                    <segment title="Category"/>
-                                    <segment title="My List"/>
-                                </segments>
-                            </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXp-fK-AsY">
                                 <rect key="frame" x="167" y="363" width="40" height="30"/>
                                 <state key="normal" title="Detail"/>
@@ -86,11 +83,19 @@
                                     <segue destination="52b-St-cve" kind="showDetail" id="BVC-Vh-Zd2"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="iOg-fG-Ess">
+                                <rect key="frame" x="0.0" y="8" width="375" height="29"/>
+                                <segments>
+                                    <segment title="" image="ic_home_white.png"/>
+                                    <segment title="" image="ic_list_white.png"/>
+                                    <segment title="" image="ic_collections_white.png"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="4hG-Sn-KyH">
-                        <barButtonItem key="rightBarButtonItem" title="Write" id="1TZ-RG-A8h">
+                        <barButtonItem key="rightBarButtonItem" image="ic_create_white.png" id="1TZ-RG-A8h">
                             <connections>
                                 <segue destination="0sB-m3-5w4" kind="presentation" id="Jpu-jk-KFm"/>
                             </connections>
@@ -102,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IlE-vf-6Vm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1355.5" y="305.5"/>
+            <point key="canvasLocation" x="1341.5" y="305.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vUd-4z-ENi">
@@ -212,4 +217,10 @@
             <point key="canvasLocation" x="1366.5" y="1162.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_collections_white.png" width="24" height="24"/>
+        <image name="ic_create_white.png" width="24" height="24"/>
+        <image name="ic_home_white.png" width="24" height="24"/>
+        <image name="ic_list_white.png" width="24" height="24"/>
+    </resources>
 </document>
