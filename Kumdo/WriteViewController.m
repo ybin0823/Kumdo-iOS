@@ -14,7 +14,8 @@
 
 @implementation WriteViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     // 랜덤하게 불러온 글자로 word1, word2, word3의 텍스트를 변화해준다
@@ -28,9 +29,25 @@
     // Save 버튼을 클릭하면 Category를 선택하는 창이 나온 후 저장이 된다
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)save:(id)sender
+{
+    NSLog(@"Save");
+}
+
+- (IBAction)addEdit:(id)sender
+{
+    NSLog(@"Edit");
+}
+
+- (IBAction)addWord:(id)sender
+{
+    NSLog(@"Word : %@", [[sender titleLabel] text]);
 }
 
 /*

@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
-        <!--Login Controller-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="SNSLoginController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="SNSLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -67,7 +66,7 @@
         <!--Title-->
         <scene sceneID="XIs-jW-lrO">
             <objects>
-                <viewController id="uVi-z7-st5" customClass="MenuController" sceneMemberID="viewController">
+                <viewController id="uVi-z7-st5" customClass="MenuViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Tj-fV-BGX"/>
                         <viewControllerLayoutGuide type="bottom" id="d5v-sr-41o"/>
@@ -160,6 +159,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RiJ-uu-BXj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.019020821569999999" green="0.65540436580000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="K8f-dZ-Vfz" kind="relationship" relationship="rootViewController" id="UuN-r6-qjM"/>
@@ -182,30 +186,60 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAS-Xk-gCJ">
-                                <rect key="frame" x="20" y="590" width="46" height="30"/>
-                                <state key="normal" title="Word1"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGO-Rh-YfU">
-                                <rect key="frame" x="164" y="590" width="46" height="30"/>
-                                <state key="normal" title="Word2"/>
+                                <rect key="frame" x="9" y="614" width="90" height="45"/>
+                                <color key="backgroundColor" red="0.13782562779357121" green="0.74785607571210222" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Word1">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addWord:" destination="K8f-dZ-Vfz" eventType="touchUpInside" id="ZgN-sV-Joc"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HS8-wB-Uga">
-                                <rect key="frame" x="309" y="590" width="46" height="30"/>
-                                <state key="normal" title="Word3"/>
+                                <rect key="frame" x="275" y="614" width="90" height="45"/>
+                                <color key="backgroundColor" red="0.19117540047027357" green="0.74366714015151514" blue="0.59481152200488663" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Word3">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addWord:" destination="K8f-dZ-Vfz" eventType="touchUpInside" id="0kb-Pk-Fx9"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YCh-Ic-Crq">
-                                <rect key="frame" x="20" y="552" width="46" height="30"/>
-                                <state key="normal" title="Edit"/>
+                                <rect key="frame" x="9" y="548" width="90" height="45"/>
+                                <color key="backgroundColor" red="0.81485530956373975" green="0.86525867123652178" blue="0.87286931818181812" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Edit">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addEdit:" destination="K8f-dZ-Vfz" eventType="touchUpInside" id="9SP-JV-afY"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a5y-MZ-oOw">
-                                <rect key="frame" x="0.0" y="115" width="375" height="378"/>
+                                <rect key="frame" x="0.0" y="82" width="375" height="453"/>
+                                <color key="backgroundColor" red="0.84856376262626265" green="0.84856376262626265" blue="0.84856376262626265" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGO-Rh-YfU">
+                                <rect key="frame" x="142" y="614" width="90" height="45"/>
+                                <color key="backgroundColor" red="0.7961200223276429" green="0.95134943181818177" blue="0.38739016426158995" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Word2">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addWord:" destination="K8f-dZ-Vfz" eventType="touchUpInside" id="TBe-Ns-XLJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Write" id="yCS-1J-U05" userLabel="Title">
                         <barButtonItem key="backBarButtonItem" title="Back" id="OiA-HT-GS9"/>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="6os-Ja-3aL"/>
+                        <barButtonItem key="leftBarButtonItem" image="ic_arrow_back_white_36pt.png" id="KDW-If-YAZ"/>
+                        <barButtonItem key="rightBarButtonItem" image="ic_save_white_36pt.png" id="6os-Ja-3aL">
+                            <connections>
+                                <action selector="save:" destination="K8f-dZ-Vfz" id="iF9-yO-pNJ"/>
+                            </connections>
+                        </barButtonItem>
                         <connections>
                             <outlet property="rightBarButtonItem" destination="6os-Ja-3aL" id="y19-y5-a7B"/>
                         </connections>
@@ -218,9 +252,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_arrow_back_white_36pt.png" width="36" height="36"/>
         <image name="ic_collections_white.png" width="24" height="24"/>
         <image name="ic_create_white.png" width="24" height="24"/>
         <image name="ic_home_white.png" width="24" height="24"/>
         <image name="ic_list_white.png" width="24" height="24"/>
+        <image name="ic_save_white_36pt.png" width="36" height="36"/>
     </resources>
 </document>
