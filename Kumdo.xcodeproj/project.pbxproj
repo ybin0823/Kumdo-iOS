@@ -114,6 +114,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E1852AA1BCE0212000F1818 /* icon */ = {
+			isa = PBXGroup;
+			children = (
+				4E1852A51BCDF36A000F1818 /* ic_image_48pt.png */,
+				4E1852A31BCDEC2E000F1818 /* ic_save_white_36pt.png */,
+				4E1852A11BCDEBE2000F1818 /* ic_arrow_back_white_36pt.png */,
+				4E18529F1BCDE76F000F1818 /* ic_save_white.png */,
+				4E18529D1BCC9327000F1818 /* ic_collections_white_2x.png */,
+				4E18529B1BCC9312000F1818 /* ic_list_white_2x.png */,
+				4E1852991BCC9303000F1818 /* ic_home_white_2x.png */,
+				4E1852971BCC92F4000F1818 /* ic_create_white_2x.png */,
+				4E1852951BCC91FB000F1818 /* ic_create_white.png */,
+				4E1852931BCC91EC000F1818 /* ic_collections_white.png */,
+				4E1852911BCC91DB000F1818 /* ic_list_white.png */,
+				4E18528F1BCC91C6000F1818 /* ic_home_white.png */,
+			);
+			name = icon;
+			sourceTree = "<group>";
+		};
 		4E3EC2F31BBD105700C73CFE = {
 			isa = PBXGroup;
 			children = (
@@ -137,18 +156,7 @@
 		4E3EC2FE1BBD105700C73CFE /* Kumdo */ = {
 			isa = PBXGroup;
 			children = (
-				4E1852A51BCDF36A000F1818 /* ic_image_48pt.png */,
-				4E1852A31BCDEC2E000F1818 /* ic_save_white_36pt.png */,
-				4E1852A11BCDEBE2000F1818 /* ic_arrow_back_white_36pt.png */,
-				4E18529F1BCDE76F000F1818 /* ic_save_white.png */,
-				4E18529D1BCC9327000F1818 /* ic_collections_white_2x.png */,
-				4E18529B1BCC9312000F1818 /* ic_list_white_2x.png */,
-				4E1852991BCC9303000F1818 /* ic_home_white_2x.png */,
-				4E1852971BCC92F4000F1818 /* ic_create_white_2x.png */,
-				4E1852951BCC91FB000F1818 /* ic_create_white.png */,
-				4E1852931BCC91EC000F1818 /* ic_collections_white.png */,
-				4E1852911BCC91DB000F1818 /* ic_list_white.png */,
-				4E18528F1BCC91C6000F1818 /* ic_home_white.png */,
+				4E1852AA1BCE0212000F1818 /* icon */,
 				4E3EC3021BBD105700C73CFE /* AppDelegate.h */,
 				4E3EC3031BBD105700C73CFE /* AppDelegate.m */,
 				4E3EC3051BBD105700C73CFE /* ViewController.h */,
