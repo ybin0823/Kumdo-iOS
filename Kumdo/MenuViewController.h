@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WriteViewController.h"
 
-@interface MenuViewController : UIViewController
+@interface MenuViewController : UIViewController <WriteViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *mySegmentedControl;
 

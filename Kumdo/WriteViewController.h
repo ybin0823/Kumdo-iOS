@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class WriteViewController;
+
+@protocol WriteViewControllerDelegate
+- (void)writeViewControllerDidCancle:(WriteViewController *)controller;
+@end
+
 @interface WriteViewController : UIViewController
+
+@property (weak, nonatomic) id <WriteViewControllerDelegate> delegate;
 
 @end

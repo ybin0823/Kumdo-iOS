@@ -13,6 +13,11 @@
 @end
 
 @implementation WriteViewController
+{
+    __weak id<WriteViewControllerDelegate> delegate;
+}
+
+@synthesize delegate = delegate;
 
 - (void)viewDidLoad
 {
@@ -48,6 +53,11 @@
 - (IBAction)addWord:(id)sender
 {
     NSLog(@"Word : %@", [[sender titleLabel] text]);
+}
+
+- (IBAction)cancle:(id)sender
+{
+    [[self delegate] writeViewControllerDidCancle:self];
 }
 
 /*
