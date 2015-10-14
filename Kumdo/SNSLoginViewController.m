@@ -16,10 +16,7 @@
 @implementation SNSLoginViewController
 {
     NaverThirdPartyLoginConnection *_thirdPartyLoginConn;
-    __weak IBOutlet UIButton *startButton;
 }
-
-@synthesize startButton = startButton;
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
@@ -46,6 +43,19 @@
     [super didReceiveMemoryWarning];
 }
 
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    [super shouldPerformSegueWithIdentifier:identifier sender:sender];
+    
+    if (YES == [_thirdPartyLoginConn isValidAccessTokenExpireTimeNow]) {
+        [self requestUserProfile];
+        return YES;
+    }
+    
+    [self requestThirdPartyLogin];
+    return NO;
+}
+
 - (void)requestThirdPartyLogin
 {
     // NaverThirdPartyLoginConnection의 인스턴스에 서비스앱의 url scheme와 consumer key, consumer secret, 그리고 appName을 파라미터로 전달하여 3rd party OAuth 인증을 요청한다.
@@ -60,9 +70,35 @@
 
 - (IBAction)didClickLoginBtn:(id)sender
 {
+    if (YES == [_thirdPartyLoginConn isValidAccessTokenExpireTimeNow]) {
+        [self requestUserProfile];
+        return;
+    }
+
     [self requestThirdPartyLogin];
 }
 
+- (void)requestUserProfile
+{
+    // 사용자 프로필 호출
+    NSString *urlString = @"https://openapi.naver.com/v1/nid/getUserProfile.xml";
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    
+    NSString *authValue = [NSString stringWithFormat:@"Bearer %@", _thirdPartyLoginConn.accessToken];
+    
+    [urlRequest setValue:authValue forHTTPHeaderField:@"Authorization"];
+    
+    NSHTTPURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *receivedData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    NSString *decodingString = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+    
+    if (error) {
+        NSLog(@"Error happened - %@", [error description]);
+    } else {
+        NSLog(@"recevied data - %@", decodingString);
+    }
+}
 /*
 #pragma mark - Navigation
 
@@ -89,17 +125,18 @@
 
 - (void)oauth20Connection:(NaverThirdPartyLoginConnection *)oauthConnection didFailWithError:(NSError *)error {
     NSLog(@"%s=[%@]", __FUNCTION__, error);
-//    [_mainView setResultLabelText:[NSString stringWithFormat:@"%@", error]];
 }
 
 - (void)oauth20ConnectionDidFinishRequestACTokenWithAuthCode {
    NSLog(@"OAuth Success!");
-    self.startButton.hidden = NO;
+    [self requestUserProfile];
+    [self performSegueWithIdentifier:@"Start" sender:nil];
 }
 
 - (void)oauth20ConnectionDidFinishRequestACTokenWithRefreshToken {
     NSLog(@"Refresh Success!");
-    self.startButton.hidden = NO;
+    [self requestUserProfile];
+    [self performSegueWithIdentifier:@"Start" sender:nil];
 }
 - (void)oauth20ConnectionDidFinishDeleteToken {
     NSLog(@"로그아웃 완료");

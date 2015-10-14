@@ -12,6 +12,4 @@
 
 @interface SNSLoginViewController : UIViewController <NaverThirdPartyLoginConnectionDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *startButton;
-
 @end
