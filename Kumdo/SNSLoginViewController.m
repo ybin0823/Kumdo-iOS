@@ -6,13 +6,13 @@
 //  Copyright © 2015년 Jang Young bin. All rights reserved.
 //
 
-#import "SNSLoginController.h"
+#import "SNSLoginViewController.h"
 
-@interface SNSLoginController ()
+@interface SNSLoginViewController ()
 
 @end
 
-@implementation SNSLoginController
+@implementation SNSLoginViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

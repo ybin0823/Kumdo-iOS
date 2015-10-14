@@ -6,16 +6,17 @@
 //  Copyright © 2015년 Jang Young bin. All rights reserved.
 //
 
-#import "MenuController.h"
+#import "MenuViewController.h"
 
-@interface MenuController ()
+@interface MenuViewController ()
 
 @end
 
-@implementation MenuController
+@implementation MenuViewController
 {
     __weak UISegmentedControl *mySegmentedControl;
     NSArray *viewControllers;
+    NSArray *titles;
 
 }
 
@@ -43,7 +44,7 @@
     [[viewController3 view] setBackgroundColor:[UIColor blueColor]];
     
     viewControllers = [NSArray arrayWithObjects:viewController, viewController2, viewController3, nil];
-    
+    titles = [NSArray arrayWithObjects:@"홈", @"카테고리", @"내 목록", nil];
     [self displayContent:[viewControllers objectAtIndex:[mySegmentedControl selectedSegmentIndex]]];
 }
 
@@ -56,6 +57,8 @@
     [self addChildViewController:viewController];
     [self.view addSubview:viewController.view];
     [viewController didMoveToParentViewController:self];
+    
+    self.title = [titles objectAtIndex:[mySegmentedControl selectedSegmentIndex]];
     
     NSLog(@"sub views count is %lu", (unsigned long)[[[self view] subviews] count]);
 }

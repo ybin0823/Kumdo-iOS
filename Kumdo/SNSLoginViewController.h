@@ -1,5 +1,5 @@
 //
-//  MenuController.h
+//  SNSLoginController.h
 //  Kumdo
 //
 //  Created by Jang Young bin on 2015. 10. 12..
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MenuController : UIViewController
-
-@property (weak, nonatomic) IBOutlet UISegmentedControl *mySegmentedControl;
+@interface SNSLoginViewController : UIViewController
 
 @end
