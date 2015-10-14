@@ -230,6 +230,20 @@
                                     <action selector="addWord:" destination="K8f-dZ-Vfz" eventType="touchUpInside" id="TBe-Ns-XLJ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Emu-YI-qaX">
+                                <rect key="frame" x="136" y="310" width="102" height="48"/>
+                                <state key="normal" image="ic_image_48pt.png"/>
+                                <connections>
+                                    <action selector="showImagePickerForPhotoPicker:" destination="K8f-dZ-Vfz" eventType="touchUpInside" id="nvv-yb-OHC"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKL-KU-seG">
+                                <rect key="frame" x="263" y="543" width="102" height="48"/>
+                                <state key="normal" image="ic_image_48pt.png"/>
+                                <connections>
+                                    <action selector="showImagePickerForPhotoPicker:" destination="K8f-dZ-Vfz" eventType="touchUpInside" id="wn7-FY-3a2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -250,6 +264,11 @@
                         </connections>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="backgroundImage" destination="a5y-MZ-oOw" id="XsA-z9-RLt"/>
+                        <outlet property="changePictureButton" destination="tKL-KU-seG" id="bWf-6T-Keu"/>
+                        <outlet property="takePictureButton" destination="Emu-YI-qaX" id="jeh-xs-Kbc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ghJ-1B-wIe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -261,6 +280,7 @@
         <image name="ic_collections_white.png" width="24" height="24"/>
         <image name="ic_create_white.png" width="24" height="24"/>
         <image name="ic_home_white.png" width="24" height="24"/>
+        <image name="ic_image_48pt.png" width="48" height="48"/>
         <image name="ic_list_white.png" width="24" height="24"/>
         <image name="ic_save_white_36pt.png" width="36" height="36"/>
     </resources>

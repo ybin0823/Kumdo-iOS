@@ -15,9 +15,15 @@
 @implementation WriteViewController
 {
     __weak id<WriteViewControllerDelegate> delegate;
+    __weak IBOutlet UIImageView *backgroundImage;
+    __weak IBOutlet UIButton *takePictureButton;
+    __weak IBOutlet UIButton *changePictureButton;
 }
 
 @synthesize delegate = delegate;
+@synthesize backgroundImage = backgroundImage;
+@synthesize takePictureButton = takePictureButton;
+@synthesize changePictureButton = changePictureButton;
 
 - (void)viewDidLoad
 {
@@ -58,6 +64,26 @@
 - (IBAction)cancle:(id)sender
 {
     [[self delegate] writeViewControllerDidCancle:self];
+}
+
+- (IBAction)showImagePickerForPhotoPicker:(id)sender
+{
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    imagePickerController.delegate = self;
+    
+    [self presentViewController:imagePickerController animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    
+    [self dismissViewControllerAnimated:YES completion:NULL];
+    [[self backgroundImage] setImage:image];
+    self.takePictureButton.hidden = YES;
+    self.changePictureButton.hidden = NO;
 }
 
 /*

@@ -14,8 +14,14 @@
 - (void)writeViewControllerDidCancle:(WriteViewController *)controller;
 @end
 
-@interface WriteViewController : UIViewController
+@interface WriteViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (weak, nonatomic) id <WriteViewControllerDelegate> delegate;
+
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
+
+@property (weak, nonatomic) IBOutlet UIButton *takePictureButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *changePictureButton;
 
 @end
