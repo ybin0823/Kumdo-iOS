@@ -23,24 +23,33 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvz-ue-19v">
-                                <rect key="frame" x="91" y="494" width="192" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Naver 아이디로 로그인">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqQ-zw-PE8">
+                                <rect key="frame" x="170" y="559" width="34" height="30"/>
+                                <state key="normal" title="Start"/>
                                 <connections>
-                                    <segue destination="erv-Ug-tez" kind="presentation" id="VTL-l9-mta"/>
+                                    <segue destination="erv-Ug-tez" kind="presentation" id="oe4-5h-Awh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvz-ue-19v">
+                                <rect key="frame" x="62" y="429" width="250" height="49"/>
+                                <color key="backgroundColor" red="0.1843137255" green="0.79215686269999996" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="네이버 아이디로 로그인"/>
+                                <connections>
+                                    <action selector="didClickLoginBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZzK-uD-LJn"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="startButton" destination="jqQ-zw-PE8" id="3Je-wH-Uyr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="244.5" y="305.5"/>
+            <point key="canvasLocation" x="198.5" y="305.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9j4-Ns-AGI">

@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NaverThirdPartyLoginConnection.h"
+#import "NLoginThirdPartyOAuth20InAppBrowserViewController.h"
 
-@interface SNSLoginViewController : UIViewController
+@interface SNSLoginViewController : UIViewController <NaverThirdPartyLoginConnectionDelegate>
+
+@property (weak, nonatomic) IBOutlet UIButton *startButton;
 
 @end
