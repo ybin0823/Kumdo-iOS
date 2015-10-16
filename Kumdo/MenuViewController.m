@@ -7,6 +7,7 @@
 //
 
 #import "MenuViewController.h"
+#import "BestCollectionViewController.h"
 
 @interface MenuViewController ()
 
@@ -31,9 +32,9 @@
     
     // segment value가 바뀌면 view controller를 바꾼다
     CGSize size = [[UIScreen mainScreen] bounds].size;
-    UIViewController *viewController = [[UIViewController alloc] init];
-    viewController.view.frame = CGRectMake(0, 110, size.width, size.height);
-    [[viewController view] setBackgroundColor:[UIColor yellowColor]];
+    
+    BestCollectionViewController *bestCollectionViewController = [[BestCollectionViewController alloc] init];
+    bestCollectionViewController.view.frame = CGRectMake(0, 50, size.width, size.height);
     
     UIViewController *viewController2 = [[UIViewController alloc] init];
     viewController2.view.frame = CGRectMake(0, 110, size.width, size.height);
@@ -43,7 +44,7 @@
     viewController3.view.frame = CGRectMake(0, 110, size.width, size.height);
     [[viewController3 view] setBackgroundColor:[UIColor blueColor]];
     
-    viewControllers = [NSArray arrayWithObjects:viewController, viewController2, viewController3, nil];
+    viewControllers = [NSArray arrayWithObjects:bestCollectionViewController, viewController2, viewController3, nil];
     titles = [NSArray arrayWithObjects:@"홈", @"카테고리", @"내 목록", nil];
     [self displayContent:[viewControllers objectAtIndex:[mySegmentedControl selectedSegmentIndex]]];
 }
