@@ -8,6 +8,7 @@
 
 #import "MenuViewController.h"
 #import "BestCollectionViewController.h"
+#import "CategoryViewController.h"
 
 @interface MenuViewController ()
 
@@ -36,15 +37,14 @@
     BestCollectionViewController *bestCollectionViewController = [[BestCollectionViewController alloc] init];
     bestCollectionViewController.view.frame = CGRectMake(0, 50, size.width, size.height);
     
-    UIViewController *viewController2 = [[UIViewController alloc] init];
-    viewController2.view.frame = CGRectMake(0, 110, size.width, size.height);
-    [[viewController2 view] setBackgroundColor:[UIColor redColor]];
+    CategoryViewController *categoryViewController = [[CategoryViewController alloc] init];
+    categoryViewController.view.frame = CGRectMake(0, 50, size.width, size.height);
     
     UIViewController *viewController3 = [[UIViewController alloc] init];
     viewController3.view.frame = CGRectMake(0, 110, size.width, size.height);
     [[viewController3 view] setBackgroundColor:[UIColor blueColor]];
     
-    viewControllers = [NSArray arrayWithObjects:bestCollectionViewController, viewController2, viewController3, nil];
+    viewControllers = [NSArray arrayWithObjects:bestCollectionViewController, categoryViewController, viewController3, nil];
     titles = [NSArray arrayWithObjects:@"홈", @"카테고리", @"내 목록", nil];
     [self displayContent:[viewControllers objectAtIndex:[mySegmentedControl selectedSegmentIndex]]];
 }
