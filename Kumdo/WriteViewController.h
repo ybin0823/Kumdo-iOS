@@ -11,7 +11,7 @@
 @class WriteViewController;
 
 @protocol WriteViewControllerDelegate
-- (void)writeViewControllerDidCancle:(WriteViewController *)controller;
+- (void)writeViewControllerDidCancel:(WriteViewController *)controller;
 @end
 
 @interface WriteViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>

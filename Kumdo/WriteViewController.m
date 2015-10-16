@@ -61,9 +61,9 @@
     NSLog(@"Word : %@", [[sender titleLabel] text]);
 }
 
-- (IBAction)cancle:(id)sender
+- (IBAction)cancel:(id)sender
 {
-    [[self delegate] writeViewControllerDidCancle:self];
+    [[self delegate] writeViewControllerDidCancel:self];
 }
 
 - (IBAction)showImagePickerForPhotoPicker:(id)sender

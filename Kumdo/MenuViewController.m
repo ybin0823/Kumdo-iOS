@@ -79,7 +79,7 @@
     }
 }
 
-- (void)writeViewControllerDidCancle:(WriteViewController *)controller
+- (void)writeViewControllerDidCancel:(WriteViewController *)controller
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
