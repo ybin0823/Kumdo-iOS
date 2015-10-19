@@ -45,9 +45,9 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
     images = nil;
     categoryNames = nil;
-    // Dispose of any resources that can be recreated.
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -70,11 +70,12 @@ static NSString * const reuseIdentifier = @"Cell";
     [cell addSubview:imageView];
     
     // Add label into the cell
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(cell.frame.size.width / 2 - 50, cell.frame.size.height / 2 - 20, 200, 40)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
     NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[categoryNames objectAtIndex:indexPath.row]];
     [text addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:NSUnderlineStyleSingle] range:NSMakeRange(0, text.length)];
     [label setTextColor:[UIColor whiteColor]];
-    [label setFont:[UIFont boldSystemFontOfSize:40]];
+    [label setFont:[UIFont boldSystemFontOfSize:35]];
+    [label setTextAlignment:NSTextAlignmentCenter];
     [label setAttributedText:text];
     [cell addSubview:label];
     
