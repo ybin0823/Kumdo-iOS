@@ -45,6 +45,8 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    images = nil;
+    categoryNames = nil;
     // Dispose of any resources that can be recreated.
 }
 

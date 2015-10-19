@@ -70,6 +70,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    writings = nil;
     // Dispose of any resources that can be recreated.
 }
 
