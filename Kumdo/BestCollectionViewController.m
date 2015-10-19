@@ -27,10 +27,8 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"viewDidLoad");
-    // Do any additional setup after loading the view.
     
-    // Register cell classes
+    // Set collectionView and register cell classes
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     
@@ -71,8 +69,9 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    writings = nil;
+
     // Dispose of any resources that can be recreated.
+    writings = nil;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -86,42 +85,13 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"cellForItem");
     BestCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    Writing *writing = [writings objectAtIndex:indexPath.row];
     
-    // Configure the cell
-    
-    // Add image
-    UIImage *image = [UIImage imageNamed:[[writings objectAtIndex:indexPath.row] imageUrl]];
-    float resizeWidth = self.view.frame.size.width;
-    float resizeHeight = 250.0;
-    
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(resizeWidth, resizeHeight), NO, [UIScreen mainScreen].scale);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextTranslateCTM(context, 0.0, resizeHeight);
-    CGContextScaleCTM(context, 1.0, -1.0);
-    
-    CGContextDrawImage(context, CGRectMake(0.0, 0.0, resizeWidth, resizeHeight), [image CGImage]);
-    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:scaledImage];
-    [cell addSubview:imageView];
-    
-    // Add sentence
-    UILabel *sentenceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 230)];
-    [sentenceLabel setText:[[writings objectAtIndex:indexPath.row] sentence]];
-    [sentenceLabel setTextAlignment:NSTextAlignmentCenter];
-    [sentenceLabel setTextColor:[UIColor whiteColor]];
-    [sentenceLabel setFont:[UIFont systemFontOfSize:20 weight:2]];
-    [cell addSubview:sentenceLabel];
-    
-    // Add words
-    UILabel *wordsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 230, self.view.frame.size.width, 20)];
-    [wordsLabel setTextAlignment:NSTextAlignmentCenter];
-    [wordsLabel setTextColor:[UIColor whiteColor]];
-    [wordsLabel setText:[[writings objectAtIndex:indexPath.row] words]];
-    [cell addSubview:wordsLabel];
+    UIImage *scaledImage = [self loadScaledImageAtIndexPath:indexPath];
+    [cell.imageView setImage:scaledImage];
+    [cell.sentenceLabel setText:writing.sentence];
+    [cell.wordsLabel setText:writing.words];
     
     return cell;
 }
@@ -138,6 +108,25 @@ static NSString * const reuseIdentifier = @"Cell";
     
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
+
+- (UIImage *)loadScaledImageAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIImage *image = [UIImage imageNamed:[[writings objectAtIndex:indexPath.row] imageUrl]];
+    float resizeWidth = self.view.frame.size.width;
+    float resizeHeight = 250.0;
+    
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(resizeWidth, resizeHeight), NO, [UIScreen mainScreen].scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(context, 0.0, resizeHeight);
+    CGContextScaleCTM(context, 1.0, -1.0);
+    
+    CGContextDrawImage(context, CGRectMake(0.0, 0.0, resizeWidth, resizeHeight), [image CGImage]);
+    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return scaledImage;
+}
+
 /*
 #pragma mark - Navigation
 

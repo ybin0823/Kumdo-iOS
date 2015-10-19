@@ -10,4 +10,8 @@
 
 @interface BestCollectionViewCell : UICollectionViewCell
 
+@property (strong, nonatomic) UIImageView *imageView;
+@property (strong, nonatomic) UILabel *sentenceLabel;
+@property (strong, nonatomic) UILabel *wordsLabel;
+
 @end
