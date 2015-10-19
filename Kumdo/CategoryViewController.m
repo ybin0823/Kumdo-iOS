@@ -8,6 +8,7 @@
 
 #import "CategoryViewController.h"
 #import "CategoryViewCell.h"
+#import "CategoryCollectionViewController.h"
 
 @interface CategoryViewController ()
 
@@ -103,6 +104,13 @@ static NSString * const reuseIdentifier = @"Cell";
     UIGraphicsEndImageContext();
     
     return scaledImage;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CategoryCollectionViewController *categoryCollectionViewController = [[CategoryCollectionViewController alloc] initWithCategory:indexPath.row];
+    
+    [self.navigationController pushViewController:categoryCollectionViewController animated:YES];
 }
 
 /*

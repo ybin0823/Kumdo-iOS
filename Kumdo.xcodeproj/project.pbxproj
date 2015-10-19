@@ -52,6 +52,7 @@
 		4E66889F1BCB882200D25A7C /* SNSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E66889E1BCB882200D25A7C /* SNSLoginViewController.m */; settings = {ASSET_TAGS = (); }; };
 		4E6688A21BCB883B00D25A7C /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6688A11BCB883B00D25A7C /* MenuViewController.m */; settings = {ASSET_TAGS = (); }; };
 		4E72BA261BD47D8000068B57 /* Writing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E72BA251BD47D8000068B57 /* Writing.m */; settings = {ASSET_TAGS = (); }; };
+		4E72BA2C1BD4975900068B57 /* CategoryCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E72BA2B1BD4975900068B57 /* CategoryCollectionViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +139,8 @@
 		4E6688A11BCB883B00D25A7C /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		4E72BA241BD47D8000068B57 /* Writing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Writing.h; sourceTree = "<group>"; };
 		4E72BA251BD47D8000068B57 /* Writing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Writing.m; sourceTree = "<group>"; };
+		4E72BA2A1BD4975900068B57 /* CategoryCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCollectionViewController.h; sourceTree = "<group>"; };
+		4E72BA2B1BD4975900068B57 /* CategoryCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCollectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -287,6 +290,8 @@
 				4E1853331BD0D131000F1818 /* MyListViewController.m */,
 				4E1853521BD0ED20000F1818 /* CategoryViewCell.h */,
 				4E1853531BD0ED20000F1818 /* CategoryViewCell.m */,
+				4E72BA2A1BD4975900068B57 /* CategoryCollectionViewController.h */,
+				4E72BA2B1BD4975900068B57 /* CategoryCollectionViewController.m */,
 			);
 			path = Kumdo;
 			sourceTree = "<group>";
@@ -494,6 +499,7 @@
 				4E66889F1BCB882200D25A7C /* SNSLoginViewController.m in Sources */,
 				4E1852B51BCE11D7000F1818 /* NLoginThirdPartyOAuth20InAppBrowserViewController.m in Sources */,
 				4E3EC3011BBD105700C73CFE /* main.m in Sources */,
+				4E72BA2C1BD4975900068B57 /* CategoryCollectionViewController.m in Sources */,
 				4E1853341BD0D131000F1818 /* MyListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
