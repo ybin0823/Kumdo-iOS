@@ -7,7 +7,7 @@
 //
 
 #import "BestCollectionViewController.h"
-#import "BestCollectionViewCell.h"
+#import "YBCollectionViewCell.h"
 #import "DetailViewController.h"
 #import "Writing.h"
 
@@ -37,7 +37,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [_collectionView setDataSource:self];
     [_collectionView setDelegate:self];
     
-    [self._collectionView registerClass:[BestCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [self._collectionView registerClass:[YBCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     [self.view addSubview:_collectionView];
     
@@ -85,7 +85,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    BestCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    YBCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     Writing *writing = [writings objectAtIndex:indexPath.row];
     
     UIImage *scaledImage = [self loadScaledImageAtIndexPath:indexPath];

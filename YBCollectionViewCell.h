@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BestCollectionViewCell : UICollectionViewCell
+@interface YBCollectionViewCell : UICollectionViewCell
 
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) UILabel *sentenceLabel;

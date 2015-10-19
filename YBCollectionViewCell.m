@@ -6,9 +6,9 @@
 //  Copyright © 2015년 Jang Young bin. All rights reserved.
 //
 
-#import "BestCollectionViewCell.h"
+#import "YBCollectionViewCell.h"
 
-@implementation BestCollectionViewCell
+@implementation YBCollectionViewCell
 {
     UIImageView *imageView;
     UILabel *sentenceLabel;

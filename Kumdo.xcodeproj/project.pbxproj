@@ -37,7 +37,7 @@
 		4E18534A1BD0D18E000F1818 /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4E1853421BD0D18E000F1818 /* 6.jpg */; settings = {ASSET_TAGS = (); }; };
 		4E18534B1BD0D18E000F1818 /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4E1853431BD0D18E000F1818 /* 7.jpg */; settings = {ASSET_TAGS = (); }; };
 		4E18534C1BD0D18E000F1818 /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4E1853441BD0D18E000F1818 /* 8.jpg */; settings = {ASSET_TAGS = (); }; };
-		4E1853511BD0D5A1000F1818 /* BestCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1853501BD0D5A1000F1818 /* BestCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		4E1853511BD0D5A1000F1818 /* YBCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1853501BD0D5A1000F1818 /* YBCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		4E1853541BD0ED20000F1818 /* CategoryViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1853531BD0ED20000F1818 /* CategoryViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		4E3EC3011BBD105700C73CFE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3EC3001BBD105700C73CFE /* main.m */; };
 		4E3EC3041BBD105700C73CFE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3EC3031BBD105700C73CFE /* AppDelegate.m */; };
@@ -109,8 +109,8 @@
 		4E1853421BD0D18E000F1818 /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 6.jpg; path = ../../../../sample/6.jpg; sourceTree = "<group>"; };
 		4E1853431BD0D18E000F1818 /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 7.jpg; path = ../../../../sample/7.jpg; sourceTree = "<group>"; };
 		4E1853441BD0D18E000F1818 /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 8.jpg; path = ../../../../sample/8.jpg; sourceTree = "<group>"; };
-		4E18534F1BD0D5A1000F1818 /* BestCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BestCollectionViewCell.h; path = ../BestCollectionViewCell.h; sourceTree = "<group>"; };
-		4E1853501BD0D5A1000F1818 /* BestCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BestCollectionViewCell.m; path = ../BestCollectionViewCell.m; sourceTree = "<group>"; };
+		4E18534F1BD0D5A1000F1818 /* YBCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YBCollectionViewCell.h; path = ../YBCollectionViewCell.h; sourceTree = "<group>"; };
+		4E1853501BD0D5A1000F1818 /* YBCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YBCollectionViewCell.m; path = ../YBCollectionViewCell.m; sourceTree = "<group>"; };
 		4E1853521BD0ED20000F1818 /* CategoryViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewCell.h; sourceTree = "<group>"; };
 		4E1853531BD0ED20000F1818 /* CategoryViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewCell.m; sourceTree = "<group>"; };
 		4E3EC2FC1BBD105700C73CFE /* Kumdo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kumdo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -276,8 +276,8 @@
 				4E6688A11BCB883B00D25A7C /* MenuViewController.m */,
 				4E18532C1BD0D118000F1818 /* BestCollectionViewController.h */,
 				4E18532D1BD0D118000F1818 /* BestCollectionViewController.m */,
-				4E18534F1BD0D5A1000F1818 /* BestCollectionViewCell.h */,
-				4E1853501BD0D5A1000F1818 /* BestCollectionViewCell.m */,
+				4E18534F1BD0D5A1000F1818 /* YBCollectionViewCell.h */,
+				4E1853501BD0D5A1000F1818 /* YBCollectionViewCell.m */,
 				4E18532F1BD0D126000F1818 /* CategoryViewController.h */,
 				4E1853301BD0D126000F1818 /* CategoryViewController.m */,
 				4E1853521BD0ED20000F1818 /* CategoryViewCell.h */,
@@ -491,7 +491,7 @@
 				4E72BA2F1BD4BFD200068B57 /* YBCategory.m in Sources */,
 				4E18532E1BD0D118000F1818 /* BestCollectionViewController.m in Sources */,
 				4E72BA261BD47D8000068B57 /* Writing.m in Sources */,
-				4E1853511BD0D5A1000F1818 /* BestCollectionViewCell.m in Sources */,
+				4E1853511BD0D5A1000F1818 /* YBCollectionViewCell.m in Sources */,
 				4E1853541BD0ED20000F1818 /* CategoryViewCell.m in Sources */,
 				4E3EC3041BBD105700C73CFE /* AppDelegate.m in Sources */,
 				4E6688991BCB87F600D25A7C /* WriteViewController.m in Sources */,
