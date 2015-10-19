@@ -13,11 +13,15 @@
     UIImageView *imageView;
     UILabel *sentenceLabel;
     UILabel *wordsLabel;
+    UILabel *nameLabel;
+    UILabel *dateLabel;
 }
 
 @synthesize imageView = imageView;
 @synthesize sentenceLabel = sentenceLabel;
 @synthesize wordsLabel = wordsLabel;
+@synthesize nameLabel = nameLabel;
+@synthesize dateLabel = dateLabel;
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -40,8 +44,25 @@
         [wordsLabel setTextAlignment:NSTextAlignmentCenter];
         [wordsLabel setTextColor:[UIColor whiteColor]];
         [self addSubview:wordsLabel];
+        
+        // Add name
+        nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 250, 100, 20)];
+        [self addSubview:nameLabel];
+        
+        // Add date
+        dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width - 150, 250, 150, 20)];
+        [dateLabel setTextAlignment:NSTextAlignmentRight];
+        [self addSubview:dateLabel];
     }
     
     return self;
+}
+
+- (void)setFormattedDate:(NSDate *)date
+{
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"YYYY-MM-dd"];
+    
+    [dateLabel setText:[dateFormat stringFromDate:date]];
 }
 @end

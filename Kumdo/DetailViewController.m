@@ -41,30 +41,17 @@
     [imageView setImage:[UIImage imageNamed:[_writing imageUrl]]];
     [self.view addSubview:imageView];
     
-    UILabel *sentenceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, height - 50)];
-    [sentenceLabel setText:[_writing sentence]];
-    [sentenceLabel setTextAlignment:NSTextAlignmentCenter];
-    [sentenceLabel setTextColor:[UIColor whiteColor]];
-    [sentenceLabel setFont:[UIFont systemFontOfSize:20 weight:2]];
+    UILabel *sentenceLabel = [self setSentenceLabelWithWidth:width Height:height];
     [self.view addSubview:sentenceLabel];
     
-    UILabel *wordsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, height - 50, width, 50)];
-    [wordsLabel setText:[_writing words]];
-    [wordsLabel setTextAlignment:NSTextAlignmentCenter];
-    [wordsLabel setTextColor:[UIColor whiteColor]];
+    UILabel *wordsLabel = [self setWordsLabelWithWidth:width Height:height];
     [self.view addSubview:wordsLabel];
     
     // 작성자는 Image 왼쪽 아래, 작성날짜는 Image 오른쪽 아래에 표시된다
-    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, height + 10, 100, 20)];
-    [nameLabel setText:[_writing name]];
-    [nameLabel setBackgroundColor:[UIColor yellowColor]];
+    UILabel *nameLabel = [self setNameLabelWithHeight:height];
     [self.view addSubview:nameLabel];
     
-    UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(width - 100, height + 10, 100, 20)];
-    NSString *date = [NSString stringWithFormat:@"%@", [_writing date]];
-    [dateLabel setText:date];
-    [dateLabel setBackgroundColor:[UIColor orangeColor]];
-    [dateLabel setTextAlignment:NSTextAlignmentRight];
+    UILabel *dateLabel = [self setDateLabelWithWidth:width Height:height];
     [self.view addSubview:dateLabel];
 }
 
@@ -72,6 +59,47 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
     _writing = nil;
+}
+
+- (UILabel *)setSentenceLabelWithWidth:(float)width Height:(float)height
+{
+    UILabel *sentenceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, height - 50)];
+    [sentenceLabel setText:[_writing sentence]];
+    [sentenceLabel setTextAlignment:NSTextAlignmentCenter];
+    [sentenceLabel setTextColor:[UIColor whiteColor]];
+    [sentenceLabel setFont:[UIFont systemFontOfSize:20 weight:2]];
+    
+    return sentenceLabel;
+}
+
+- (UILabel *)setWordsLabelWithWidth:(float)width Height:(float)height
+{
+    UILabel *wordsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, height - 50, width, 50)];
+    [wordsLabel setText:[_writing words]];
+    [wordsLabel setTextAlignment:NSTextAlignmentCenter];
+    [wordsLabel setTextColor:[UIColor whiteColor]];
+    
+    return wordsLabel;
+}
+
+- (UILabel *)setNameLabelWithHeight:(float)height
+{
+    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, height + 10, 100, 20)];
+    [nameLabel setText:[_writing name]];
+    [self.view addSubview:nameLabel];
+    
+    return nameLabel;
+}
+
+- (UILabel *)setDateLabelWithWidth:(float)width Height:(float)height
+{
+    UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(width - 150, height + 10, 150, 20)];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"YYYY-MM-dd"];
+    [dateLabel setText:[dateFormat stringFromDate:[_writing date]]];
+    [dateLabel setTextAlignment:NSTextAlignmentRight];
+    
+    return dateLabel;
 }
 
 /*

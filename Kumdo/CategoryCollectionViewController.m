@@ -71,6 +71,8 @@ static NSString * const reuseIdentifier = @"Cell";
             writing.imageUrl = [images objectAtIndex:i];
             writing.words = [words objectAtIndex:i];
             writing.sentence = [sentences objectAtIndex:i];
+            writing.name = @"홍길동";
+            writing.date = [NSDate date];
             writing.category = i % 4;
             [tempWritings addObject:writing];
         }
@@ -110,13 +112,15 @@ static NSString * const reuseIdentifier = @"Cell";
     [cell.imageView setImage:scaledImage];
     [cell.sentenceLabel setText:writing.sentence];
     [cell.wordsLabel setText:writing.words];
+    [cell.nameLabel setText:writing.name];
+    [cell setFormattedDate:writing.date];
     
     return cell;
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(self.view.frame.size.width, 250);
+    return CGSizeMake(self.view.frame.size.width, 350);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

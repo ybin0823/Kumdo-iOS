@@ -13,5 +13,9 @@
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) UILabel *sentenceLabel;
 @property (strong, nonatomic) UILabel *wordsLabel;
+@property (strong, nonatomic) UILabel *nameLabel;
+@property (strong, nonatomic) UILabel *dateLabel;
+
+- (void)setFormattedDate:(NSDate *)date;
 
 @end
