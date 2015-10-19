@@ -7,6 +7,7 @@
 //
 
 #import "CategoryCollectionViewController.h"
+#import "DetailViewController.h"
 #import "Writing.h"
 
 @interface CategoryCollectionViewController ()
@@ -143,6 +144,13 @@ static NSString * const reuseIdentifier = @"Cell";
     return CGSizeMake(self.view.frame.size.width, 250);
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    Writing *writing = [writings objectAtIndex:indexPath.row];
+    DetailViewController *detailViewController = [[DetailViewController alloc] initWithWriting:writing];
+    
+    [self.navigationController pushViewController:detailViewController animated:YES];
+}
 /*
 #pragma mark - Navigation
 
