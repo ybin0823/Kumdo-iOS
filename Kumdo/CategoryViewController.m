@@ -106,6 +106,11 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.navigationController pushViewController:categoryCollectionViewController animated:YES];
 }
 
+-(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 0;
+}
+
 /*
 #pragma mark - Navigation
 
