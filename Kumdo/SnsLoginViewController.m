@@ -6,14 +6,14 @@
 //  Copyright © 2015년 Jang Young bin. All rights reserved.
 //
 
-#import "SNSLoginViewController.h"
+#import "SnsLoginViewController.h"
 #import "MenuViewController.h"
 
-@interface SNSLoginViewController ()
+@interface SnsLoginViewController ()
 
 @end
 
-@implementation SNSLoginViewController
+@implementation SnsLoginViewController
 {
     NaverThirdPartyLoginConnection *_thirdPartyLoginConn;
 }
