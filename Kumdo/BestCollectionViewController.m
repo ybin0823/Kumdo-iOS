@@ -88,12 +88,13 @@ static NSString * const reuseIdentifier = @"Cell";
     BestCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
+    
+    // Add image
     UIImage *image = [UIImage imageNamed:[[writings objectAtIndex:indexPath.row] imageUrl]];
     float resizeWidth = self.view.frame.size.width;
     float resizeHeight = 250.0;
     
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(resizeWidth, resizeHeight), NO, [UIScreen mainScreen].scale);
-    NSLog(@"mainScreen scale : %lf", [UIScreen mainScreen].scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextTranslateCTM(context, 0.0, resizeHeight);
     CGContextScaleCTM(context, 1.0, -1.0);
@@ -103,9 +104,22 @@ static NSString * const reuseIdentifier = @"Cell";
     UIGraphicsEndImageContext();
     
     UIImageView *imageView = [[UIImageView alloc] initWithImage:scaledImage];
-    
     [cell addSubview:imageView];
-    cell.backgroundColor = [UIColor whiteColor];
+    
+    // Add sentence
+    UILabel *sentenceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 230)];
+    [sentenceLabel setText:[[writings objectAtIndex:indexPath.row] sentence]];
+    [sentenceLabel setTextAlignment:NSTextAlignmentCenter];
+    [sentenceLabel setTextColor:[UIColor whiteColor]];
+    [sentenceLabel setFont:[UIFont systemFontOfSize:20 weight:2]];
+    [cell addSubview:sentenceLabel];
+    
+    // Add words
+    UILabel *wordsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 230, self.view.frame.size.width, 20)];
+    [wordsLabel setTextAlignment:NSTextAlignmentCenter];
+    [wordsLabel setTextColor:[UIColor whiteColor]];
+    [wordsLabel setText:[[writings objectAtIndex:indexPath.row] words]];
+    [cell addSubview:wordsLabel];
     
     return cell;
 }

@@ -13,7 +13,7 @@
     NSString *name;
     NSString *email;
     NSString *sentence;
-    NSArray *words;
+    NSString *words;
     NSString *imageUrl;
     int category;
     NSDate *date;
