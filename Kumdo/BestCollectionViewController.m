@@ -8,6 +8,7 @@
 
 #import "BestCollectionViewController.h"
 #import "BestCollectionViewCell.h"
+#import "Writing.h"
 
 @interface BestCollectionViewController ()
 
@@ -15,30 +16,13 @@
 
 @implementation BestCollectionViewController
 {
-    NSArray *images;
     UICollectionView *_collectionView;
+    NSMutableArray *writings;
 }
 
 @synthesize _collectionView = _collectionView;
 
 static NSString * const reuseIdentifier = @"Cell";
-
-//- (instancetype)init{
-//    self = [super init];
-//    
-//    if (self) {
-//        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-//        [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-//        
-//        _collectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:flowLayout];
-//        [_collectionView setDataSource:self];
-//        [_collectionView setDelegate:self];
-//        
-//        [self.view addSubview:_collectionView];
-//    }
-//    
-//    return self;
-//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -58,7 +42,30 @@ static NSString * const reuseIdentifier = @"Cell";
     
     [self.view addSubview:_collectionView];
     
-    images = [NSArray arrayWithObjects:@"1.jpg", @"2.jpg", @"3.jpg", @"4.jpg", @"5.jpg", @"6.jpg", @"7.jpg", @"8.jpg", nil];
+    writings = [[NSMutableArray alloc] init];
+    
+    // Set dummy data start
+    NSArray *images = [NSArray arrayWithObjects:@"1.jpg", @"2.jpg", @"3.jpg", @"4.jpg", @"5.jpg", @"6.jpg", @"7.jpg", @"8.jpg", nil];
+    NSArray *words = [NSArray arrayWithObjects:@"사과", @"바나나", @"책", @"햇빛", @"바다", @"사랑", @"아름다운", @"여행", nil];
+    NSArray *sentences = [NSArray arrayWithObjects:@"이것은 테스트 문장입니다1",
+                          @"이것은 테스트 문장입니다2", @"이것은 테스트 문장입니다3",
+                          @"이것은 테스트 문장입니다4", @"이것은 테스트 문장입니다5",
+                          @"이것은 테스트 문장입니다6", @"이것은 테스트 문장입니다7",
+                          @"이것은 테스트 문장입니다8", nil];
+    
+    for (int i = 0; i < 8; i++) {
+        @autoreleasepool {
+            Writing *writing = [[Writing alloc] init];
+            writing.imageUrl = [images objectAtIndex:i];
+            writing.words = [words objectAtIndex:i];
+            writing.sentence = [sentences objectAtIndex:i];
+            
+            [writings addObject:writing];
+        }
+    }
+    NSLog(@"wrtings : %@", writings);
+    // Set dummy data end
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -73,7 +80,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return images.count;
+    return writings.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -81,7 +88,7 @@ static NSString * const reuseIdentifier = @"Cell";
     BestCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
-    UIImage *image = [UIImage imageNamed:[images objectAtIndex:indexPath.row]];
+    UIImage *image = [UIImage imageNamed:[[writings objectAtIndex:indexPath.row] imageUrl]];
     float resizeWidth = self.view.frame.size.width;
     float resizeHeight = 250.0;
     
@@ -99,14 +106,6 @@ static NSString * const reuseIdentifier = @"Cell";
     
     [cell addSubview:imageView];
     cell.backgroundColor = [UIColor whiteColor];
-    
-    /*
-     UIImageView *imageView = (UIImageView *)[cell viewWithTag:100];
-     imageView.image = [UIImage imageNamed:[images objectAtIndex:indexPath.row]];
-     UILabel *label = (UILabel *)[cell viewWithTag:200];
-     label.text = [NSString stringWithString:[texts objectAtIndex:indexPath.row]];
-     cell.backgroundColor = [UIColor whiteColor]; */
-    
     
     return cell;
 }
