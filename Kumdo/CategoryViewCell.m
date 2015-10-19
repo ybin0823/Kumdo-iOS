@@ -22,13 +22,26 @@
     self = [super initWithFrame:frame];
     
     if (self) {
-        label = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width / 2 - 50, self.frame.size.height / 2 - 20, 200, 40)];
-        imageView = [[UIImageView alloc] initWithImage:nil];
+        imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        [imageView setBackgroundColor:[UIColor yellowColor]];
+        [self addSubview:imageView];
+        
+        label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        [label setTextColor:[UIColor whiteColor]];
+        [label setFont:[UIFont boldSystemFontOfSize:35]];
+        [label setTextAlignment:NSTextAlignmentCenter];
         
         [self addSubview:label];
-        [self addSubview:imageView];
     }
     
     return self;
 }
+
+- (void)setAttributedText:(NSString *)text
+{
+    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:text];
+    [attributedText addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:NSUnderlineStyleSingle] range:NSMakeRange(0, attributedText.length)];
+    [label setAttributedText:attributedText];
+}
+
 @end

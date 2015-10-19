@@ -9,6 +9,7 @@
 #import "CategoryViewController.h"
 #import "CategoryViewCell.h"
 #import "CategoryCollectionViewController.h"
+#import "YBCategory.h"
 
 @interface CategoryViewController ()
 
@@ -16,9 +17,8 @@
 
 @implementation CategoryViewController
 {
-    NSArray *images;
-    NSArray *categoryNames;
     UICollectionView *_collectionView;
+    YBCategory *categories;
 }
 
 @synthesize _collectionView = _collectionView;
@@ -27,7 +27,8 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    // Set up collectionView and register collectionViewCell
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     
@@ -40,15 +41,15 @@ static NSString * const reuseIdentifier = @"Cell";
     
     [self.view addSubview:_collectionView];
     
-    images = [NSArray arrayWithObjects:@"romance.jpg", @"friend.jpg", @"family.jpg", @"adventure.jpg", nil];
-    categoryNames = [NSArray arrayWithObjects:@"연애/사랑", @"친구/우정", @"가족", @"모험/여행", nil];
+    // init category
+    categories = [[YBCategory alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    
     // Dispose of any resources that can be recreated.
-    images = nil;
-    categoryNames = nil;
+    categories = nil;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -58,27 +59,19 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return images.count;
+    return [categories count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CategoryViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    // Add imageView into the cell
+    // Set image of imageView in the cell
     UIImage *scaledImage = [self loadScaledImageAtIndexPath:indexPath];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:scaledImage];
-    [cell addSubview:imageView];
+    [cell.imageView setImage:scaledImage];
     
-    // Add label into the cell
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
-    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[categoryNames objectAtIndex:indexPath.row]];
-    [text addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:NSUnderlineStyleSingle] range:NSMakeRange(0, text.length)];
-    [label setTextColor:[UIColor whiteColor]];
-    [label setFont:[UIFont boldSystemFontOfSize:35]];
-    [label setTextAlignment:NSTextAlignmentCenter];
-    [label setAttributedText:text];
-    [cell addSubview:label];
+    // Set text of label in the cell
+    [cell setAttributedText:[categories.names objectAtIndex:indexPath.row]];
     
     return cell;
 }
@@ -90,7 +83,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (UIImage *)loadScaledImageAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIImage *image = [UIImage imageNamed:[images objectAtIndex:indexPath.row]];
+    UIImage *image = [UIImage imageNamed:[categories.images objectAtIndex:indexPath.row]];
     float resizeWidth = self.view.frame.size.width;
     float resizeHeight = 250.0;
     
