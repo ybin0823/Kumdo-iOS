@@ -32,4 +32,34 @@
 @synthesize name = name;
 @synthesize birthday = birthday;
 
+
++ (instancetype)sharedInstance
+{
+    static dispatch_once_t oncePredicate;
+    static User *shared = nil;
+    
+    dispatch_once(&oncePredicate, ^{
+        shared = [[self alloc] init];
+    });
+    
+    return shared;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        
+    }
+    
+    return self;
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"User : [email = %@, nickname = %@, enc_id = %@, profile_image = %@, age = %@, gender = %@, userId = %@, name = %@, birthday = %@]",
+            email, nickname, enc_id, profile_image, age, gender, userId, name, birthday];
+}
+
 @end

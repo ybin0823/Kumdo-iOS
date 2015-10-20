@@ -105,7 +105,7 @@
         success = [userParser parse];
         
         if (success) {
-            NSLog(@"user : %@, %@, %@, %@, %@, %@", user.email, user.nickname, user.name, user.birthday, user.age, user.gender);
+            NSLog(@"%@", [user description]);
         }
     }
 }
@@ -116,7 +116,7 @@
 {
     if ([elementName isEqualToString:@"response"]) {
         if (!user) {
-            user = [[User alloc] init];
+            user = [User sharedInstance];
             return;
         }
     }

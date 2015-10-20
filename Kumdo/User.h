@@ -21,4 +21,6 @@
 @property NSString *name;
 @property NSString *birthday;
 
++ (instancetype)sharedInstance;
+
 @end

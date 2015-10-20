@@ -7,6 +7,7 @@
 //
 
 #import "WriteViewController.h"
+#import "User.h"
 
 @interface WriteViewController ()
 
@@ -18,6 +19,7 @@
     __weak IBOutlet UIImageView *backgroundImage;
     __weak IBOutlet UIButton *takePictureButton;
     __weak IBOutlet UIButton *changePictureButton;
+    User *user;
 }
 
 @synthesize delegate = delegate;
@@ -28,6 +30,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    user = [User sharedInstance];
+    
+    NSLog(@"%@", [user description]);
     
     // 랜덤하게 불러온 글자로 word1, word2, word3의 텍스트를 변화해준다
     
