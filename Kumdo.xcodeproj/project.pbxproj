@@ -54,6 +54,7 @@
 		4E72BA2C1BD4975900068B57 /* CategoryCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E72BA2B1BD4975900068B57 /* CategoryCollectionViewController.m */; settings = {ASSET_TAGS = (); }; };
 		4E72BA2F1BD4BFD200068B57 /* YBCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E72BA2E1BD4BFD200068B57 /* YBCategory.m */; settings = {ASSET_TAGS = (); }; };
 		4E743B9B1BD5D25C009CBF99 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E743B9A1BD5D25C009CBF99 /* User.m */; settings = {ASSET_TAGS = (); }; };
+		4E743B9E1BD600D7009CBF99 /* WordDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E743B9D1BD600D7009CBF99 /* WordDictionary.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,6 +145,8 @@
 		4E72BA2E1BD4BFD200068B57 /* YBCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCategory.m; sourceTree = "<group>"; };
 		4E743B991BD5D25C009CBF99 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		4E743B9A1BD5D25C009CBF99 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		4E743B9C1BD600D7009CBF99 /* WordDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordDictionary.h; sourceTree = "<group>"; };
+		4E743B9D1BD600D7009CBF99 /* WordDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordDictionary.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,6 +335,8 @@
 				4E72BA2E1BD4BFD200068B57 /* YBCategory.m */,
 				4E743B991BD5D25C009CBF99 /* User.h */,
 				4E743B9A1BD5D25C009CBF99 /* User.m */,
+				4E743B9C1BD600D7009CBF99 /* WordDictionary.h */,
+				4E743B9D1BD600D7009CBF99 /* WordDictionary.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -504,6 +509,7 @@
 				4E1853311BD0D126000F1818 /* CategoryViewController.m in Sources */,
 				4E66889F1BCB882200D25A7C /* SnsLoginViewController.m in Sources */,
 				4E1852B51BCE11D7000F1818 /* NLoginThirdPartyOAuth20InAppBrowserViewController.m in Sources */,
+				4E743B9E1BD600D7009CBF99 /* WordDictionary.m in Sources */,
 				4E3EC3011BBD105700C73CFE /* main.m in Sources */,
 				4E72BA2C1BD4975900068B57 /* CategoryCollectionViewController.m in Sources */,
 				4E1853341BD0D131000F1818 /* MyListViewController.m in Sources */,

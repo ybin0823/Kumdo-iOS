@@ -8,6 +8,7 @@
 
 #import "WriteViewController.h"
 #import "User.h"
+#import "WordDictionary.h"
 
 @interface WriteViewController ()
 
@@ -19,25 +20,28 @@
     __weak IBOutlet UIImageView *backgroundImage;
     __weak IBOutlet UIButton *takePictureButton;
     __weak IBOutlet UIButton *changePictureButton;
+    __weak IBOutlet UIButton *nounWordButton;
+    __weak IBOutlet UIButton *verbWordButton;
+    __weak IBOutlet UIButton *adjectiveOrAdverbWordButton;
     User *user;
+    WordDictionary *wordDictionary;
 }
 
 @synthesize delegate = delegate;
-@synthesize backgroundImage = backgroundImage;
-@synthesize takePictureButton = takePictureButton;
-@synthesize changePictureButton = changePictureButton;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     user = [User sharedInstance];
+    wordDictionary = [[WordDictionary alloc] init];
     
     NSLog(@"%@", [user description]);
     
     // 랜덤하게 불러온 글자로 word1, word2, word3의 텍스트를 변화해준다
-    
-    // image를 클릭하면 Gallery App으로부터 Image를 가져온다
+    [nounWordButton setTitle:[wordDictionary randomNonunWord] forState:UIControlStateNormal];
+    [verbWordButton setTitle:[wordDictionary randomVerbWord] forState:UIControlStateNormal];
+    [adjectiveOrAdverbWordButton setTitle:[wordDictionary randomAdjectiveOrAdverbWord] forState:UIControlStateNormal];
     
     // Edit 버튼을 클릭하면 Image위에 Text Field가 생긴다
     
@@ -50,6 +54,7 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    wordDictionary = nil;
 }
 
 - (IBAction)save:(id)sender
@@ -72,6 +77,8 @@
     [[self delegate] writeViewControllerDidCancel:self];
 }
 
+#pragma mark - Pick image
+
 - (IBAction)showImagePickerForPhotoPicker:(id)sender
 {
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
@@ -87,9 +94,9 @@
     UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
     
     [self dismissViewControllerAnimated:YES completion:NULL];
-    [[self backgroundImage] setImage:image];
-    self.takePictureButton.hidden = YES;
-    self.changePictureButton.hidden = NO;
+    [backgroundImage setImage:image];
+    takePictureButton.hidden = YES;
+    changePictureButton.hidden = NO;
 }
 
 /*

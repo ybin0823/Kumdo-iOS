@@ -18,10 +18,4 @@
 
 @property (weak, nonatomic) id <WriteViewControllerDelegate> delegate;
 
-@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
-
-@property (weak, nonatomic) IBOutlet UIButton *takePictureButton;
-
-@property (weak, nonatomic) IBOutlet UIButton *changePictureButton;
-
 @end

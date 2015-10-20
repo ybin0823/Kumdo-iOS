@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Kumdo/WriteViewController.m"
-            timestampString = "467002797.556001"
+            timestampString = "467011177.933058"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
             landmarkName = "@implementation WriteViewController"
             landmarkType = "3">
          </BreakpointContent>
