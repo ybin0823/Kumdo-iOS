@@ -15,10 +15,10 @@
 @property NSString *nickname;
 @property NSString *enc_id;
 @property NSURL *profile_image;
-@property NSInteger age;
+@property NSString *age;
 @property NSString *gender;
 @property NSString *userId;
 @property NSString *name;
-@property NSDate *birthday;
+@property NSString *birthday;
 
 @end

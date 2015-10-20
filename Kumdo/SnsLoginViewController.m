@@ -8,6 +8,7 @@
 
 #import "SnsLoginViewController.h"
 #import "MenuViewController.h"
+#import "User.h"
 
 @interface SnsLoginViewController ()
 
@@ -16,6 +17,8 @@
 @implementation SnsLoginViewController
 {
     NaverThirdPartyLoginConnection *_thirdPartyLoginConn;
+    User *user;
+    NSString *currentString;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
@@ -91,12 +94,74 @@
     NSHTTPURLResponse *response = nil;
     NSError *error = nil;
     NSData *receivedData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
-    NSString *decodingString = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
     
     if (error) {
         NSLog(@"Error happened - %@", [error description]);
     } else {
-        NSLog(@"recevied data - %@", decodingString);
+        BOOL success;
+        NSXMLParser *userParser = [[NSXMLParser alloc] initWithData:receivedData];
+        [userParser setDelegate:self];
+        [userParser setShouldResolveExternalEntities:YES];
+        success = [userParser parse];
+        
+        if (success) {
+            NSLog(@"user : %@, %@, %@, %@, %@, %@", user.email, user.nickname, user.name, user.birthday, user.age, user.gender);
+        }
+    }
+}
+
+#pragma mark - XML parser delegate
+
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary<NSString *,NSString *> *)attributeDict
+{
+    if ([elementName isEqualToString:@"response"]) {
+        if (!user) {
+            user = [[User alloc] init];
+            return;
+        }
+    }
+}
+
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
+{
+    if (!currentString) {
+        currentString = [[NSString alloc] initWithString:string];
+    }
+    
+}
+
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+{
+    if ([elementName isEqualToString:@"resultcode"]) {
+        currentString = nil;
+    } else if([elementName isEqualToString:@"message"]) {
+        currentString = nil;
+    } else if ([elementName isEqualToString:@"email"]) {
+        [user setEmail:currentString];
+        currentString = nil;
+    } else if ([elementName isEqualToString:@"nickname"]) {
+        [user setNickname:currentString];
+        currentString = nil;
+    } else if ([elementName isEqualToString:@"enc_id"]) {
+        [user setEnc_id:currentString];
+    } else if ([elementName isEqualToString:@"profile_image"]) {
+        [user setProfile_image:[NSURL URLWithString:currentString]];
+        currentString = nil;
+    } else if ([elementName isEqualToString:@"age"]) {
+        [user setAge:currentString];
+        currentString = nil;
+    } else if ([elementName isEqualToString:@"gender"]) {
+        [user setGender:currentString];
+        currentString = nil;
+    } else if ([elementName isEqualToString:@"id"]) {
+        [user setUserId:currentString];
+        currentString = nil;
+    } else if ([elementName isEqualToString:@"name"]) {
+        [user setName:currentString];
+        currentString = nil;
+    } else if ([elementName isEqualToString:@"birthday"]) {
+        [user setBirthday:currentString];
+        currentString = nil;
     }
 }
 /*

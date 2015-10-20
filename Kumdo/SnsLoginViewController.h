@@ -10,6 +10,6 @@
 #import "NaverThirdPartyLoginConnection.h"
 #import "NLoginThirdPartyOAuth20InAppBrowserViewController.h"
 
-@interface SnsLoginViewController : UIViewController <NaverThirdPartyLoginConnectionDelegate>
+@interface SnsLoginViewController : UIViewController <NaverThirdPartyLoginConnectionDelegate, NSXMLParserDelegate>
 
 @end
