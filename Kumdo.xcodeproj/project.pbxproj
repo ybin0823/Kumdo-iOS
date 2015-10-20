@@ -53,6 +53,7 @@
 		4E72BA261BD47D8000068B57 /* Writing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E72BA251BD47D8000068B57 /* Writing.m */; settings = {ASSET_TAGS = (); }; };
 		4E72BA2C1BD4975900068B57 /* CategoryCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E72BA2B1BD4975900068B57 /* CategoryCollectionViewController.m */; settings = {ASSET_TAGS = (); }; };
 		4E72BA2F1BD4BFD200068B57 /* YBCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E72BA2E1BD4BFD200068B57 /* YBCategory.m */; settings = {ASSET_TAGS = (); }; };
+		4E743B9B1BD5D25C009CBF99 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E743B9A1BD5D25C009CBF99 /* User.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,6 +142,8 @@
 		4E72BA2B1BD4975900068B57 /* CategoryCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCollectionViewController.m; sourceTree = "<group>"; };
 		4E72BA2D1BD4BFD200068B57 /* YBCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCategory.h; sourceTree = "<group>"; };
 		4E72BA2E1BD4BFD200068B57 /* YBCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCategory.m; sourceTree = "<group>"; };
+		4E743B991BD5D25C009CBF99 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		4E743B9A1BD5D25C009CBF99 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,6 +330,8 @@
 				4E72BA251BD47D8000068B57 /* Writing.m */,
 				4E72BA2D1BD4BFD200068B57 /* YBCategory.h */,
 				4E72BA2E1BD4BFD200068B57 /* YBCategory.m */,
+				4E743B991BD5D25C009CBF99 /* User.h */,
+				4E743B9A1BD5D25C009CBF99 /* User.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -486,6 +491,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E743B9B1BD5D25C009CBF99 /* User.m in Sources */,
 				4E6688A21BCB883B00D25A7C /* MenuViewController.m in Sources */,
 				4E66889C1BCB880600D25A7C /* DetailViewController.m in Sources */,
 				4E72BA2F1BD4BFD200068B57 /* YBCategory.m in Sources */,
