@@ -55,6 +55,7 @@
 		4E72BA2F1BD4BFD200068B57 /* YBCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E72BA2E1BD4BFD200068B57 /* YBCategory.m */; settings = {ASSET_TAGS = (); }; };
 		4E743B9B1BD5D25C009CBF99 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E743B9A1BD5D25C009CBF99 /* User.m */; settings = {ASSET_TAGS = (); }; };
 		4E743B9E1BD600D7009CBF99 /* WordDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E743B9D1BD600D7009CBF99 /* WordDictionary.m */; settings = {ASSET_TAGS = (); }; };
+		4E743BA81BD628B5009CBF99 /* FlowContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E743BA71BD628B5009CBF99 /* FlowContentViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +148,8 @@
 		4E743B9A1BD5D25C009CBF99 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		4E743B9C1BD600D7009CBF99 /* WordDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordDictionary.h; sourceTree = "<group>"; };
 		4E743B9D1BD600D7009CBF99 /* WordDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordDictionary.m; sourceTree = "<group>"; };
+		4E743BA61BD628B5009CBF99 /* FlowContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowContentViewController.h; sourceTree = "<group>"; };
+		4E743BA71BD628B5009CBF99 /* FlowContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlowContentViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,6 +299,8 @@
 				4E6688981BCB87F600D25A7C /* WriteViewController.m */,
 				4E66889A1BCB880600D25A7C /* DetailViewController.h */,
 				4E66889B1BCB880600D25A7C /* DetailViewController.m */,
+				4E743BA61BD628B5009CBF99 /* FlowContentViewController.h */,
+				4E743BA71BD628B5009CBF99 /* FlowContentViewController.m */,
 			);
 			path = Kumdo;
 			sourceTree = "<group>";
@@ -506,6 +511,7 @@
 				4E1853541BD0ED20000F1818 /* CategoryViewCell.m in Sources */,
 				4E3EC3041BBD105700C73CFE /* AppDelegate.m in Sources */,
 				4E6688991BCB87F600D25A7C /* WriteViewController.m in Sources */,
+				4E743BA81BD628B5009CBF99 /* FlowContentViewController.m in Sources */,
 				4E1853311BD0D126000F1818 /* CategoryViewController.m in Sources */,
 				4E66889F1BCB882200D25A7C /* SnsLoginViewController.m in Sources */,
 				4E1852B51BCE11D7000F1818 /* NLoginThirdPartyOAuth20InAppBrowserViewController.m in Sources */,

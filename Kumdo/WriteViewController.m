@@ -9,6 +9,7 @@
 #import "WriteViewController.h"
 #import "User.h"
 #import "WordDictionary.h"
+#import "FlowContentViewController.h"
 
 @interface WriteViewController ()
 
@@ -25,6 +26,7 @@
     __weak IBOutlet UIButton *adjectiveOrAdverbWordButton;
     User *user;
     WordDictionary *wordDictionary;
+    FlowContentViewController *flowContentViewController;
 }
 
 @synthesize delegate = delegate;
@@ -55,6 +57,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
     wordDictionary = nil;
+    flowContentViewController = nil;
 }
 
 - (IBAction)save:(id)sender
@@ -65,11 +68,13 @@
 - (IBAction)addEdit:(id)sender
 {
     NSLog(@"Edit");
+    [flowContentViewController addTextField];
 }
 
 - (IBAction)addWord:(id)sender
 {
     NSLog(@"Word : %@", [[sender titleLabel] text]);
+    [flowContentViewController addLabelWithText:[[sender titleLabel] text]];
 }
 
 - (IBAction)cancel:(id)sender
@@ -97,6 +102,11 @@
     [backgroundImage setImage:image];
     takePictureButton.hidden = YES;
     changePictureButton.hidden = NO;
+    
+    flowContentViewController = [[FlowContentViewController alloc] initWithFrame:CGRectMake(0, 80, backgroundImage.frame.size.width, backgroundImage.frame.size.height)];
+    [self addChildViewController:flowContentViewController];
+    [self.view addSubview:flowContentViewController.view];
+    [flowContentViewController didMoveToParentViewController:self];
 }
 
 /*
