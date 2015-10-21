@@ -76,6 +76,16 @@ int defaultSubViewHeight = 50;
     [textField sizeToFit];
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (x + textField.frame.size.width + marginRight > maxWidth) {
+        [textField deleteBackward];
+        return NO;
+    }
+    
+    return YES;
+}
+
 - (void)addLabelWithText:(NSString *)text
 {
     [self calculateSubViewPosition];
