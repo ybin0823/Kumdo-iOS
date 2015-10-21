@@ -23,8 +23,8 @@
     float maxHeight;
 }
 
-int defaultSubViewWidth = 100;
-int defaultSubViewHeight = 50;
+int defaultSubViewWidth = 80;
+int defaultSubViewHeight = 30;
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -34,6 +34,11 @@ int defaultSubViewHeight = 50;
         [self.view setFrame:frame];
         maxWidth = self.view.frame.size.width;
         maxHeight = self.view.frame.size.height;
+        marginLeft = 10;
+        marginRight = 10;
+        marginTop = 10;
+        x = marginLeft;
+        y = marginTop;
     }
     
     return self;
@@ -41,14 +46,6 @@ int defaultSubViewHeight = 50;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    marginLeft = 10;
-    marginRight = 10;
-    marginTop = 10;
-    x = marginLeft;
-    y = marginTop;
-    maxWidth = self.view.frame.size.width;
-    maxHeight = self.view.frame.size.height;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,7 +64,8 @@ int defaultSubViewHeight = 50;
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(x, y, defaultSubViewWidth, defaultSubViewHeight)];
     [textField setDelegate:self];
     [textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-    [textField setBackgroundColor:[UIColor whiteColor]];
+    [textField setBackgroundColor:[UIColor colorWithWhite:0.5 alpha:0.5]];
+    [textField setTextColor:[UIColor whiteColor]];
     [self.view addSubview:textField];
 }
 
@@ -94,8 +92,11 @@ int defaultSubViewHeight = 50;
         NSLog(@"You can't add subView : maxHeight!");
         return;
     }
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x, y, defaultSubViewWidth, defaultSubViewHeight)];
-    [label setBackgroundColor:[UIColor whiteColor]];
+    
+    // label의 width는 한 글자당 20으로 계산하여 글자 수만큼 늘리도록 한다
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x, y, text.length * 20, defaultSubViewHeight)];
+    [label setBackgroundColor:[UIColor colorWithWhite:0.5 alpha:0.5]];
+    [label setTextColor:[UIColor whiteColor]];
     [label setText:text];
     [label setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:label];
