@@ -18,12 +18,14 @@
 @implementation WriteViewController
 {
     __weak id<WriteViewControllerDelegate> delegate;
+    
     __weak IBOutlet UIImageView *backgroundImage;
     __weak IBOutlet UIButton *takePictureButton;
     __weak IBOutlet UIButton *changePictureButton;
     __weak IBOutlet UIButton *nounWordButton;
     __weak IBOutlet UIButton *verbWordButton;
     __weak IBOutlet UIButton *adjectiveOrAdverbWordButton;
+    
     User *user;
     WordDictionary *wordDictionary;
     FlowContentViewController *flowContentViewController;
@@ -44,12 +46,6 @@
     [nounWordButton setTitle:[wordDictionary randomNonunWord] forState:UIControlStateNormal];
     [verbWordButton setTitle:[wordDictionary randomVerbWord] forState:UIControlStateNormal];
     [adjectiveOrAdverbWordButton setTitle:[wordDictionary randomAdjectiveOrAdverbWord] forState:UIControlStateNormal];
-    
-    // Edit 버튼을 클릭하면 Image위에 Text Field가 생긴다
-    
-    // Word1, Word2, Word3 버튼을 클릭하면 Image위에 Text View가 생긴다
-    
-    // Save 버튼을 클릭하면 Category를 선택하는 창이 나온 후 저장이 된다
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,20 +56,23 @@
     flowContentViewController = nil;
 }
 
+#pragma mark - Button method
+
+// Save 버튼을 클릭하면 Category를 선택하는 창이 나온 후 저장이 된다
 - (IBAction)save:(id)sender
 {
     NSLog(@"Save");
 }
 
+// Edit 버튼을 클릭하면 Image위에 UITextField가 생긴다
 - (IBAction)addEdit:(id)sender
 {
-    NSLog(@"Edit");
     [flowContentViewController addTextField];
 }
 
+// Word1, Word2, Word3 버튼을 클릭하면 Image위에 UILabel이 생긴다
 - (IBAction)addWord:(id)sender
 {
-    NSLog(@"Word : %@", [[sender titleLabel] text]);
     [flowContentViewController addLabelWithText:[[sender titleLabel] text]];
 }
 
@@ -103,10 +102,14 @@
     takePictureButton.hidden = YES;
     changePictureButton.hidden = NO;
     
-    flowContentViewController = [[FlowContentViewController alloc] initWithFrame:CGRectMake(0, 80, backgroundImage.frame.size.width, backgroundImage.frame.size.height)];
-    [self addChildViewController:flowContentViewController];
-    [self.view addSubview:flowContentViewController.view];
-    [flowContentViewController didMoveToParentViewController:self];
+    // image를 선택하면, word와 edit버튼이 추가될 수 있도록 flowContentViewController를 생성한다
+    // TODO method 분리. (적절한 메소드명이 떠오르지 않음)
+    if (!flowContentViewController) {
+        flowContentViewController = [[FlowContentViewController alloc] initWithFrame:CGRectMake(0, 80, backgroundImage.frame.size.width, backgroundImage.frame.size.height)];
+        [self addChildViewController:flowContentViewController];
+        [self.view addSubview:flowContentViewController.view];
+        [flowContentViewController didMoveToParentViewController:self];
+    }
 }
 
 /*
