@@ -140,6 +140,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAS-Xk-gCJ">
                                 <rect key="frame" x="9" y="614" width="90" height="45"/>
                                 <color key="backgroundColor" red="0.13782562779357121" green="0.74785607571210222" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration" identifier="">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <state key="normal" title="Word1">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -150,6 +153,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HS8-wB-Uga">
                                 <rect key="frame" x="275" y="614" width="90" height="45"/>
                                 <color key="backgroundColor" red="0.19117540047027357" green="0.74366714015151514" blue="0.59481152200488663" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration" identifier="">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <state key="normal" title="Word3">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -174,6 +180,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGO-Rh-YfU">
                                 <rect key="frame" x="142" y="614" width="90" height="45"/>
                                 <color key="backgroundColor" red="0.7961200223276429" green="0.95134943181818177" blue="0.38739016426158995" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration" identifier="">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <state key="normal" title="Word2">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>

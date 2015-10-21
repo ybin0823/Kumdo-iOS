@@ -69,7 +69,7 @@ static NSString * const reuseIdentifier = @"Cell";
         @autoreleasepool {
             Writing *writing = [[Writing alloc] init];
             writing.imageUrl = [images objectAtIndex:i];
-            writing.words = [words objectAtIndex:i];
+            writing.words = [NSArray arrayWithObject:[words objectAtIndex:i]];
             writing.sentence = [sentences objectAtIndex:i];
             writing.name = @"홍길동";
             writing.date = [NSDate date];
@@ -111,7 +111,7 @@ static NSString * const reuseIdentifier = @"Cell";
     UIImage *scaledImage = [self loadScaledImageAtIndexPath:indexPath];
     [cell.imageView setImage:scaledImage];
     [cell.sentenceLabel setText:writing.sentence];
-    [cell.wordsLabel setText:writing.words];
+    [cell.wordsLabel setText:[writing stringWithCommaFromWords]];
     [cell.nameLabel setText:writing.name];
     [cell setFormattedDate:writing.date];
     

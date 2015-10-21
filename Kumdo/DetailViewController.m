@@ -75,7 +75,7 @@
 - (UILabel *)setWordsLabelWithWidth:(float)width Height:(float)height
 {
     UILabel *wordsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, height - 50, width, 50)];
-    [wordsLabel setText:[_writing words]];
+    [wordsLabel setText:[_writing stringWithCommaFromWords]];
     [wordsLabel setTextAlignment:NSTextAlignmentCenter];
     [wordsLabel setTextColor:[UIColor whiteColor]];
     

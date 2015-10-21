@@ -8,6 +8,8 @@
 
 #import "WriteViewController.h"
 #import "User.h"
+#import "Writing.h"
+#import "YBCategory.h"
 #import "WordDictionary.h"
 #import "FlowContentViewController.h"
 
@@ -29,6 +31,8 @@
     User *user;
     WordDictionary *wordDictionary;
     FlowContentViewController *flowContentViewController;
+    Writing *writing;
+    NSMutableSet *usedWords;
 }
 
 @synthesize delegate = delegate;
@@ -39,6 +43,8 @@
     
     user = [User sharedInstance];
     wordDictionary = [[WordDictionary alloc] init];
+    writing = [[Writing alloc] init];
+    usedWords = [[NSMutableSet alloc] init];
     
     NSLog(@"%@", [user description]);
     
@@ -62,6 +68,7 @@
 - (IBAction)save:(id)sender
 {
     NSLog(@"Save");
+    [self displayCategorySelectAlert];
 }
 
 // Edit 버튼을 클릭하면 Image위에 UITextField가 생긴다
@@ -73,7 +80,10 @@
 // Word1, Word2, Word3 버튼을 클릭하면 Image위에 UILabel이 생긴다
 - (IBAction)addWord:(id)sender
 {
-    [flowContentViewController addLabelWithText:[[sender titleLabel] text]];
+    if (flowContentViewController != NULL) {
+        [usedWords addObject:[[sender titleLabel] text]];
+        [flowContentViewController addLabelWithText:[[sender titleLabel] text]];
+    }
 }
 
 - (IBAction)cancel:(id)sender
@@ -104,7 +114,7 @@
     
     // image를 선택하면, word와 edit버튼이 추가될 수 있도록 flowContentViewController를 생성한다
     // TODO method 분리. (적절한 메소드명이 떠오르지 않음)
-    if (!flowContentViewController) {
+    if (flowContentViewController == NULL) {
         flowContentViewController = [[FlowContentViewController alloc] initWithFrame:CGRectMake(0, 80, backgroundImage.frame.size.width, backgroundImage.frame.size.height)];
         [self addChildViewController:flowContentViewController];
         [self.view addSubview:flowContentViewController.view];
@@ -112,6 +122,63 @@
     }
 }
 
+- (NSString *)makeSentenceFromSubViews
+{
+    if (flowContentViewController != NULL) {
+        NSArray *subViews = [NSArray arrayWithArray:[flowContentViewController.view subviews]];
+        NSMutableString *sentence = [[NSMutableString alloc] init];
+        for (UIView *subView in subViews) {
+            @autoreleasepool {
+                if ([subView isKindOfClass:[UILabel class]]) {
+                    UILabel *label = (UILabel *)subView;
+                    [sentence appendString:label.text];
+                    [sentence appendString:@" "];
+                }
+                
+                if ([subView isKindOfClass:[UITextField class]]) {
+                    UITextField *textField = (UITextField *)subView;
+                    [sentence appendString:textField.text];
+                    [sentence appendString:@" "];
+                }
+            }
+        }
+        return [NSString stringWithString:sentence];
+    }
+    return nil;
+}
+
+- (void)setWriting
+{
+    [writing setName:[user name]];
+    [writing setEmail:[user email]];
+    [writing setSentence:[self makeSentenceFromSubViews]];
+    [writing setDate:[NSDate date]];
+    [writing setWords:[usedWords allObjects]];
+}
+
+- (void)displayCategorySelectAlert
+{
+    YBCategory *categories = [[YBCategory alloc] init];
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Category"
+                                                                   message:@"Select your category"
+                                                            preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    for (int i = 0; i < [categories count]; i++) {
+        UIAlertAction *categoryAction = [UIAlertAction actionWithTitle:[categories.names objectAtIndex:i] style:UIAlertActionStyleDefault
+                                                               handler:^(UIAlertAction * action) {
+                                                                   writing.category = i;
+                                                                   [self setWriting];
+                                                                   NSLog(@"writing : %@", [writing description]);
+                                                               }];
+        [alert addAction:categoryAction];
+    }
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * action) {
+                                                         }];
+    [alert addAction:cancelAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
 /*
 #pragma mark - Navigation
 
