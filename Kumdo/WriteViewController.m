@@ -68,6 +68,11 @@
 - (IBAction)save:(id)sender
 {
     NSLog(@"Save");
+    [self setWriting];
+    if (writing.sentence.length == 0) {
+        [self displayEmptyContentWarningAlert];
+        return;
+    }
     [self displayCategorySelectAlert];
 }
 
@@ -159,7 +164,7 @@
 - (void)displayCategorySelectAlert
 {
     YBCategory *categories = [[YBCategory alloc] init];
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Category"
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Category"
                                                                    message:@"Select your category"
                                                             preferredStyle:UIAlertControllerStyleActionSheet];
     
@@ -167,17 +172,26 @@
         UIAlertAction *categoryAction = [UIAlertAction actionWithTitle:[categories.names objectAtIndex:i] style:UIAlertActionStyleDefault
                                                                handler:^(UIAlertAction * action) {
                                                                    writing.category = i;
-                                                                   [self setWriting];
                                                                    NSLog(@"writing : %@", [writing description]);
                                                                }];
-        [alert addAction:categoryAction];
+        [alertController addAction:categoryAction];
     }
-    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
                                                          handler:^(UIAlertAction * action) {
                                                          }];
-    [alert addAction:cancelAction];
+    [alertController addAction:cancelAction];
     
-    [self presentViewController:alert animated:YES completion:nil];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)displayEmptyContentWarningAlert
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Warning" message:@"Empty Sentence!" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+
+    }];
+    [alertController addAction:defaultAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 /*
 #pragma mark - Navigation
