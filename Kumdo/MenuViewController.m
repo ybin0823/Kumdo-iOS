@@ -9,6 +9,7 @@
 #import "MenuViewController.h"
 #import "BestCollectionViewController.h"
 #import "CategoryViewController.h"
+#import "MyListViewController.h"
 
 @interface MenuViewController ()
 
@@ -40,13 +41,13 @@
     CategoryViewController *categoryViewController = [[CategoryViewController alloc] init];
     categoryViewController.view.frame = CGRectMake(0, 50, size.width, size.height);
     
-    UIViewController *viewController3 = [[UIViewController alloc] init];
-    viewController3.view.frame = CGRectMake(0, 110, size.width, size.height);
-    [[viewController3 view] setBackgroundColor:[UIColor blueColor]];
+    MyListViewController *myListViewController = [[MyListViewController alloc] init];
+    myListViewController.view.frame = CGRectMake(0, 50, size.width, size.height);
     
-    viewControllers = [NSArray arrayWithObjects:bestCollectionViewController, categoryViewController, viewController3, nil];
-    titles = [NSArray arrayWithObjects:@"홈", @"카테고리", @"내 목록", nil];
+    viewControllers = [NSArray arrayWithObjects:bestCollectionViewController, categoryViewController, myListViewController, nil];
     [self displayContent:[viewControllers objectAtIndex:[mySegmentedControl selectedSegmentIndex]]];
+    
+    titles = [NSArray arrayWithObjects:@"홈", @"카테고리", @"내 목록", nil];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyListViewController : UIViewController
+@interface MyListViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+
+@property (strong, nonatomic) UICollectionView *_collectionView;
 
 @end
