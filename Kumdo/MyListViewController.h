@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YBCollectionViewWaterFallLayout.h"
 
-@interface MyListViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface MyListViewController : UIViewController <UICollectionViewDataSource, YBCollectionViewDelegateWaterFallLayout>
 
 @property (strong, nonatomic) UICollectionView *_collectionView;
 

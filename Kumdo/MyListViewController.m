@@ -27,10 +27,10 @@ static NSString * const reuseIdentifier = @"Cell";
     // Do any additional setup after loading the view.
     
     // Set collectionView and register cell classes
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    YBCollectionViewWaterFallLayout *waterFallLayout = [[YBCollectionViewWaterFallLayout alloc] init];
+    [waterFallLayout setDelegate:self];
     
-    _collectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:flowLayout];
+    _collectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:waterFallLayout];
     [_collectionView setBackgroundColor:[UIColor whiteColor]];
     [_collectionView setDataSource:self];
     [_collectionView setDelegate:self];
@@ -124,16 +124,6 @@ static NSString * const reuseIdentifier = @"Cell";
     UIGraphicsEndImageContext();
     
     return scaledImage;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 0;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 0;
 }
 
 /*

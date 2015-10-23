@@ -61,6 +61,7 @@
 		4E7877671BD8758000809766 /* boyoung3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7877641BD8758000809766 /* boyoung3.jpg */; settings = {ASSET_TAGS = (); }; };
 		4E78776A1BD8758E00809766 /* iu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7877681BD8758E00809766 /* iu.jpg */; settings = {ASSET_TAGS = (); }; };
 		4E78776B1BD8758E00809766 /* iu2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7877691BD8758E00809766 /* iu2.jpg */; settings = {ASSET_TAGS = (); }; };
+		4EBF3A8D1BD9D19200E37EEC /* YBCollectionViewWaterFallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF3A8C1BD9D19200E37EEC /* YBCollectionViewWaterFallLayout.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +161,8 @@
 		4E7877641BD8758000809766 /* boyoung3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = boyoung3.jpg; path = ../../../../boyoung3.jpg; sourceTree = "<group>"; };
 		4E7877681BD8758E00809766 /* iu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = iu.jpg; path = ../../../../iu.jpg; sourceTree = "<group>"; };
 		4E7877691BD8758E00809766 /* iu2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = iu2.jpg; path = ../../../../iu2.jpg; sourceTree = "<group>"; };
+		4EBF3A8B1BD9D19200E37EEC /* YBCollectionViewWaterFallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCollectionViewWaterFallLayout.h; sourceTree = "<group>"; };
+		4EBF3A8C1BD9D19200E37EEC /* YBCollectionViewWaterFallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCollectionViewWaterFallLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -316,6 +319,8 @@
 				4E66889B1BCB880600D25A7C /* DetailViewController.m */,
 				4E743BA61BD628B5009CBF99 /* FlowContentViewController.h */,
 				4E743BA71BD628B5009CBF99 /* FlowContentViewController.m */,
+				4EBF3A8B1BD9D19200E37EEC /* YBCollectionViewWaterFallLayout.h */,
+				4EBF3A8C1BD9D19200E37EEC /* YBCollectionViewWaterFallLayout.m */,
 			);
 			path = Kumdo;
 			sourceTree = "<group>";
@@ -536,6 +541,7 @@
 				4E66889F1BCB882200D25A7C /* SnsLoginViewController.m in Sources */,
 				4E1852B51BCE11D7000F1818 /* NLoginThirdPartyOAuth20InAppBrowserViewController.m in Sources */,
 				4E743B9E1BD600D7009CBF99 /* WordDictionary.m in Sources */,
+				4EBF3A8D1BD9D19200E37EEC /* YBCollectionViewWaterFallLayout.m in Sources */,
 				4E3EC3011BBD105700C73CFE /* main.m in Sources */,
 				4E72BA2C1BD4975900068B57 /* CategoryCollectionViewController.m in Sources */,
 				4E1853341BD0D131000F1818 /* MyListViewController.m in Sources */,
