@@ -8,6 +8,7 @@
 
 #import "MyListViewController.h"
 #import "Writing.h"
+#import "DetailViewController.h"
 
 @interface MyListViewController ()
 
@@ -124,6 +125,14 @@ static NSString * const reuseIdentifier = @"Cell";
     UIGraphicsEndImageContext();
     
     return scaledImage;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    Writing *writing = [writings objectAtIndex:indexPath.row];
+    DetailViewController *detailViewController = [[DetailViewController alloc] initWithWriting:writing];
+    
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 /*
