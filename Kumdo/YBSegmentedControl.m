@@ -14,16 +14,19 @@
 @property (nonatomic) NSArray *images;
 @property (nonatomic, readonly) NSUInteger numberOfSegments;
 @property (nonatomic) NSInteger segmentWidth;
-@property (nonatomic) NSInteger selectedSegmentIndex;
 @property (nonatomic) CALayer *indicatorLayer;
 
 @end
 
 @implementation YBSegmentedControl
+{
+    NSInteger selectedSegmentIndex;
+}
+
+@synthesize selectedSegmentIndex = selectedSegmentIndex;
 
 - (instancetype)initWithImages:(NSArray *)images
 {
-    NSLog(@"init");
     self = [super initWithFrame:CGRectZero];
     
     if (self) {
@@ -38,7 +41,6 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-    NSLog(@"drawRect");
     [super drawRect:rect];
     
     if (self.type == YBSegmentedControlTypeImage) {
@@ -51,7 +53,7 @@
             layer.frame = CGRectMake((_segmentWidth * index) + (_segmentWidth / 2) - (imageWidth / 2), (self.frame.size.height / 2) - (imageHeight / 2), imageWidth, imageHeight);
             layer.contents = (id)image.CGImage;
             
-            if (index == _selectedSegmentIndex) {
+            if (index == selectedSegmentIndex) {
                 _indicatorLayer = [CALayer layer];
                 _indicatorLayer.frame = CGRectMake(_segmentWidth * index, self.frame.size.height - 3, _segmentWidth, 3);
                 [_indicatorLayer setBackgroundColor:[UIColor colorWithRed:45.0f/255.0f green:125.0f/255.0f blue:26.0f/255.0f alpha:1.0f].CGColor];
@@ -70,22 +72,12 @@
     [_indicatorLayer removeFromSuperlayer];
     
     for (int i = 0; i < _numberOfSegments; i++) {
-        
         if (_segmentWidth * i < point.x && point.x < _segmentWidth * (i + 1)) {
-            NSLog(@"%ld", _segmentWidth * i);
-            NSLog(@"%ld", _segmentWidth * (i + 1));
-            NSLog(@"%f, %f", point.x, point.y);
-            NSLog(@"segment index : %d", i);
-            
-            _selectedSegmentIndex = i;
-
-            NSLog(@"%ld", _selectedSegmentIndex);
+            selectedSegmentIndex = i;
             [self setNeedsDisplay];
-            
             [self sendActionsForControlEvents:UIControlEventValueChanged];
         }
     }
-    NSLog(@"%f, %f", self.frame.size.width, self.frame.size.height);
 }
 
 

@@ -11,6 +11,4 @@
 
 @interface MenuViewController : UIViewController <WriteViewControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UISegmentedControl *mySegmentedControl;
-
 @end

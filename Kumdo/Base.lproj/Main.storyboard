@@ -47,6 +47,7 @@
         <scene sceneID="9j4-Ns-AGI">
             <objects>
                 <navigationController id="erv-Ug-tez" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="F2Q-XA-Oyq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -76,16 +77,6 @@
                     <view key="view" contentMode="scaleToFill" id="5UK-tS-cMq">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="iOg-fG-Ess">
-                                <rect key="frame" x="0.0" y="8" width="375" height="29"/>
-                                <segments>
-                                    <segment title="" image="ic_home_white.png"/>
-                                    <segment title="" image="ic_list_white.png"/>
-                                    <segment title="" image="ic_collections_white.png"/>
-                                </segments>
-                            </segmentedControl>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="4hG-Sn-KyH">
@@ -95,9 +86,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="mySegmentedControl" destination="iOg-fG-Ess" id="RaI-FC-UYM"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IlE-vf-6Vm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -240,11 +228,8 @@
     </scenes>
     <resources>
         <image name="ic_arrow_back_white_36pt.png" width="36" height="36"/>
-        <image name="ic_collections_white.png" width="24" height="24"/>
         <image name="ic_create_white.png" width="24" height="24"/>
-        <image name="ic_home_white.png" width="24" height="24"/>
         <image name="ic_image_48pt.png" width="48" height="48"/>
-        <image name="ic_list_white.png" width="24" height="24"/>
         <image name="ic_save_white_36pt.png" width="36" height="36"/>
     </resources>
 </document>
