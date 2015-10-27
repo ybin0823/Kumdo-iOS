@@ -61,7 +61,11 @@
 		4E7877671BD8758000809766 /* boyoung3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7877641BD8758000809766 /* boyoung3.jpg */; settings = {ASSET_TAGS = (); }; };
 		4E78776A1BD8758E00809766 /* iu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7877681BD8758E00809766 /* iu.jpg */; settings = {ASSET_TAGS = (); }; };
 		4E78776B1BD8758E00809766 /* iu2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4E7877691BD8758E00809766 /* iu2.jpg */; settings = {ASSET_TAGS = (); }; };
+		4E8EC9E91BDE33DE0058B957 /* ic_home_white_36pt.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E8EC9E81BDE33DE0058B957 /* ic_home_white_36pt.png */; settings = {ASSET_TAGS = (); }; };
+		4E8EC9EB1BDE34130058B957 /* ic_collections_white_36pt.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E8EC9EA1BDE34130058B957 /* ic_collections_white_36pt.png */; settings = {ASSET_TAGS = (); }; };
+		4E8EC9ED1BDE343E0058B957 /* ic_list_white_36pt.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E8EC9EC1BDE343E0058B957 /* ic_list_white_36pt.png */; settings = {ASSET_TAGS = (); }; };
 		4EBF3A8D1BD9D19200E37EEC /* YBCollectionViewWaterFallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF3A8C1BD9D19200E37EEC /* YBCollectionViewWaterFallLayout.m */; settings = {ASSET_TAGS = (); }; };
+		4EBF3A901BDA116600E37EEC /* YBSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF3A8F1BDA116600E37EEC /* YBSegmentedControl.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,8 +165,13 @@
 		4E7877641BD8758000809766 /* boyoung3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = boyoung3.jpg; path = ../../../../boyoung3.jpg; sourceTree = "<group>"; };
 		4E7877681BD8758E00809766 /* iu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = iu.jpg; path = ../../../../iu.jpg; sourceTree = "<group>"; };
 		4E7877691BD8758E00809766 /* iu2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = iu2.jpg; path = ../../../../iu2.jpg; sourceTree = "<group>"; };
+		4E8EC9E81BDE33DE0058B957 /* ic_home_white_36pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_home_white_36pt.png; path = ../../../../../Downloads/icon/ic_home_white_36dp/ios/ic_home_white_36pt.imageset/ic_home_white_36pt.png; sourceTree = "<group>"; };
+		4E8EC9EA1BDE34130058B957 /* ic_collections_white_36pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_collections_white_36pt.png; path = ../../../../../Downloads/icon/ic_collections_white_36dp/ios/ic_collections_white_36pt.imageset/ic_collections_white_36pt.png; sourceTree = "<group>"; };
+		4E8EC9EC1BDE343E0058B957 /* ic_list_white_36pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_list_white_36pt.png; path = ../../../../../Downloads/icon/ic_list_white_36dp/ios/ic_list_white_36pt.imageset/ic_list_white_36pt.png; sourceTree = "<group>"; };
 		4EBF3A8B1BD9D19200E37EEC /* YBCollectionViewWaterFallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCollectionViewWaterFallLayout.h; sourceTree = "<group>"; };
 		4EBF3A8C1BD9D19200E37EEC /* YBCollectionViewWaterFallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCollectionViewWaterFallLayout.m; sourceTree = "<group>"; };
+		4EBF3A8E1BDA116600E37EEC /* YBSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSegmentedControl.h; sourceTree = "<group>"; };
+		4EBF3A8F1BDA116600E37EEC /* YBSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSegmentedControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,12 +208,15 @@
 				4E1852A11BCDEBE2000F1818 /* ic_arrow_back_white_36pt.png */,
 				4E18529F1BCDE76F000F1818 /* ic_save_white.png */,
 				4E18529D1BCC9327000F1818 /* ic_collections_white_2x.png */,
+				4E8EC9EA1BDE34130058B957 /* ic_collections_white_36pt.png */,
 				4E18529B1BCC9312000F1818 /* ic_list_white_2x.png */,
 				4E1852991BCC9303000F1818 /* ic_home_white_2x.png */,
+				4E8EC9E81BDE33DE0058B957 /* ic_home_white_36pt.png */,
 				4E1852971BCC92F4000F1818 /* ic_create_white_2x.png */,
 				4E1852951BCC91FB000F1818 /* ic_create_white.png */,
 				4E1852931BCC91EC000F1818 /* ic_collections_white.png */,
 				4E1852911BCC91DB000F1818 /* ic_list_white.png */,
+				4E8EC9EC1BDE343E0058B957 /* ic_list_white_36pt.png */,
 				4E18528F1BCC91C6000F1818 /* ic_home_white.png */,
 			);
 			name = icon;
@@ -321,6 +333,8 @@
 				4E743BA71BD628B5009CBF99 /* FlowContentViewController.m */,
 				4EBF3A8B1BD9D19200E37EEC /* YBCollectionViewWaterFallLayout.h */,
 				4EBF3A8C1BD9D19200E37EEC /* YBCollectionViewWaterFallLayout.m */,
+				4EBF3A8E1BDA116600E37EEC /* YBSegmentedControl.h */,
+				4EBF3A8F1BDA116600E37EEC /* YBSegmentedControl.m */,
 			);
 			path = Kumdo;
 			sourceTree = "<group>";
@@ -482,8 +496,11 @@
 				4E1852A21BCDEBE2000F1818 /* ic_arrow_back_white_36pt.png in Resources */,
 				4E1853451BD0D18E000F1818 /* 1.jpg in Resources */,
 				4E78776B1BD8758E00809766 /* iu2.jpg in Resources */,
+				4E8EC9EB1BDE34130058B957 /* ic_collections_white_36pt.png in Resources */,
 				4E18533B1BD0D183000F1818 /* friend.jpg in Resources */,
 				4E1852B31BCE11D7000F1818 /* NaverAuth.bundle in Resources */,
+				4E8EC9ED1BDE343E0058B957 /* ic_list_white_36pt.png in Resources */,
+				4E8EC9E91BDE33DE0058B957 /* ic_home_white_36pt.png in Resources */,
 				4E1852981BCC92F4000F1818 /* ic_create_white_2x.png in Resources */,
 				4E1852941BCC91EC000F1818 /* ic_collections_white.png in Resources */,
 				4E18529A1BCC9303000F1818 /* ic_home_white_2x.png in Resources */,
@@ -529,6 +546,7 @@
 				4E743B9B1BD5D25C009CBF99 /* User.m in Sources */,
 				4E6688A21BCB883B00D25A7C /* MenuViewController.m in Sources */,
 				4E66889C1BCB880600D25A7C /* DetailViewController.m in Sources */,
+				4EBF3A901BDA116600E37EEC /* YBSegmentedControl.m in Sources */,
 				4E72BA2F1BD4BFD200068B57 /* YBCategory.m in Sources */,
 				4E18532E1BD0D118000F1818 /* BestCollectionViewController.m in Sources */,
 				4E72BA261BD47D8000068B57 /* Writing.m in Sources */,

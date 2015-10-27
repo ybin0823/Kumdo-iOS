@@ -10,6 +10,7 @@
 #import "BestCollectionViewController.h"
 #import "CategoryViewController.h"
 #import "MyListViewController.h"
+#import "YBSegmentedControl.h"
 
 @interface MenuViewController ()
 
@@ -27,10 +28,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[self.navigationController navigationBar] setBarTintColor:[UIColor colorWithRed:26.0f/255.0f green:179.0f/255.0f blue:255.0f/255.0f alpha:1.0f]];
 
     [mySegmentedControl addTarget:self
                          action:@selector(action:)
                forControlEvents:UIControlEventValueChanged];
+    
+    NSArray *images = [NSArray arrayWithObjects:[UIImage imageNamed:@"ic_home_white_36pt.png"], [UIImage imageNamed:@"ic_list_white_36pt.png"], [UIImage imageNamed:@"ic_collections_white_36pt.png"], nil];
+    YBSegmentedControl *segmentedControl = [[YBSegmentedControl alloc] initWithImages:images];
+    segmentedControl.frame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 50);
+    [segmentedControl setBackgroundColor:[UIColor colorWithRed:26.0f/255.0f green:179.0f/255.0f blue:255.0f/255.0f alpha:1.0f]];
+    [segmentedControl addTarget:self action:@selector(action:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:segmentedControl];
+
     
     // segment value가 바뀌면 view controller를 바꾼다
     CGSize size = [[UIScreen mainScreen] bounds].size;
