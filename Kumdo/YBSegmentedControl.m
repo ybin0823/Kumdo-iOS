@@ -8,33 +8,32 @@
 
 #import "YBSegmentedControl.h"
 
-@interface YBSegmentedControl()
-
-@property (nonatomic) NSArray *titles;
-@property (nonatomic) NSArray *images;
-@property (nonatomic, readonly) NSUInteger numberOfSegments;
-@property (nonatomic) NSInteger segmentWidth;
-@property (nonatomic) CALayer *indicatorLayer;
-
-@end
-
 @implementation YBSegmentedControl
 {
     NSInteger selectedSegmentIndex;
+    NSArray *titles;
+    NSArray *mImages;
+    NSUInteger numberOfSegments;
+    NSInteger segmentWidth;
+    CALayer *indicatorLayer;
+    YBSegmentedControlType type;
 }
 
+
+@synthesize type = type;
 @synthesize selectedSegmentIndex = selectedSegmentIndex;
+
 
 - (instancetype)initWithImages:(NSArray *)images
 {
     self = [super initWithFrame:CGRectZero];
     
     if (self) {
-        _images = images;
+        mImages = images;
         self.selectedSegmentIndex = 0;
         self.type = YBSegmentedControlTypeImage;
-        _numberOfSegments = [images count];
-        _segmentWidth = [[UIScreen mainScreen] bounds].size.width / _numberOfSegments;
+        numberOfSegments = [images count];
+        segmentWidth = [[UIScreen mainScreen] bounds].size.width / numberOfSegments;
     }
     
     return self;
@@ -44,20 +43,20 @@
     [super drawRect:rect];
     
     if (self.type == YBSegmentedControlTypeImage) {
-        for (NSInteger index = 0; index < [self.images count]; index++) {
-            UIImage *image = [self.images objectAtIndex:index];
+        for (NSInteger index = 0; index < [mImages count]; index++) {
+            UIImage *image = [mImages objectAtIndex:index];
             CGFloat imageWidth = image.size.width;
             CGFloat imageHeight = image.size.height;
             
             CALayer *layer = [CALayer layer];
-            layer.frame = CGRectMake((_segmentWidth * index) + (_segmentWidth / 2) - (imageWidth / 2), (self.frame.size.height / 2) - (imageHeight / 2), imageWidth, imageHeight);
+            layer.frame = CGRectMake((segmentWidth * index) + (segmentWidth / 2) - (imageWidth / 2), (self.frame.size.height / 2) - (imageHeight / 2), imageWidth, imageHeight);
             layer.contents = (id)image.CGImage;
             
             if (index == selectedSegmentIndex) {
-                _indicatorLayer = [CALayer layer];
-                _indicatorLayer.frame = CGRectMake(_segmentWidth * index, self.frame.size.height - 3, _segmentWidth, 3);
-                [_indicatorLayer setBackgroundColor:[UIColor colorWithRed:45.0f/255.0f green:125.0f/255.0f blue:26.0f/255.0f alpha:1.0f].CGColor];
-                [self.layer addSublayer:_indicatorLayer];
+                indicatorLayer = [CALayer layer];
+                indicatorLayer.frame = CGRectMake(segmentWidth * index, self.frame.size.height - 3, segmentWidth, 3);
+                [indicatorLayer setBackgroundColor:[UIColor colorWithRed:45.0f/255.0f green:125.0f/255.0f blue:26.0f/255.0f alpha:1.0f].CGColor];
+                [self.layer addSublayer:indicatorLayer];
             }
             [self.layer addSublayer:layer];
         }
@@ -69,16 +68,15 @@
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self];
     
-    [_indicatorLayer removeFromSuperlayer];
+    [indicatorLayer removeFromSuperlayer];
     
-    for (int i = 0; i < _numberOfSegments; i++) {
-        if (_segmentWidth * i < point.x && point.x < _segmentWidth * (i + 1)) {
+    for (int i = 0; i < numberOfSegments; i++) {
+        if (segmentWidth * i < point.x && point.x < segmentWidth * (i + 1)) {
             selectedSegmentIndex = i;
             [self setNeedsDisplay];
             [self sendActionsForControlEvents:UIControlEventValueChanged];
         }
     }
 }
-
 
 @end
