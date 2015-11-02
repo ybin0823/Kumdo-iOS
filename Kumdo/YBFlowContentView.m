@@ -66,6 +66,7 @@
     [textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [textField setBackgroundColor:[UIColor colorWithWhite:0.5 alpha:0.5]];
     [textField setTextColor:[UIColor whiteColor]];
+    [textField becomeFirstResponder];
     [self addSubview:textField];
 }
 
@@ -78,6 +79,7 @@
 {
     if (x + textField.frame.size.width + marginRight > maxWidth) {
         [textField deleteBackward];
+        [self addTextField];
         return NO;
     }
     

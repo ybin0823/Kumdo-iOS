@@ -136,11 +136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Kumdo/WriteViewController.m"
-            timestampString = "468137849.81254"
+            timestampString = "468138822.428303"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "-displayCategorySelectAlert"
             landmarkType = "5">
             <Locations>
@@ -199,11 +199,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Kumdo/WriteViewController.m"
-            timestampString = "468137849.81254"
+            timestampString = "468138822.428303"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "-displayCategorySelectAlert"
             landmarkType = "5">
          </BreakpointContent>
