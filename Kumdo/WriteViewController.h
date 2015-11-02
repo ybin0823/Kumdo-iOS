@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YBFlowContentView.h"
 
 @class WriteViewController;
 
@@ -14,7 +15,7 @@
 - (void)writeViewControllerDidCancel:(WriteViewController *)controller;
 @end
 
-@interface WriteViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface WriteViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, YBFlowContentViewDelegate>
 
 @property (weak, nonatomic) id <WriteViewControllerDelegate> delegate;
 

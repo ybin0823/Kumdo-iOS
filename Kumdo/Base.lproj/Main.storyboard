@@ -216,6 +216,7 @@
                         <outlet property="adjectiveOrAdverbWordButton" destination="HS8-wB-Uga" id="3i3-L2-aFN"/>
                         <outlet property="backgroundImage" destination="a5y-MZ-oOw" id="XsA-z9-RLt"/>
                         <outlet property="changePictureButton" destination="tKL-KU-seG" id="bWf-6T-Keu"/>
+                        <outlet property="editButton" destination="YCh-Ic-Crq" id="EtT-K0-9U9"/>
                         <outlet property="nounWordButton" destination="bAS-Xk-gCJ" id="0TZ-Jn-eN2"/>
                         <outlet property="takePictureButton" destination="Emu-YI-qaX" id="jeh-xs-Kbc"/>
                         <outlet property="verbWordButton" destination="wGO-Rh-YfU" id="BpM-o2-wzU"/>

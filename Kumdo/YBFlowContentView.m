@@ -19,7 +19,13 @@
     float maxHeight;
     int defaultSubViewWidth;
     int defaultSubViewHeight;
+    NSUInteger maxLength;
+    NSUInteger currentLength;
+    __weak id <YBFlowContentViewDelegate> delegate;
 }
+
+@synthesize maxLength = maxLength;
+@synthesize delegate = delegate;
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -35,9 +41,16 @@
         y = marginTop;
         defaultSubViewWidth = 80;
         defaultSubViewHeight = 30;
+        maxLength = 9999;
+        currentLength = 0;
     }
     
     return self;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    NSLog(@"maxLength : %lu", (unsigned long)maxLength);
 }
 
 - (void)addTextField
@@ -71,6 +84,12 @@
     return YES;
 }
 
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    currentLength += textField.text.length;
+    [self isMaxLength];
+}
+
 - (void)addLabelWithText:(NSString *)text
 {
     [self calculateSubViewPosition];
@@ -87,6 +106,9 @@
     [label setText:text];
     [label setTextAlignment:NSTextAlignmentCenter];
     [self addSubview:label];
+    
+    currentLength += label.text.length;
+    [self isMaxLength];
 }
 
 - (void)calculateSubViewPosition
@@ -104,6 +126,16 @@
         y += defaultSubViewHeight;
         y += marginTop;
     }
+}
+
+- (BOOL)isMaxLength
+{
+    if (currentLength >= maxLength) {
+        [self.delegate contentDidReachMaxLength];
+        return YES;
+    }
+    
+    return NO;
 }
 
 /*

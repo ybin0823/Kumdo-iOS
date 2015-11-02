@@ -11,7 +11,6 @@
 #import "Writing.h"
 #import "YBCategory.h"
 #import "WordDictionary.h"
-#import "YBFlowContentView.h"
 
 @interface WriteViewController ()
 
@@ -27,6 +26,7 @@
     __weak IBOutlet UIButton *nounWordButton;
     __weak IBOutlet UIButton *verbWordButton;
     __weak IBOutlet UIButton *adjectiveOrAdverbWordButton;
+    __weak IBOutlet UIButton *editButton;
     
     User *user;
     WordDictionary *wordDictionary;
@@ -117,13 +117,33 @@
     takePictureButton.hidden = YES;
     changePictureButton.hidden = NO;
     
-    // image를 선택하면, word와 edit버튼이 추가될 수 있도록 flowContentView를 생성한다
+    // image를 선택하면, word와 edit버튼이 추가될 수 있도록 flowContentView를 생성한다.
+    // 글자의 최대 길이는 200자
     // TODO method 분리. (적절한 메소드명이 떠오르지 않음)
-
     if (flowContentView == NULL) {
         flowContentView = [[YBFlowContentView alloc] initWithFrame:CGRectMake(0, 80, backgroundImage.frame.size.width, backgroundImage.frame.size.height)];
+        [flowContentView setMaxLength:200];
+        [flowContentView setDelegate:self];
         [self.view addSubview:flowContentView];
     }
+}
+
+- (void)contentDidReachMaxLength
+{
+    [editButton setEnabled:NO];
+    [nounWordButton setEnabled:NO];
+    [verbWordButton setEnabled:NO];
+    [adjectiveOrAdverbWordButton setEnabled:NO];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Max Length!"
+                                                                             message:@"Content length is the max"
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * action) {
+                                                         }];
+    [alertController addAction:defaultAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (NSString *)makeSentenceFromSubViews

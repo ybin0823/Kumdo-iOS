@@ -8,7 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol YBFlowContentViewDelegate <NSObject>
+
+@optional
+
+- (void)contentDidReachMaxLength;
+
+@end
+
 @interface YBFlowContentView : UIView <UITextFieldDelegate>
+
+@property (nonatomic, weak) id <YBFlowContentViewDelegate> delegate;
+@property (nonatomic) NSUInteger maxLength;
 
 - (void)addTextField;
 - (void)addLabelWithText:(NSString *)text;
