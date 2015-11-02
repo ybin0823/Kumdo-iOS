@@ -49,6 +49,7 @@
 		4E66889C1BCB880600D25A7C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E66889B1BCB880600D25A7C /* DetailViewController.m */; settings = {ASSET_TAGS = (); }; };
 		4E66889F1BCB882200D25A7C /* SnsLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E66889E1BCB882200D25A7C /* SnsLoginViewController.m */; settings = {ASSET_TAGS = (); }; };
 		4E6688A21BCB883B00D25A7C /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6688A11BCB883B00D25A7C /* MenuViewController.m */; settings = {ASSET_TAGS = (); }; };
+		4E6C8D361BE72B7C00F9964F /* YBFlowContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6C8D351BE72B7C00F9964F /* YBFlowContentView.m */; settings = {ASSET_TAGS = (); }; };
 		4E6D92C31BE060F20061CBA6 /* YBCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6D92C21BE060F20061CBA6 /* YBCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		4E72BA261BD47D8000068B57 /* Writing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E72BA251BD47D8000068B57 /* Writing.m */; settings = {ASSET_TAGS = (); }; };
 		4E72BA2C1BD4975900068B57 /* CategoryCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E72BA2B1BD4975900068B57 /* CategoryCollectionViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -146,6 +147,8 @@
 		4E66889E1BCB882200D25A7C /* SnsLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnsLoginViewController.m; sourceTree = "<group>"; };
 		4E6688A01BCB883B00D25A7C /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		4E6688A11BCB883B00D25A7C /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		4E6C8D341BE72B7C00F9964F /* YBFlowContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBFlowContentView.h; sourceTree = "<group>"; };
+		4E6C8D351BE72B7C00F9964F /* YBFlowContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBFlowContentView.m; sourceTree = "<group>"; };
 		4E6D92C11BE060F20061CBA6 /* YBCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCollectionViewCell.h; sourceTree = "<group>"; };
 		4E6D92C21BE060F20061CBA6 /* YBCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCollectionViewCell.m; sourceTree = "<group>"; };
 		4E72BA241BD47D8000068B57 /* Writing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Writing.h; sourceTree = "<group>"; };
@@ -335,6 +338,8 @@
 				4EBF3A8C1BD9D19200E37EEC /* YBCollectionViewWaterFallLayout.m */,
 				4EBF3A8E1BDA116600E37EEC /* YBSegmentedControl.h */,
 				4EBF3A8F1BDA116600E37EEC /* YBSegmentedControl.m */,
+				4E6C8D341BE72B7C00F9964F /* YBFlowContentView.h */,
+				4E6C8D351BE72B7C00F9964F /* YBFlowContentView.m */,
 			);
 			path = Kumdo;
 			sourceTree = "<group>";
@@ -545,6 +550,7 @@
 			files = (
 				4E743B9B1BD5D25C009CBF99 /* User.m in Sources */,
 				4E6688A21BCB883B00D25A7C /* MenuViewController.m in Sources */,
+				4E6C8D361BE72B7C00F9964F /* YBFlowContentView.m in Sources */,
 				4E66889C1BCB880600D25A7C /* DetailViewController.m in Sources */,
 				4EBF3A901BDA116600E37EEC /* YBSegmentedControl.m in Sources */,
 				4E72BA2F1BD4BFD200068B57 /* YBCategory.m in Sources */,

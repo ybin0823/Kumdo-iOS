@@ -11,7 +11,7 @@
 #import "Writing.h"
 #import "YBCategory.h"
 #import "WordDictionary.h"
-#import "FlowContentViewController.h"
+#import "YBFlowContentView.h"
 
 @interface WriteViewController ()
 
@@ -30,7 +30,7 @@
     
     User *user;
     WordDictionary *wordDictionary;
-    FlowContentViewController *flowContentViewController;
+    YBFlowContentView *flowContentView;
     Writing *writing;
     NSMutableSet *usedWords;
 }
@@ -59,7 +59,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
     wordDictionary = nil;
-    flowContentViewController = nil;
+    flowContentView = nil;
 }
 
 #pragma mark - Button method
@@ -79,15 +79,15 @@
 // Edit 버튼을 클릭하면 Image위에 UITextField가 생긴다
 - (IBAction)addEdit:(id)sender
 {
-    [flowContentViewController addTextField];
+    [flowContentView addTextField];
 }
 
 // Word1, Word2, Word3 버튼을 클릭하면 Image위에 UILabel이 생긴다
 - (IBAction)addWord:(id)sender
 {
-    if (flowContentViewController != NULL) {
+    if (flowContentView != NULL) {
         [usedWords addObject:[[sender titleLabel] text]];
-        [flowContentViewController addLabelWithText:[[sender titleLabel] text]];
+        [flowContentView addLabelWithText:[[sender titleLabel] text]];
     }
 }
 
@@ -117,20 +117,19 @@
     takePictureButton.hidden = YES;
     changePictureButton.hidden = NO;
     
-    // image를 선택하면, word와 edit버튼이 추가될 수 있도록 flowContentViewController를 생성한다
+    // image를 선택하면, word와 edit버튼이 추가될 수 있도록 flowContentView를 생성한다
     // TODO method 분리. (적절한 메소드명이 떠오르지 않음)
-    if (flowContentViewController == NULL) {
-        flowContentViewController = [[FlowContentViewController alloc] initWithFrame:CGRectMake(0, 80, backgroundImage.frame.size.width, backgroundImage.frame.size.height)];
-        [self addChildViewController:flowContentViewController];
-        [self.view addSubview:flowContentViewController.view];
-        [flowContentViewController didMoveToParentViewController:self];
+
+    if (flowContentView == NULL) {
+        flowContentView = [[YBFlowContentView alloc] initWithFrame:CGRectMake(0, 80, backgroundImage.frame.size.width, backgroundImage.frame.size.height)];
+        [self.view addSubview:flowContentView];
     }
 }
 
 - (NSString *)makeSentenceFromSubViews
 {
-    if (flowContentViewController != NULL) {
-        NSArray *subViews = [NSArray arrayWithArray:[flowContentViewController.view subviews]];
+    if (flowContentView != NULL) {
+        NSArray *subViews = [NSArray arrayWithArray:[flowContentView subviews]];
         NSMutableString *sentence = [[NSMutableString alloc] init];
         for (UIView *subView in subViews) {
             @autoreleasepool {
@@ -193,6 +192,7 @@
     [alertController addAction:defaultAction];
     [self presentViewController:alertController animated:YES completion:nil];
 }
+
 /*
 #pragma mark - Navigation
 
