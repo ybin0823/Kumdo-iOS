@@ -16,11 +16,11 @@
 
 @implementation MyListViewController
 {
-    UICollectionView *_collectionView;
+    UICollectionView *mCollectionView;
     NSMutableArray *writings;
 }
 
-@synthesize _collectionView = _collectionView;
+@synthesize mCollectionView = mCollectionView;
 
 static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidLoad {
@@ -31,14 +31,14 @@ static NSString * const reuseIdentifier = @"Cell";
     YBCollectionViewWaterFallLayout *waterFallLayout = [[YBCollectionViewWaterFallLayout alloc] init];
     [waterFallLayout setDelegate:self];
     
-    _collectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:waterFallLayout];
-    [_collectionView setBackgroundColor:[UIColor whiteColor]];
-    [_collectionView setDataSource:self];
-    [_collectionView setDelegate:self];
+    mCollectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:waterFallLayout];
+    [mCollectionView setBackgroundColor:[UIColor whiteColor]];
+    [mCollectionView setDataSource:self];
+    [mCollectionView setDelegate:self];
     
-    [self._collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [self.mCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
-    [self.view addSubview:_collectionView];
+    [self.view addSubview:mCollectionView];
     
     writings = [[NSMutableArray alloc] init];
     

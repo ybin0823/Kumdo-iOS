@@ -11,6 +11,6 @@
 
 @interface MyListViewController : UIViewController <UICollectionViewDataSource, YBCollectionViewDelegateWaterFallLayout>
 
-@property (strong, nonatomic) UICollectionView *_collectionView;
+@property (strong, nonatomic) UICollectionView *mCollectionView;
 
 @end

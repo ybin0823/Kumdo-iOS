@@ -17,12 +17,12 @@
 
 @implementation CategoryCollectionViewController
 {
-    UICollectionView *_collectionView;
+    UICollectionView *mCollectionView;
     NSMutableArray *writings;
-    NSInteger _category;
+    NSInteger mCategory;
 }
 
-@synthesize _collectionView = _collectionView;
+@synthesize mCollectionView = mCollectionView;
 
 static NSString * const reuseIdentifier = @"Cell";
 
@@ -31,7 +31,7 @@ static NSString * const reuseIdentifier = @"Cell";
     self = [super init];
     
     if (self) {
-        _category = category;
+        mCategory = category;
     }
     
     return self;
@@ -44,14 +44,14 @@ static NSString * const reuseIdentifier = @"Cell";
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     
-    _collectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:flowLayout];
-    [_collectionView setBackgroundColor:[UIColor whiteColor]];
-    [_collectionView setDataSource:self];
-    [_collectionView setDelegate:self];
+    mCollectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:flowLayout];
+    [mCollectionView setBackgroundColor:[UIColor whiteColor]];
+    [mCollectionView setDataSource:self];
+    [mCollectionView setDelegate:self];
     
-    [self._collectionView registerClass:[YBCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [self.mCollectionView registerClass:[YBCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
-    [self.view addSubview:_collectionView];
+    [self.view addSubview:mCollectionView];
     
     writings = [[NSMutableArray alloc] init];
     
@@ -79,7 +79,7 @@ static NSString * const reuseIdentifier = @"Cell";
     }
     
     for (Writing *writing in tempWritings) {
-        if (writing.category == _category) {
+        if (writing.category == mCategory) {
             [writings addObject:writing];
         }
     }

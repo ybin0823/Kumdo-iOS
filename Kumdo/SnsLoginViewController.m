@@ -16,7 +16,7 @@
 
 @implementation SnsLoginViewController
 {
-    NaverThirdPartyLoginConnection *_thirdPartyLoginConn;
+    NaverThirdPartyLoginConnection *thirdPartyLoginConn;
     User *user;
     NSString *currentString;
 }
@@ -26,8 +26,8 @@
     self = [super initWithCoder:aDecoder];
     
     if (self) {
-        _thirdPartyLoginConn = [NaverThirdPartyLoginConnection getSharedInstance];
-        _thirdPartyLoginConn.delegate = self;
+        thirdPartyLoginConn = [NaverThirdPartyLoginConnection getSharedInstance];
+        thirdPartyLoginConn.delegate = self;
     }
     return self;
 }
@@ -50,7 +50,7 @@
 {
     [super shouldPerformSegueWithIdentifier:identifier sender:sender];
     
-    if (YES == [_thirdPartyLoginConn isValidAccessTokenExpireTimeNow]) {
+    if (YES == [thirdPartyLoginConn isValidAccessTokenExpireTimeNow]) {
         [self requestUserProfile];
         return YES;
     }
@@ -73,7 +73,7 @@
 
 - (IBAction)didClickLoginBtn:(id)sender
 {
-    if (YES == [_thirdPartyLoginConn isValidAccessTokenExpireTimeNow]) {
+    if (YES == [thirdPartyLoginConn isValidAccessTokenExpireTimeNow]) {
         [self requestUserProfile];
         return;
     }
@@ -87,7 +87,7 @@
     NSString *urlString = @"https://openapi.naver.com/v1/nid/getUserProfile.xml";
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     
-    NSString *authValue = [NSString stringWithFormat:@"Bearer %@", _thirdPartyLoginConn.accessToken];
+    NSString *authValue = [NSString stringWithFormat:@"Bearer %@", thirdPartyLoginConn.accessToken];
     
     [urlRequest setValue:authValue forHTTPHeaderField:@"Authorization"];
     
