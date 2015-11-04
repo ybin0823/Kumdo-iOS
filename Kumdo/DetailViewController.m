@@ -14,10 +14,10 @@
 
 @implementation DetailViewController
 {
-    Writing *mWriting;
+    YBWriting *mWriting;
 }
 
-- (instancetype)initWithWriting:(Writing *)writing
+- (instancetype)initWithWriting:(YBWriting *)writing
 {
     self = [super init];
     

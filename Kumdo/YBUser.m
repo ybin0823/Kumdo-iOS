@@ -6,9 +6,9 @@
 //  Copyright © 2015년 Jang Young bin. All rights reserved.
 //
 
-#import "User.h"
+#import "YBUser.h"
 
-@implementation User
+@implementation YBUser
 {
     // 주석의 데이터는 유효하지 않은 샘플 데이터. 어떤 형식으로 파악하기 위한 주석
     NSString *email;        // test@naver.com
@@ -36,7 +36,7 @@
 + (instancetype)sharedInstance
 {
     static dispatch_once_t oncePredicate;
-    static User *shared = nil;
+    static YBUser *shared = nil;
     
     dispatch_once(&oncePredicate, ^{
         shared = [[self alloc] init];

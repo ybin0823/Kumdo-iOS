@@ -9,7 +9,7 @@
 #import "CategoryCollectionViewController.h"
 #import "YBCollectionViewCell.h"
 #import "DetailViewController.h"
-#import "Writing.h"
+#import "YBWriting.h"
 
 @interface CategoryCollectionViewController ()
 
@@ -63,7 +63,7 @@ static NSString * const reuseIdentifier = @"Cell";
         writings = [[NSMutableArray alloc] init];
         for (id json in jsonData) {
             @autoreleasepool {
-                Writing *writing = [Writing writingWithJSON:json];
+                YBWriting *writing = [YBWriting writingWithJSON:json];
                 NSLog(@"%@", [writing description]);
                 
                 [writings addObject:writing];
@@ -94,7 +94,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     YBCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    Writing *writing = [writings objectAtIndex:indexPath.row];
+    YBWriting *writing = [writings objectAtIndex:indexPath.row];
     
     NSURL *imageUrl = [NSURL URLWithString:[[writings objectAtIndex:indexPath.row] imageUrl]];
     
@@ -123,7 +123,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    Writing *writing = [writings objectAtIndex:indexPath.row];
+    YBWriting *writing = [writings objectAtIndex:indexPath.row];
     DetailViewController *detailViewController = [[DetailViewController alloc] initWithWriting:writing];
     
     [self.navigationController pushViewController:detailViewController animated:YES];

@@ -8,7 +8,7 @@
 
 #import "SnsLoginViewController.h"
 #import "MenuViewController.h"
-#import "User.h"
+#import "YBUser.h"
 
 @interface SnsLoginViewController ()
 
@@ -17,7 +17,7 @@
 @implementation SnsLoginViewController
 {
     NaverThirdPartyLoginConnection *thirdPartyLoginConn;
-    User *user;
+    YBUser *user;
     NSString *currentString;
 }
 
@@ -116,7 +116,7 @@
 {
     if ([elementName isEqualToString:@"response"]) {
         if (!user) {
-            user = [User sharedInstance];
+            user = [YBUser sharedInstance];
             return;
         }
     }

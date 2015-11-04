@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WordDictionary : NSObject
+@interface YBWordDictionary : NSObject
 
 - (NSString *)randomNonunWord;
 - (NSString *)randomVerbWord;

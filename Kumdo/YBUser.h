@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface User : NSObject
+@interface YBUser : NSObject
 
 // XML elementName과 맞추기 위해 '_' convention을 사용.
 @property NSString *email;

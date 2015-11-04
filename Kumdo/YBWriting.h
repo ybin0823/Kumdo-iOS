@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Writing : NSObject
+@interface YBWriting : NSObject
+
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *email;
 @property (strong, nonatomic) NSString *sentence;

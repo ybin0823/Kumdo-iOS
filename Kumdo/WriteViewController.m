@@ -7,10 +7,10 @@
 //
 
 #import "WriteViewController.h"
-#import "User.h"
-#import "Writing.h"
+#import "YBUser.h"
+#import "YBWriting.h"
 #import "YBCategory.h"
-#import "WordDictionary.h"
+#import "YBWordDictionary.h"
 
 @interface WriteViewController ()
 
@@ -28,10 +28,10 @@
     __weak IBOutlet UIButton *adjectiveOrAdverbWordButton;
     __weak IBOutlet UIButton *editButton;
     
-    User *user;
-    WordDictionary *wordDictionary;
+    YBUser *user;
+    YBWordDictionary *wordDictionary;
     YBFlowContentView *flowContentView;
-    Writing *writing;
+    YBWriting *writing;
     NSMutableSet *usedWords;
 }
 
@@ -41,9 +41,9 @@
 {
     [super viewDidLoad];
     
-    user = [User sharedInstance];
-    wordDictionary = [[WordDictionary alloc] init];
-    writing = [[Writing alloc] init];
+    user = [YBUser sharedInstance];
+    wordDictionary = [[YBWordDictionary alloc] init];
+    writing = [[YBWriting alloc] init];
     usedWords = [[NSMutableSet alloc] init];
     
     NSLog(@"%@", [user description]);

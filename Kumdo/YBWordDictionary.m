@@ -6,9 +6,9 @@
 //  Copyright © 2015년 Jang Young bin. All rights reserved.
 //
 
-#import "WordDictionary.h"
+#import "YBWordDictionary.h"
 
-@implementation WordDictionary
+@implementation YBWordDictionary
 {
     NSArray *nounWords;
     NSArray *verbWords;

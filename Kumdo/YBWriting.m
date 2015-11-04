@@ -6,9 +6,9 @@
 //  Copyright © 2015년 Jang Young bin. All rights reserved.
 //
 
-#import "Writing.h"
+#import "YBWriting.h"
 
-@implementation Writing
+@implementation YBWriting
 {
     NSString *name;
     NSString *email;

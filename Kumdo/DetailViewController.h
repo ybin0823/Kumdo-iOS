@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Writing.h"
+#import "YBWriting.h"
 
 @interface DetailViewController : UIViewController
 
-- (instancetype)initWithWriting:(Writing *)writing;
+- (instancetype)initWithWriting:(YBWriting *)writing;
 
 @end

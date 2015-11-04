@@ -7,7 +7,7 @@
 //
 
 #import "MyListViewController.h"
-#import "Writing.h"
+#import "YBWriting.h"
 #import "DetailViewController.h"
 
 @interface MyListViewController ()
@@ -51,7 +51,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     for (int i = 0; i < 5; i++) {
         @autoreleasepool {
-            Writing *writing = [[Writing alloc] init];
+            YBWriting *writing = [[YBWriting alloc] init];
             writing.imageUrl = [images objectAtIndex:i];
             writing.words = [NSArray arrayWithObject:[words objectAtIndex:i]];
             writing.sentence = [sentences objectAtIndex:i];
@@ -95,7 +95,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    Writing *writing = [writings objectAtIndex:indexPath.row];
+    YBWriting *writing = [writings objectAtIndex:indexPath.row];
     UIImage *image = [UIImage imageNamed:[writing imageUrl]];
     float originWidth = image.size.width;
     float frameWidth = self.view.frame.size.width / 2;
@@ -129,7 +129,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    Writing *writing = [writings objectAtIndex:indexPath.row];
+    YBWriting *writing = [writings objectAtIndex:indexPath.row];
     DetailViewController *detailViewController = [[DetailViewController alloc] initWithWriting:writing];
     
     [self.navigationController pushViewController:detailViewController animated:YES];
