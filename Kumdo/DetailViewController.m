@@ -14,7 +14,7 @@
 
 @implementation DetailViewController
 {
-    Writing *_writing;
+    Writing *mWriting;
 }
 
 - (instancetype)initWithWriting:(Writing *)writing
@@ -22,7 +22,7 @@
     self = [super init];
     
     if (self) {
-        _writing = writing;
+        mWriting = writing;
     }
     
     return self;
@@ -40,7 +40,7 @@
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
     
     // Load image from server
-    NSURL *imageUrl = [NSURL URLWithString:[_writing imageUrl]];
+    NSURL *imageUrl = [NSURL URLWithString:[mWriting imageUrl]];
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultConfigObject];
     [[defaultSession dataTaskWithURL:imageUrl completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -70,13 +70,13 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-    _writing = nil;
+    mWriting = nil;
 }
 
 - (UILabel *)setSentenceLabelWithWidth:(float)width Height:(float)height
 {
     UILabel *sentenceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, height - 50)];
-    [sentenceLabel setText:[_writing sentence]];
+    [sentenceLabel setText:[mWriting sentence]];
     [sentenceLabel setTextAlignment:NSTextAlignmentCenter];
     [sentenceLabel setTextColor:[UIColor whiteColor]];
     [sentenceLabel setFont:[UIFont systemFontOfSize:20 weight:2]];
@@ -87,7 +87,7 @@
 - (UILabel *)setWordsLabelWithWidth:(float)width Height:(float)height
 {
     UILabel *wordsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, height - 50, width, 50)];
-    [wordsLabel setText:[_writing stringWithCommaFromWords]];
+    [wordsLabel setText:[mWriting stringWithCommaFromWords]];
     [wordsLabel setTextAlignment:NSTextAlignmentCenter];
     [wordsLabel setTextColor:[UIColor whiteColor]];
     
@@ -97,7 +97,7 @@
 - (UILabel *)setNameLabelWithHeight:(float)height
 {
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, height + 10, 100, 20)];
-    [nameLabel setText:[_writing name]];
+    [nameLabel setText:[mWriting name]];
     [self.view addSubview:nameLabel];
     
     return nameLabel;
@@ -108,7 +108,7 @@
     UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(width - 150, height + 10, 150, 20)];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"YYYY-MM-dd"];
-    [dateLabel setText:[dateFormat stringFromDate:[_writing date]]];
+    [dateLabel setText:[dateFormat stringFromDate:[mWriting date]]];
     [dateLabel setTextAlignment:NSTextAlignmentRight];
     
     return dateLabel;
