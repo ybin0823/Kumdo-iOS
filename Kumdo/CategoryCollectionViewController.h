@@ -11,8 +11,6 @@
 @interface CategoryCollectionViewController : UIViewController <UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout>
 
-@property (strong, nonatomic) UICollectionView *mCollectionView;
-
 - (instancetype)initWithCategory:(NSInteger)category;
 
 @end

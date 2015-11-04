@@ -22,8 +22,6 @@
     NSInteger mCategory;
 }
 
-@synthesize mCollectionView = mCollectionView;
-
 static NSString * const reuseIdentifier = @"Cell";
 
 - (instancetype)initWithCategory:(NSInteger)category
@@ -49,42 +47,32 @@ static NSString * const reuseIdentifier = @"Cell";
     [mCollectionView setDataSource:self];
     [mCollectionView setDelegate:self];
     
-    [self.mCollectionView registerClass:[YBCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    
+    [mCollectionView registerClass:[YBCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     [self.view addSubview:mCollectionView];
     
-    writings = [[NSMutableArray alloc] init];
-    
-    // Set dummy data start
-    NSArray *images = [NSArray arrayWithObjects:@"1.jpg", @"2.jpg", @"3.jpg", @"4.jpg", @"5.jpg", @"6.jpg", @"7.jpg", @"8.jpg", nil];
-    NSArray *words = [NSArray arrayWithObjects:@"사과", @"바나나", @"책", @"햇빛", @"바다", @"사랑", @"아름다운", @"여행", nil];
-    NSArray *sentences = [NSArray arrayWithObjects:@"이것은 테스트 문장입니다1",
-                          @"이것은 테스트 문장입니다2", @"이것은 테스트 문장입니다3",
-                          @"이것은 테스트 문장입니다4", @"이것은 테스트 문장입니다5",
-                          @"이것은 테스트 문장입니다6", @"이것은 테스트 문장입니다7",
-                          @"이것은 테스트 문장입니다8", nil];
-    
-    NSMutableArray *tempWritings = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 8; i++) {
-        @autoreleasepool {
-            Writing *writing = [[Writing alloc] init];
-            writing.imageUrl = [images objectAtIndex:i];
-            writing.words = [NSArray arrayWithObject:[words objectAtIndex:i]];
-            writing.sentence = [sentences objectAtIndex:i];
-            writing.name = @"홍길동";
-            writing.date = [NSDate date];
-            writing.category = i % 4;
-            [tempWritings addObject:writing];
+    // Load data from server
+
+    NSMutableString *url = [NSMutableString stringWithString:@"http://125.209.198.90:3000/best?category="];
+    [url appendFormat:@"%ld", (long)mCategory];
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultConfigObject];
+    [[defaultSession dataTaskWithURL:[NSURL URLWithString:url] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSLog(@"Got response %@ with error %@. \n", response, error);
+        
+        id jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        writings = [[NSMutableArray alloc] init];
+        for (id json in jsonData) {
+            @autoreleasepool {
+                Writing *writing = [Writing writingWithJSON:json];
+                NSLog(@"%@", [writing description]);
+                
+                [writings addObject:writing];
+            }
         }
-    }
-    
-    for (Writing *writing in tempWritings) {
-        if (writing.category == mCategory) {
-            [writings addObject:writing];
-        }
-    }
-    NSLog(@"wrtings : %@", writings);
-    // Set dummy data end
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [mCollectionView reloadData];
+        });
+    }] resume];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -108,8 +96,18 @@ static NSString * const reuseIdentifier = @"Cell";
     YBCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     Writing *writing = [writings objectAtIndex:indexPath.row];
     
-    UIImage *scaledImage = [self loadScaledImageAtIndexPath:indexPath];
-    [cell.imageView setImage:scaledImage];
+    NSURL *imageUrl = [NSURL URLWithString:[[writings objectAtIndex:indexPath.row] imageUrl]];
+    
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultConfigObject];
+    [[defaultSession dataTaskWithURL:imageUrl completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        UIImage *image = [UIImage imageWithData:data];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [cell.imageView setImage:[self scaleImage:image]];
+        });
+    }] resume];
+    
     [cell.sentenceLabel setText:writing.sentence];
     [cell.wordsLabel setText:[writing stringWithCommaFromWords]];
     [cell.nameLabel setText:writing.name];
@@ -131,9 +129,8 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
-- (UIImage *)loadScaledImageAtIndexPath:(NSIndexPath *)indexPath
+- (UIImage *)scaleImage:(UIImage *)image
 {
-    UIImage *image = [UIImage imageNamed:[[writings objectAtIndex:indexPath.row] imageUrl]];
     float resizeWidth = self.view.frame.size.width;
     float resizeHeight = 250.0;
     
