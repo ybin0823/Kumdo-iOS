@@ -38,7 +38,19 @@
     float height = width;
 
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
-    [imageView setImage:[UIImage imageNamed:[_writing imageUrl]]];
+    
+    // Load image from server
+    NSURL *imageUrl = [NSURL URLWithString:[_writing imageUrl]];
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultConfigObject];
+    [[defaultSession dataTaskWithURL:imageUrl completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        UIImage *image = [UIImage imageWithData:data];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [imageView setImage:image];
+        });
+    }] resume];
+
     [self.view addSubview:imageView];
     
     UILabel *sentenceLabel = [self setSentenceLabelWithWidth:width Height:height];
