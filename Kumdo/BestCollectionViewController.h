@@ -11,6 +11,4 @@
 @interface BestCollectionViewController : UIViewController <UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout>
 
-@property (strong, nonatomic) UICollectionView *mCollectionView;
-
 @end

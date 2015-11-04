@@ -21,8 +21,6 @@
     NSMutableArray *writings;
 }
 
-@synthesize mCollectionView = mCollectionView;
-
 static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
@@ -37,7 +35,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [mCollectionView setDataSource:self];
     [mCollectionView setDelegate:self];
     
-    [self.mCollectionView registerClass:[YBCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [mCollectionView registerClass:[YBCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     [self.view addSubview:mCollectionView];
 
@@ -58,7 +56,7 @@ static NSString * const reuseIdentifier = @"Cell";
             }
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.mCollectionView reloadData];
+            [mCollectionView reloadData];
         });
     }] resume];
 }
@@ -82,12 +80,11 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    NSLog(@"numberOfItemInSection : %lu", (unsigned long)writings.count);
     return writings.count;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-        NSLog(@"cellForItemAtIndexPath");
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
     YBCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     Writing *writing = [writings objectAtIndex:indexPath.row];
     
@@ -99,7 +96,7 @@ static NSString * const reuseIdentifier = @"Cell";
         UIImage *image = [UIImage imageWithData:data];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [cell.imageView setImage:[self loadScaledImage:image]];
+            [cell.imageView setImage:[self scaleImage:image]];
         });
     }] resume];
     
@@ -124,7 +121,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
-- (UIImage *)loadScaledImage:(UIImage *)image
+- (UIImage *)scaleImage:(UIImage *)image
 {
     float resizeWidth = self.view.frame.size.width;
     float resizeHeight = 250.0;
