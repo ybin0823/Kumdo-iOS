@@ -28,6 +28,30 @@
 @synthesize category = category;
 @synthesize date = date;
 
++(instancetype)writingWithJSON:(id)json
+{
+    return [[self alloc] initWithJSON:json];
+}
+
+-(instancetype)initWithJSON:(id)json
+{
+    self = [super init];
+    
+    if (self) {
+        name = [json valueForKey:@"name"];
+        email = [json valueForKey:@"email"];
+        sentence = [json valueForKey:@"sentence"];
+        imageUrl = [json valueForKey:@"imageUrl"];
+        category = (int)[[json valueForKey:@"category"] integerValue];
+        words = [[json valueForKey:@"words"] componentsSeparatedByString:@","];
+        
+        // 서버에는 시간이 milisecond 단위로 저장되어 있기 때문에 second 단위로 바꿔줘야 한다
+        date = [NSDate dateWithTimeIntervalSince1970:[[json valueForKey:@"date"] doubleValue] / 1000];
+    }
+    
+    return self;
+}
+
 - (NSString *)stringWithCommaFromWords
 {
     NSMutableString *wordsWithComma = [[NSMutableString alloc] init];

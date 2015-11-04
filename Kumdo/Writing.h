@@ -17,6 +17,8 @@
 @property int category;
 @property (strong, nonatomic) NSDate *date;
 
++(instancetype)writingWithJSON:(id)json;
+
 - (NSString *)stringWithCommaFromWords;
 
 @end
