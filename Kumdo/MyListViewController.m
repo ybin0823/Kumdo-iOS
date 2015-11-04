@@ -7,8 +7,10 @@
 //
 
 #import "MyListViewController.h"
-#import "YBWriting.h"
 #import "DetailViewController.h"
+#import "YBWaterFallViewCell.h"
+#import "YBWriting.h"
+#import "YBUser.h"
 
 @interface MyListViewController ()
 
@@ -18,6 +20,7 @@
 {
     UICollectionView *mCollectionView;
     NSMutableArray *writings;
+    YBUser *user;
 }
 
 @synthesize mCollectionView = mCollectionView;
@@ -25,7 +28,6 @@
 static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     // Set collectionView and register cell classes
     YBCollectionViewWaterFallLayout *waterFallLayout = [[YBCollectionViewWaterFallLayout alloc] init];
@@ -36,35 +38,36 @@ static NSString * const reuseIdentifier = @"Cell";
     [mCollectionView setDataSource:self];
     [mCollectionView setDelegate:self];
     
-    [self.mCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [self.mCollectionView registerClass:[YBWaterFallViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     [self.view addSubview:mCollectionView];
     
-    writings = [[NSMutableArray alloc] init];
+    // Load user info
+    user = [YBUser sharedInstance];
     
-    // Set dummy data start
-    NSArray *images = [NSArray arrayWithObjects:@"iu.jpg", @"iu2.jpg", @"boyoung.jpg", @"boyoung2.jpg", @"boyoung3.jpg", nil];
-    NSArray *words = [NSArray arrayWithObjects:@"사과", @"바나나", @"책", @"햇빛", @"바다", nil];
-    NSArray *sentences = [NSArray arrayWithObjects:@"이것은 테스트 문장입니다1",
-                          @"이것은 테스트 문장입니다2", @"이것은 테스트 문장입니다3",
-                          @"이것은 테스트 문장입니다4", @"이것은 테스트 문장입니다5", nil];
+    // Load data from server
     
-    for (int i = 0; i < 5; i++) {
-        @autoreleasepool {
-            YBWriting *writing = [[YBWriting alloc] init];
-            writing.imageUrl = [images objectAtIndex:i];
-            writing.words = [NSArray arrayWithObject:[words objectAtIndex:i]];
-            writing.sentence = [sentences objectAtIndex:i];
-            writing.name = @"홍길동";
-            writing.date = [NSDate date];
-            writing.category = i % 4;
-            [writings addObject:writing];
+    NSMutableString *url = [NSMutableString stringWithString:@"http://125.209.198.90:3000/mylist/"];
+    [url appendString:[user email]];
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultConfigObject];
+    [[defaultSession dataTaskWithURL:[NSURL URLWithString:url] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSLog(@"Got response %@ with error %@. \n", response, error);
+        
+        id jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        writings = [[NSMutableArray alloc] init];
+        for (id json in jsonData) {
+            @autoreleasepool {
+                YBWriting *writing = [YBWriting writingWithJSON:json];
+                NSLog(@"mylist : %@", [writing description]);
+                
+                [writings addObject:writing];
+            }
         }
-    }
-    
-    NSLog(@"wrtings : %@", writings);
-    // Set dummy data end
-
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [mCollectionView reloadData];
+        });
+    }] resume];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,20 +86,30 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-//    Writing *writing = [writings objectAtIndex:indexPath.row];
-    NSLog(@"%@", indexPath);
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[self loadScaledImageAtIndexPath:indexPath resizeWidth:(self.view.frame.size.width / 2)]];
-    [cell addSubview:imageView];
-    [cell setBackgroundColor:[UIColor yellowColor]];
+    YBWaterFallViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
+    YBWriting *writing = [writings objectAtIndex:indexPath.row];
+    NSURL *imageUrl = [NSURL URLWithString:[writing imageUrl]];
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultConfigObject];
+    [[defaultSession dataTaskWithURL:imageUrl completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        UIImage *image = [UIImage imageWithData:data];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [cell.imageView setImage:[self scaleImage:image]];
+        });
+    }] resume];
+    
+    [cell.label setText:[writing stringWithCommaFromWords]];
     return cell;
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    YBWriting *writing = [writings objectAtIndex:indexPath.row];
-    UIImage *image = [UIImage imageNamed:[writing imageUrl]];
+    NSURL *imageUrl = [NSURL URLWithString:[[writings objectAtIndex:indexPath.row] imageUrl]];
+    NSData *data = [NSData dataWithContentsOfURL:imageUrl];
+    UIImage *image = [UIImage imageWithData:data];
+    
     float originWidth = image.size.width;
     float frameWidth = self.view.frame.size.width / 2;
     float scaleFactor = frameWidth / originWidth;
@@ -106,11 +119,10 @@ static NSString * const reuseIdentifier = @"Cell";
     return CGSizeMake(frameWidth, frameHeight);
 }
 
-- (UIImage *)loadScaledImageAtIndexPath:(NSIndexPath *)indexPath resizeWidth:(float)width
+- (UIImage *)scaleImage:(UIImage *)image
 {
-    UIImage *image = [UIImage imageNamed:[[writings objectAtIndex:indexPath.row] imageUrl]];
     float originWidth = image.size.width;
-    float resizeWidth = width;
+    float resizeWidth = self.view.frame.size.width / 2;
     float scaleFactor = resizeWidth / originWidth;
     
     float resizeHeight = image.size.height * scaleFactor;
