@@ -31,40 +31,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Image위에 Text, Word가 표시 된다
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     float width = self.view.frame.size.width;
     float height = width;
+    
+    // Load image from server and add Contents
+    [self loadImageFrom:[NSURL URLWithString:[mWriting imageUrl]]];
 
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
-    
-    // Load image from server
-    NSURL *imageUrl = [NSURL URLWithString:[mWriting imageUrl]];
-    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultConfigObject];
-    [[defaultSession dataTaskWithURL:imageUrl completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        UIImage *image = [UIImage imageWithData:data];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [imageView setImage:image];
-        });
-    }] resume];
-
-    [self.view addSubview:imageView];
-    
-    UILabel *sentenceLabel = [self setSentenceLabelWithWidth:width Height:height];
-    [self.view addSubview:sentenceLabel];
-    
-    UILabel *wordsLabel = [self setWordsLabelWithWidth:width Height:height];
-    [self.view addSubview:wordsLabel];
-    
     // 작성자는 Image 왼쪽 아래, 작성날짜는 Image 오른쪽 아래에 표시된다
-    UILabel *nameLabel = [self setNameLabelWithHeight:height];
-    [self.view addSubview:nameLabel];
-    
-    UILabel *dateLabel = [self setDateLabelWithWidth:width Height:height];
-    [self.view addSubview:dateLabel];
+    [self addNameLabelWithHeight:height];
+    [self addDateLabelWithWidth:width Height:height];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -73,7 +50,32 @@
     mWriting = nil;
 }
 
-- (UILabel *)setSentenceLabelWithWidth:(float)width Height:(float)height
+- (void)loadImageFrom:(NSURL *)url
+{
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    [[defaultSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        UIImage *image = [UIImage imageWithData:data];
+        
+        [self performSelectorOnMainThread:@selector(addContents:) withObject:image waitUntilDone:NO];
+ 
+    }] resume];
+}
+
+- (void)addContents:(UIImage *)image
+{
+    float width = self.view.frame.size.width;
+    float height = width;
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+    [imageView setImage:image];
+    [self.view addSubview:imageView];
+    
+    // Add sentence, words label
+    [self addSentenceLabelWithWidth:width Height:height];
+    [self addWordsLabelWithWidth:width Height:height];
+}
+
+- (void)addSentenceLabelWithWidth:(float)width Height:(float)height
 {
     UILabel *sentenceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, height - 50)];
     [sentenceLabel setText:[mWriting sentence]];
@@ -81,29 +83,28 @@
     [sentenceLabel setTextColor:[UIColor whiteColor]];
     [sentenceLabel setFont:[UIFont systemFontOfSize:20 weight:2]];
     
-    return sentenceLabel;
+    [self.view addSubview:sentenceLabel];
 }
 
-- (UILabel *)setWordsLabelWithWidth:(float)width Height:(float)height
+- (void)addWordsLabelWithWidth:(float)width Height:(float)height
 {
     UILabel *wordsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, height - 50, width, 50)];
     [wordsLabel setText:[mWriting stringWithCommaFromWords]];
     [wordsLabel setTextAlignment:NSTextAlignmentCenter];
     [wordsLabel setTextColor:[UIColor whiteColor]];
     
-    return wordsLabel;
+    [self.view addSubview:wordsLabel];
 }
 
-- (UILabel *)setNameLabelWithHeight:(float)height
+- (void)addNameLabelWithHeight:(float)height
 {
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, height + 10, 100, 20)];
     [nameLabel setText:[mWriting name]];
-    [self.view addSubview:nameLabel];
     
-    return nameLabel;
+    [self.view addSubview:nameLabel];
 }
 
-- (UILabel *)setDateLabelWithWidth:(float)width Height:(float)height
+- (void)addDateLabelWithWidth:(float)width Height:(float)height
 {
     UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(width - 150, height + 10, 150, 20)];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -111,7 +112,7 @@
     [dateLabel setText:[dateFormat stringFromDate:[mWriting date]]];
     [dateLabel setTextAlignment:NSTextAlignmentRight];
     
-    return dateLabel;
+    [self.view addSubview:dateLabel];
 }
 
 /*

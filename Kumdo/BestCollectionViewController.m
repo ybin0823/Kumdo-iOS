@@ -22,6 +22,7 @@
 }
 
 static NSString * const reuseIdentifier = @"Cell";
+static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best?category=-1";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,24 +41,25 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.view addSubview:mCollectionView];
 
     // Load data from server
-    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultConfigObject];
-    [[defaultSession dataTaskWithURL:[NSURL URLWithString:@"http://125.209.198.90:3000/best?category=-1"] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    [[defaultSession dataTaskWithURL:[NSURL URLWithString:GET_BEST_FROM_SERVER] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSLog(@"Got response %@ with error %@. \n", response, error);
         
-        id jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         writings = [[NSMutableArray alloc] init];
+        id jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         for (id json in jsonData) {
             @autoreleasepool {
                 YBWriting *writing = [YBWriting writingWithJSON:json];
-                NSLog(@"%@", [writing description]);
                 
                 [writings addObject:writing];
             }
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [mCollectionView reloadData];
-        });
+        [self performSelectorOnMainThread:@selector(didReceiveData) withObject:nil waitUntilDone:NO];
+        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [mCollectionView reloadData];
+//        });
+        
     }] resume];
 }
 
@@ -70,7 +72,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)didReceiveData
 {
-    [mCollectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
+    [mCollectionView reloadData];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -88,13 +90,14 @@ static NSString * const reuseIdentifier = @"Cell";
     YBCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     YBWriting *writing = [writings objectAtIndex:indexPath.row];
     
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     NSURL *imageUrl = [NSURL URLWithString:[[writings objectAtIndex:indexPath.row] imageUrl]];
     
-    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultConfigObject];
     [[defaultSession dataTaskWithURL:imageUrl completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         UIImage *image = [UIImage imageWithData:data];
         
+        //TODO perforSelector 가독성 vs dispatch 구문이 가독성
+        //[self performSelectorOnMainThread:@selector(selector) withObject:(nullable id) waitUntilDone:<#(BOOL)#>]
         dispatch_async(dispatch_get_main_queue(), ^{
             [cell.imageView setImage:[self scaleImage:image]];
         });

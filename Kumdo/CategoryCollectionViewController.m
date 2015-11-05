@@ -23,6 +23,7 @@
 }
 
 static NSString * const reuseIdentifier = @"Cell";
+static NSString * const GET_CATEGORY_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best?category=";
 
 - (instancetype)initWithCategory:(NSInteger)category
 {
@@ -51,21 +52,18 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.view addSubview:mCollectionView];
     
     // Load data from server
-
-    NSMutableString *url = [NSMutableString stringWithString:@"http://125.209.198.90:3000/best?category="];
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSMutableString *url = [NSMutableString stringWithString:GET_CATEGORY_BEST_FROM_SERVER];
     [url appendFormat:@"%ld", (long)mCategory];
-    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultConfigObject];
+    
     [[defaultSession dataTaskWithURL:[NSURL URLWithString:url] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSLog(@"Got response %@ with error %@. \n", response, error);
         
-        id jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         writings = [[NSMutableArray alloc] init];
+        id jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         for (id json in jsonData) {
             @autoreleasepool {
                 YBWriting *writing = [YBWriting writingWithJSON:json];
-                NSLog(@"%@", [writing description]);
-                
                 [writings addObject:writing];
             }
         }
@@ -96,10 +94,9 @@ static NSString * const reuseIdentifier = @"Cell";
     YBCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     YBWriting *writing = [writings objectAtIndex:indexPath.row];
     
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     NSURL *imageUrl = [NSURL URLWithString:[[writings objectAtIndex:indexPath.row] imageUrl]];
     
-    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultConfigObject];
     [[defaultSession dataTaskWithURL:imageUrl completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         UIImage *image = [UIImage imageWithData:data];
         

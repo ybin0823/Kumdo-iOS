@@ -26,6 +26,8 @@
 @synthesize mCollectionView = mCollectionView;
 
 static NSString * const reuseIdentifier = @"Cell";
+static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/mylist/";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -47,23 +49,22 @@ static NSString * const reuseIdentifier = @"Cell";
     
     // Load data from server
     
-    NSMutableString *url = [NSMutableString stringWithString:@"http://125.209.198.90:3000/mylist/"];
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSMutableString *url = [NSMutableString stringWithString:GET_MYLIST_FROM_SERVER];
     [url appendString:[user email]];
-    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultConfigObject];
+    
     [[defaultSession dataTaskWithURL:[NSURL URLWithString:url] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSLog(@"Got response %@ with error %@. \n", response, error);
         
-        id jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         writings = [[NSMutableArray alloc] init];
+        id jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         for (id json in jsonData) {
             @autoreleasepool {
                 YBWriting *writing = [YBWriting writingWithJSON:json];
-                NSLog(@"mylist : %@", [writing description]);
-                
                 [writings addObject:writing];
             }
         }
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [mCollectionView reloadData];
         });
@@ -87,11 +88,11 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     YBWaterFallViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
     YBWriting *writing = [writings objectAtIndex:indexPath.row];
+    
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     NSURL *imageUrl = [NSURL URLWithString:[writing imageUrl]];
-    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultConfigObject];
+    
     [[defaultSession dataTaskWithURL:imageUrl completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         UIImage *image = [UIImage imageWithData:data];
         
@@ -101,6 +102,7 @@ static NSString * const reuseIdentifier = @"Cell";
     }] resume];
     
     [cell.label setText:[writing stringWithCommaFromWords]];
+    
     return cell;
 }
 
@@ -113,7 +115,6 @@ static NSString * const reuseIdentifier = @"Cell";
     float originWidth = image.size.width;
     float frameWidth = self.view.frame.size.width / 2;
     float scaleFactor = frameWidth / originWidth;
-    
     float frameHeight = image.size.height * scaleFactor;
     
     return CGSizeMake(frameWidth, frameHeight);
@@ -124,7 +125,6 @@ static NSString * const reuseIdentifier = @"Cell";
     float originWidth = image.size.width;
     float resizeWidth = self.view.frame.size.width / 2;
     float scaleFactor = resizeWidth / originWidth;
-    
     float resizeHeight = image.size.height * scaleFactor;
     
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(resizeWidth, resizeHeight), NO, [UIScreen mainScreen].scale);
