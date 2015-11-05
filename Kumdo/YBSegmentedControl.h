@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, YBSegmentedControlType) {
 
 - (instancetype)initWithImages:(NSArray *)images;
 
-@property (nonatomic, assign) YBSegmentedControlType type;
-@property (nonatomic, assign) NSInteger selectedSegmentIndex;
+@property (nonatomic) YBSegmentedControlType type;
+@property (nonatomic) NSInteger selectedSegmentIndex;
 
 @end

@@ -19,7 +19,7 @@
 @interface YBFlowContentView : UIView <UITextFieldDelegate>
 
 @property (nonatomic, weak) id <YBFlowContentViewDelegate> delegate;
-@property (nonatomic, assign) NSUInteger maxLength;
+@property (nonatomic) NSUInteger maxLength;
 
 - (void)addTextField;
 - (void)addLabelWithText:(NSString *)text;
