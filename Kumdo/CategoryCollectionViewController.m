@@ -105,8 +105,8 @@ static NSString * const GET_CATEGORY_BEST_FROM_SERVER = @"http://125.209.198.90:
         });
     }] resume];
     
-    [cell.sentenceLabel setText:writing.sentence];
-    [cell.wordsLabel setText:[writing stringWithCommaFromWords]];
+    [cell setSentenceWithAttributedText:writing.sentence];
+    [cell setWordsWithAttributedText:[writing stringWithCommaFromWords]];
     [cell.nameLabel setText:writing.name];
     [cell setFormattedDate:writing.date];
     
