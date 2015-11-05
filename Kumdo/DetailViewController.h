@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "YBWriting.h"
 
-@interface DetailViewController : UIViewController
+@interface DetailViewController : UIViewController <UIScrollViewDelegate>
 
 - (instancetype)initWithWriting:(YBWriting *)writing;
 
