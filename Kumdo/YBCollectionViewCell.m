@@ -36,13 +36,14 @@
         sentenceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 230)];
         [sentenceLabel setTextAlignment:NSTextAlignmentCenter];
         [sentenceLabel setTextColor:[UIColor whiteColor]];
-        [sentenceLabel setFont:[UIFont systemFontOfSize:20 weight:2]];
+        [sentenceLabel setFont:[UIFont systemFontOfSize:22 weight:2]];
         [self addSubview:sentenceLabel];
         
         // Add words
         wordsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 230, self.frame.size.width, 20)];
         [wordsLabel setTextAlignment:NSTextAlignmentCenter];
         [wordsLabel setTextColor:[UIColor whiteColor]];
+        [wordsLabel setFont:[UIFont systemFontOfSize:16 weight:2]];
         [self addSubview:wordsLabel];
         
         // Add name
@@ -56,6 +57,22 @@
     }
     
     return self;
+}
+
+- (void)setSentenceWithAttributedText:(NSString *)text
+{
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text];
+    [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor colorWithWhite:0.5 alpha:0.3]
+                             range:NSMakeRange(0, [attributedString length])];
+    [self.sentenceLabel setAttributedText:[[NSAttributedString alloc] initWithAttributedString:attributedString]];
+}
+
+- (void)setWordsWithAttributedText:(NSString *)text
+{
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text];
+    [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor colorWithWhite:0.5 alpha:0.3]
+                             range:NSMakeRange(0, [attributedString length])];
+    [self.wordsLabel setAttributedText:[[NSAttributedString alloc] initWithAttributedString:attributedString]];
 }
 
 - (void)setFormattedDate:(NSDate *)date

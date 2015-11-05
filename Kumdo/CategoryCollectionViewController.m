@@ -108,8 +108,8 @@ static NSString * const reuseIdentifier = @"Cell";
         });
     }] resume];
     
-    [cell.sentenceLabel setText:writing.sentence];
-    [cell.wordsLabel setText:[writing stringWithCommaFromWords]];
+    [cell setSentenceWithAttributedText:writing.sentence];
+    [cell setWordsWithAttributedText:[writing stringWithCommaFromWords]];
     [cell.nameLabel setText:writing.name];
     [cell setFormattedDate:writing.date];
     

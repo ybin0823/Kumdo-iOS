@@ -76,10 +76,10 @@
 - (UILabel *)setSentenceLabelWithWidth:(float)width Height:(float)height
 {
     UILabel *sentenceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, height - 50)];
-    [sentenceLabel setText:[mWriting sentence]];
     [sentenceLabel setTextAlignment:NSTextAlignmentCenter];
     [sentenceLabel setTextColor:[UIColor whiteColor]];
-    [sentenceLabel setFont:[UIFont systemFontOfSize:20 weight:2]];
+    [sentenceLabel setFont:[UIFont systemFontOfSize:22 weight:2]];
+    [sentenceLabel setAttributedText:[self attributedString:[mWriting sentence]]];
     
     return sentenceLabel;
 }
@@ -87,9 +87,10 @@
 - (UILabel *)setWordsLabelWithWidth:(float)width Height:(float)height
 {
     UILabel *wordsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, height - 50, width, 50)];
-    [wordsLabel setText:[mWriting stringWithCommaFromWords]];
     [wordsLabel setTextAlignment:NSTextAlignmentCenter];
     [wordsLabel setTextColor:[UIColor whiteColor]];
+    [wordsLabel setFont:[UIFont systemFontOfSize:14 weight:2]];
+    [wordsLabel setAttributedText:[self attributedString:[mWriting stringWithCommaFromWords]]];
     
     return wordsLabel;
 }
@@ -112,6 +113,15 @@
     [dateLabel setTextAlignment:NSTextAlignmentRight];
     
     return dateLabel;
+}
+
+- (NSAttributedString *)attributedString:(NSString *)str
+{
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:str];
+    [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor colorWithWhite:0.5 alpha:0.3]
+                             range:NSMakeRange(0, [attributedString length])];
+    
+    return [[NSAttributedString alloc] initWithAttributedString:attributedString];
 }
 
 /*

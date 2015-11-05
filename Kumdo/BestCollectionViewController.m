@@ -100,9 +100,9 @@ static NSString * const reuseIdentifier = @"Cell";
         });
     }] resume];
     
-    [cell.sentenceLabel setText:writing.sentence];
-    [cell.wordsLabel setText:[writing stringWithCommaFromWords]];
+    [cell setSentenceWithAttributedText:writing.sentence];
     [cell.nameLabel setText:writing.name];
+    [cell setWordsWithAttributedText:[writing stringWithCommaFromWords]];
     [cell setFormattedDate:writing.date];
     
     return cell;

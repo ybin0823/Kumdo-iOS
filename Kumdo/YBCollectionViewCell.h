@@ -16,6 +16,8 @@
 @property (strong, nonatomic) UILabel *nameLabel;
 @property (strong, nonatomic) UILabel *dateLabel;
 
+- (void)setSentenceWithAttributedText:(NSString *)text;
+- (void)setWordsWithAttributedText:(NSString *)text;
 - (void)setFormattedDate:(NSDate *)date;
 
 @end
