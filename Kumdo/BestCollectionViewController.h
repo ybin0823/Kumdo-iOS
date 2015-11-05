@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YBImageManager.h"
 
 @interface BestCollectionViewController : UIViewController <UICollectionViewDataSource,
-UICollectionViewDelegateFlowLayout>
+UICollectionViewDelegateFlowLayout, YBImageManagerDelegate>
 
 @end

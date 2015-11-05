@@ -16,6 +16,7 @@
 {
     YBWriting *mWriting;
     UIScrollView *scrollView;
+    YBImageManager *imageManager;
 }
 
 - (instancetype)initWithWriting:(YBWriting *)writing
@@ -34,21 +35,31 @@
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    float width = self.view.frame.size.width;
-    float height = width;
-    
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0,  self.view.frame.size.width, self.view.frame.size.height)];
     [scrollView setDelegate:self];
     [self.view addSubview:scrollView];
     
+    // Init image manager for using load image, scale image
+    imageManager = [[YBImageManager alloc] init];
+    [imageManager setDelegate:self];
+
     // Load image from server and add Contents
-    [self loadImageFrom:[NSURL URLWithString:[mWriting imageUrl]]];
+    [imageManager loadImageWithURL:[NSURL URLWithString:[mWriting imageUrl] ] receiveMainThread:YES withObject:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
     mWriting = nil;
+    scrollView = nil;
+    imageManager = nil;
+}
+
+- (void)imageDidLoad:(UIImage *)image withObject:(id)object
+{
+    UIImage *scaledImage = [imageManager scaleImage:image toSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.width)
+                                         isMaintain:YES];
+    [self addContents:scaledImage];
 }
 
 - (void)loadImageFrom:(NSURL *)url
@@ -66,31 +77,37 @@
 {
     float width = self.view.frame.size.width;
     float height = width;
+    CGSize size;
     
-    UIImage *scaledImage = [self scaleImage:image];
-    
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, scaledImage.size.width, scaledImage.size.width > scaledImage.size.height ? scaledImage.size.width : scaledImage.size.height)];
-    if ( scaledImage.size.width > scaledImage.size.height) {
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, image.size.width > image.size.height ? height : image.size.height)];
+
+    if (image.size.width > image.size.height) {
         [imageView setContentMode:UIViewContentModeScaleAspectFit];
+        [imageView setBackgroundColor:[UIColor blackColor]];
+        size.width = width;
+        size.height = width;
+    } else {
+        size.width = width;
+        size.height = image.size.height;
     }
-    [imageView setImage:scaledImage];
     
-    [scrollView setContentSize:CGSizeMake(scaledImage.size.width, scaledImage.size.height + 100)];
+    [imageView setImage:image];
+    
+    [scrollView setContentSize:CGSizeMake(image.size.width, image.size.height + 100)];
     [scrollView addSubview:imageView];
 
-    [imageView setBackgroundColor:[UIColor blackColor]];
     // Add sentence, words label
-    [self addSentenceLabelWithWidth:width Height:scaledImage.size.width > scaledImage.size.height ? scaledImage.size.width : scaledImage.size.height];
-    [self addWordsLabelWithWidth:width Height:scaledImage.size.width > scaledImage.size.height ? scaledImage.size.width : scaledImage.size.height];
+    [self addSentenceLabelWithFrame:CGRectMake(0, 0, size.width, size.height - 50)];
+    [self addWordsLabelWithFrameh:CGRectMake(0, size.height - 50, size.width, 50)];
     
     // 작성자는 Image 왼쪽 아래, 작성날짜는 Image 오른쪽 아래에 표시된다
-    [self addNameLabelWithHeight:scaledImage.size.width > scaledImage.size.height ? scaledImage.size.width : scaledImage.size.height];
-    [self addDateLabelWithWidth:width Height:scaledImage.size.width > scaledImage.size.height ? scaledImage.size.width : scaledImage.size.height];
+    [self addNameLabelWithFrame:CGRectMake(0, size.height + 10, 100, 20)];
+    [self addDateLabelWithFrame:CGRectMake(width - 150, size.height + 10, 150, 20)];
 }
 
-- (void)addSentenceLabelWithWidth:(float)width Height:(float)height
+- (void)addSentenceLabelWithFrame:(CGRect)frame
 {
-    UILabel *sentenceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, height - 50)];
+    UILabel *sentenceLabel = [[UILabel alloc] initWithFrame:frame];
     [sentenceLabel setTextAlignment:NSTextAlignmentCenter];
     [sentenceLabel setTextColor:[UIColor whiteColor]];
     [sentenceLabel setFont:[UIFont systemFontOfSize:22 weight:2]];
@@ -100,10 +117,9 @@
     [scrollView addSubview:sentenceLabel];
 }
 
-- (void)addWordsLabelWithWidth:(float)width Height:(float)height
+- (void)addWordsLabelWithFrameh:(CGRect)frame
 {
-    NSLog(@"%lf", height);
-    UILabel *wordsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, height - 50, width, 50)];
+    UILabel *wordsLabel = [[UILabel alloc] initWithFrame:frame];
     [wordsLabel setTextAlignment:NSTextAlignmentCenter];
     [wordsLabel setTextColor:[UIColor whiteColor]];
     [wordsLabel setFont:[UIFont systemFontOfSize:14 weight:2]];
@@ -112,17 +128,17 @@
     [scrollView addSubview:wordsLabel];
 }
 
-- (void)addNameLabelWithHeight:(float)height
+- (void)addNameLabelWithFrame:(CGRect)frame
 {
-    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, height + 10, 100, 20)];
+    UILabel *nameLabel = [[UILabel alloc] initWithFrame:frame];
     [nameLabel setText:[mWriting name]];
     
     [scrollView addSubview:nameLabel];
 }
 
-- (void)addDateLabelWithWidth:(float)width Height:(float)height
+- (void)addDateLabelWithFrame:(CGRect)frame
 {
-    UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(width - 150, height + 10, 150, 20)];
+    UILabel *dateLabel = [[UILabel alloc] initWithFrame:frame];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"YYYY-MM-dd"];
     [dateLabel setText:[dateFormat stringFromDate:[mWriting date]]];
@@ -138,25 +154,6 @@
                              range:NSMakeRange(0, [attributedString length])];
     
     return [[NSAttributedString alloc] initWithAttributedString:attributedString];
-}
-
-- (UIImage *)scaleImage:(UIImage *)image
-{
-    float originWidth = image.size.width;
-    float resizeWidth = self.view.frame.size.width;
-    float scaleFactor = resizeWidth / originWidth;
-    float resizeHeight = image.size.height * scaleFactor;
-    
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(resizeWidth, resizeHeight), NO, [UIScreen mainScreen].scale);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextTranslateCTM(context, 0.0, resizeHeight);
-    CGContextScaleCTM(context, 1.0, -1.0);
-    
-    CGContextDrawImage(context, CGRectMake(0.0, 0.0, resizeWidth, resizeHeight), [image CGImage]);
-    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return scaledImage;
 }
 
 /*

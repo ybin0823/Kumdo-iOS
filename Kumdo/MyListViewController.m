@@ -21,6 +21,7 @@
     UICollectionView *mCollectionView;
     NSMutableArray *writings;
     YBUser *user;
+    YBImageManager *imageManager;
 }
 
 @synthesize mCollectionView = mCollectionView;
@@ -48,7 +49,6 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
     user = [YBUser sharedInstance];
     
     // Load data from server
-    
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     NSMutableString *url = [NSMutableString stringWithString:GET_MYLIST_FROM_SERVER];
     [url appendString:[user email]];
@@ -69,11 +69,17 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
             [mCollectionView reloadData];
         });
     }] resume];
+    
+    // Init imageManager for using image load, image scale
+    imageManager = [[YBImageManager alloc] init];
+    [imageManager setDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    writings = nil;
+    imageManager = nil;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -90,53 +96,30 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
     YBWaterFallViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     YBWriting *writing = [writings objectAtIndex:indexPath.row];
     
-    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     NSURL *imageUrl = [NSURL URLWithString:[writing imageUrl]];
-    
-    [[defaultSession dataTaskWithURL:imageUrl completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        UIImage *image = [UIImage imageWithData:data];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [cell.imageView setImage:[self scaleImage:image]];
-        });
-    }] resume];
+    [imageManager loadImageWithURL:imageUrl receiveMainThread:YES withObject:cell];
     
     [cell.label setText:[writing stringWithCommaFromWords]];
     
     return cell;
 }
 
+- (void)imageDidLoad:(UIImage *)image withObject:(id)object
+{
+    YBWaterFallViewCell *cell = object;
+    [cell.imageView setImage:[imageManager scaleImage:image toSize:CGSizeMake(self.view.frame.size.width / 2, 0) isMaintain:YES]];
+}
+
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    // Frame Size를 잡기 위해 image를 한 번 받아옴.
     NSURL *imageUrl = [NSURL URLWithString:[[writings objectAtIndex:indexPath.row] imageUrl]];
     NSData *data = [NSData dataWithContentsOfURL:imageUrl];
     UIImage *image = [UIImage imageWithData:data];
-    
-    float originWidth = image.size.width;
-    float frameWidth = self.view.frame.size.width / 2;
-    float scaleFactor = frameWidth / originWidth;
-    float frameHeight = image.size.height * scaleFactor;
-    
-    return CGSizeMake(frameWidth, frameHeight);
-}
 
-- (UIImage *)scaleImage:(UIImage *)image
-{
-    float originWidth = image.size.width;
-    float resizeWidth = self.view.frame.size.width / 2;
-    float scaleFactor = resizeWidth / originWidth;
-    float resizeHeight = image.size.height * scaleFactor;
+    CGFloat scaleFactor = (self.view.frame.size.width / 2) / image.size.width;
     
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(resizeWidth, resizeHeight), NO, [UIScreen mainScreen].scale);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextTranslateCTM(context, 0.0, resizeHeight);
-    CGContextScaleCTM(context, 1.0, -1.0);
-    
-    CGContextDrawImage(context, CGRectMake(0.0, 0.0, resizeWidth, resizeHeight), [image CGImage]);
-    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return scaledImage;
+    return CGSizeMake(self.view.frame.size.width / 2, image.size.height * scaleFactor);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

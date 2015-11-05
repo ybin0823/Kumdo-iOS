@@ -19,6 +19,7 @@
 {
     UICollectionView *mCollectionView;
     NSMutableArray *writings;
+    YBImageManager *imageManager;
 }
 
 static NSString * const reuseIdentifier = @"Cell";
@@ -61,6 +62,9 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
 //        });
         
     }] resume];
+    
+    imageManager = [[YBImageManager alloc] init];
+    [imageManager setDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,6 +72,7 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
 
     // Dispose of any resources that can be recreated.
     writings = nil;
+    imageManager = nil;
 }
 
 - (void)didReceiveData
@@ -90,18 +95,8 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     YBCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     YBWriting *writing = [writings objectAtIndex:indexPath.row];
     
-    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     NSURL *imageUrl = [NSURL URLWithString:[[writings objectAtIndex:indexPath.row] imageUrl]];
-    
-    [[defaultSession dataTaskWithURL:imageUrl completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        UIImage *image = [UIImage imageWithData:data];
-        
-        //TODO perforSelector 가독성 vs dispatch 구문이 가독성
-        //[self performSelectorOnMainThread:@selector(selector) withObject:(nullable id) waitUntilDone:<#(BOOL)#>]
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [cell.imageView setImage:[self centerCropImage:image toSize:CGSizeMake(self.view.frame.size.width, 250.0)]];
-        });
-    }] resume];
+    [imageManager loadImageWithURL:imageUrl receiveMainThread:YES withObject:cell];
     
     [cell setSentenceWithAttributedText:writing.sentence];
     [cell.nameLabel setText:writing.name];
@@ -109,6 +104,12 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     [cell setFormattedDate:writing.date];
     
     return cell;
+}
+
+- (void)imageDidLoad:(UIImage *)image withObject:(nullable id)object
+{
+    YBCollectionViewCell *cell = object;
+    [cell.imageView setImage:[imageManager centerCroppingImage:image toSize:CGSizeMake(self.view.frame.size.width, 250.0)]];
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -122,37 +123,6 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     DetailViewController *detailViewController = [[DetailViewController alloc] initWithWriting:writing];
     
     [self.navigationController pushViewController:detailViewController animated:YES];
-}
-
-- (UIImage *)centerCropImage:(UIImage *)image toSize:(CGSize)size
-{
-    float x = (image.size.width - size.width) / 2;
-    float y = (image.size.height - size.height) / 2;
-    
-    CGRect cropRect = CGRectMake(x, y, size.width, size.height);
-    CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], cropRect);
-    
-    UIImage *ceterCroppedImage = [UIImage imageWithCGImage:imageRef];
-    CGImageRelease(imageRef);
-    
-    return ceterCroppedImage;
-}
-
-- (UIImage *)scaleImage:(UIImage *)image
-{
-    float resizeWidth = self.view.frame.size.width;
-    float resizeHeight = 250.0;
-    
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(resizeWidth, resizeHeight), NO, [UIScreen mainScreen].scale);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextTranslateCTM(context, 0.0, resizeHeight);
-    CGContextScaleCTM(context, 1.0, -1.0);
-    
-    CGContextDrawImage(context, CGRectMake(0.0, 0.0, resizeWidth, resizeHeight), [image CGImage]);
-    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return scaledImage;
 }
 
 /*

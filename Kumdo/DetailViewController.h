@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "YBWriting.h"
+#import "YBImageManager.h"
 
-@interface DetailViewController : UIViewController <UIScrollViewDelegate>
+@interface DetailViewController : UIViewController <UIScrollViewDelegate, YBImageManagerDelegate>
 
 - (instancetype)initWithWriting:(YBWriting *)writing;
 

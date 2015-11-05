@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "YBCollectionViewWaterFallLayout.h"
+#import "YBImageManager.h"
 
-@interface MyListViewController : UIViewController <UICollectionViewDataSource, YBCollectionViewDelegateWaterFallLayout>
+@interface MyListViewController : UIViewController <UICollectionViewDataSource, YBCollectionViewDelegateWaterFallLayout,
+YBImageManagerDelegate>
 
 @property (strong, nonatomic) UICollectionView *mCollectionView;
 

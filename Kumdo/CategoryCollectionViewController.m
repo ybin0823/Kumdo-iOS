@@ -20,6 +20,7 @@
     UICollectionView *mCollectionView;
     NSMutableArray *writings;
     NSInteger mCategory;
+    YBImageManager *imageManager;
 }
 
 static NSString * const reuseIdentifier = @"Cell";
@@ -71,6 +72,10 @@ static NSString * const GET_CATEGORY_BEST_FROM_SERVER = @"http://125.209.198.90:
             [mCollectionView reloadData];
         });
     }] resume];
+    
+    // init imageManger for using image load, image scale
+    imageManager = [[YBImageManager alloc] init];
+    [imageManager setDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -94,16 +99,8 @@ static NSString * const GET_CATEGORY_BEST_FROM_SERVER = @"http://125.209.198.90:
     YBCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     YBWriting *writing = [writings objectAtIndex:indexPath.row];
     
-    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     NSURL *imageUrl = [NSURL URLWithString:[[writings objectAtIndex:indexPath.row] imageUrl]];
-    
-    [[defaultSession dataTaskWithURL:imageUrl completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        UIImage *image = [UIImage imageWithData:data];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [cell.imageView setImage:[self centerCropImage:image toSize:CGSizeMake(self.view.frame.size.width, 250.0)]];
-        });
-    }] resume];
+    [imageManager loadImageWithURL:imageUrl receiveMainThread:YES withObject:cell];
     
     [cell setSentenceWithAttributedText:writing.sentence];
     [cell setWordsWithAttributedText:[writing stringWithCommaFromWords]];
@@ -111,6 +108,12 @@ static NSString * const GET_CATEGORY_BEST_FROM_SERVER = @"http://125.209.198.90:
     [cell setFormattedDate:writing.date];
     
     return cell;
+}
+
+- (void)imageDidLoad:(UIImage *)image withObject:(id)object
+{
+    YBCollectionViewCell *cell = object;
+    [cell.imageView setImage:[imageManager centerCroppingImage:image toSize:CGSizeMake(self.view.frame.size.width, 250.0)]];
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

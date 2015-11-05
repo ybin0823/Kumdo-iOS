@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YBImageManager.h"
 
 @interface CategoryCollectionViewController : UIViewController <UICollectionViewDataSource,
-UICollectionViewDelegateFlowLayout>
+UICollectionViewDelegateFlowLayout, YBImageManagerDelegate>
 
 - (instancetype)initWithCategory:(NSInteger)category;
 

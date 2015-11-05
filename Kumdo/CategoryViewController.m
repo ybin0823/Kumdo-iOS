@@ -10,6 +10,7 @@
 #import "CategoryViewCell.h"
 #import "CategoryCollectionViewController.h"
 #import "YBCategory.h"
+#import "YBImageManager.h"
 
 @interface CategoryViewController ()
 
@@ -19,6 +20,7 @@
 {
     UICollectionView *mCollectionView;
     YBCategory *categories;
+    YBImageManager *imageManager;
 }
 
 @synthesize mCollectionView = mCollectionView;
@@ -43,6 +45,9 @@ static NSString * const reuseIdentifier = @"Cell";
     
     // init category
     categories = [[YBCategory alloc] init];
+    
+    // init imageManger for using image scale.
+    imageManager = [[YBImageManager alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,6 +55,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     // Dispose of any resources that can be recreated.
     categories = nil;
+    imageManager = nil;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -67,7 +73,8 @@ static NSString * const reuseIdentifier = @"Cell";
     CategoryViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Set image of imageView in the cell
-    UIImage *scaledImage = [self loadScaledImageAtIndexPath:indexPath];
+    UIImage *scaledImage = [imageManager scaleImageWithNamed:[categories.images objectAtIndex:indexPath.row]
+                                                      toSize:CGSizeMake(self.view.frame.size.width, 250.0)];
     [cell.imageView setImage:scaledImage];
     
     // Set text of label in the cell
@@ -79,24 +86,6 @@ static NSString * const reuseIdentifier = @"Cell";
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake(self.view.frame.size.width, 250);
-}
-
-- (UIImage *)loadScaledImageAtIndexPath:(NSIndexPath *)indexPath
-{
-    UIImage *image = [UIImage imageNamed:[categories.images objectAtIndex:indexPath.row]];
-    float resizeWidth = self.view.frame.size.width;
-    float resizeHeight = 250.0;
-    
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(resizeWidth, resizeHeight), NO, [UIScreen mainScreen].scale);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextTranslateCTM(context, 0.0, resizeHeight);
-    CGContextScaleCTM(context, 1.0, -1.0);
-    
-    CGContextDrawImage(context, CGRectMake(0.0, 0.0, resizeWidth, resizeHeight), [image CGImage]);
-    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return scaledImage;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

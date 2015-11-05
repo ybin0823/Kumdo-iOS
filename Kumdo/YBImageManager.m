@@ -17,7 +17,7 @@
 
 #pragma mark load
 
-- (void)loadImageWithURL:(NSURL *)url receiveMainThread:(BOOL)isMainThread
+- (void)loadImageWithURL:(NSURL *)url receiveMainThread:(BOOL)isMainThread withObject:(nullable id)object
 {
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     
@@ -26,7 +26,7 @@
         
         if (isMainThread) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate imageDidLoad:image];
+                [self.delegate imageDidLoad:image withObject:object];
             });
         }
     }] resume];
