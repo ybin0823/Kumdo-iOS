@@ -7,6 +7,7 @@
 //
 
 #import "YBCollectionViewCell.h"
+#import "UIColor+YBColorAdditions.h"
 
 @implementation YBCollectionViewCell
 {
@@ -62,7 +63,7 @@
 - (void)setSentenceWithAttributedText:(NSString *)text
 {
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text];
-    [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor colorWithWhite:0.5 alpha:0.3]
+    [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor transParentColor]
                              range:NSMakeRange(0, [attributedString length])];
     [self.sentenceLabel setAttributedText:[[NSAttributedString alloc] initWithAttributedString:attributedString]];
 }
@@ -70,7 +71,7 @@
 - (void)setWordsWithAttributedText:(NSString *)text
 {
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text];
-    [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor colorWithWhite:0.5 alpha:0.3]
+    [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor transParentColor]
                              range:NSMakeRange(0, [attributedString length])];
     [self.wordsLabel setAttributedText:[[NSAttributedString alloc] initWithAttributedString:attributedString]];
 }

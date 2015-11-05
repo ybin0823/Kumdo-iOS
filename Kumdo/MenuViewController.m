@@ -11,6 +11,7 @@
 #import "CategoryViewController.h"
 #import "MyListViewController.h"
 #import "YBSegmentedControl.h"
+#import "UIColor+YBColorAdditions.h"
 
 @interface MenuViewController ()
 
@@ -28,7 +29,7 @@
     [super viewDidLoad];
     
 
-    [[self.navigationController navigationBar] setBarTintColor:[UIColor colorWithRed:26.0f/255.0f green:179.0f/255.0f blue:255.0f/255.0f alpha:1.0f]];
+    [[self.navigationController navigationBar] setBarTintColor:[UIColor primaryColor]];
 
     CGSize size = [[UIScreen mainScreen] bounds].size;
     
@@ -36,7 +37,7 @@
     NSArray *images = [NSArray arrayWithObjects:[UIImage imageNamed:@"ic_home_white_36pt.png"], [UIImage imageNamed:@"ic_list_white_36pt.png"], [UIImage imageNamed:@"ic_collections_white_36pt.png"], nil];
     mySegmentedControl = [[YBSegmentedControl alloc] initWithImages:images];
     mySegmentedControl.frame = CGRectMake(0, 0, size.width, 50);
-    [mySegmentedControl setBackgroundColor:[UIColor colorWithRed:26.0f/255.0f green:179.0f/255.0f blue:255.0f/255.0f alpha:1.0f]];
+    [mySegmentedControl setBackgroundColor:[UIColor primaryColor]];
     [mySegmentedControl addTarget:self action:@selector(selectSegmentItem) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:mySegmentedControl];
 
