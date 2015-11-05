@@ -99,7 +99,7 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
         //TODO perforSelector 가독성 vs dispatch 구문이 가독성
         //[self performSelectorOnMainThread:@selector(selector) withObject:(nullable id) waitUntilDone:<#(BOOL)#>]
         dispatch_async(dispatch_get_main_queue(), ^{
-            [cell.imageView setImage:[self scaleImage:image]];
+            [cell.imageView setImage:[self centerCropImage:image toSize:CGSizeMake(self.view.frame.size.width, 250.0)]];
         });
     }] resume];
     
@@ -122,6 +122,20 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     DetailViewController *detailViewController = [[DetailViewController alloc] initWithWriting:writing];
     
     [self.navigationController pushViewController:detailViewController animated:YES];
+}
+
+- (UIImage *)centerCropImage:(UIImage *)image toSize:(CGSize)size
+{
+    float x = (image.size.width - size.width) / 2;
+    float y = (image.size.height - size.height) / 2;
+    
+    CGRect cropRect = CGRectMake(x, y, size.width, size.height);
+    CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], cropRect);
+    
+    UIImage *ceterCroppedImage = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    
+    return ceterCroppedImage;
 }
 
 - (UIImage *)scaleImage:(UIImage *)image

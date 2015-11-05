@@ -101,7 +101,7 @@ static NSString * const GET_CATEGORY_BEST_FROM_SERVER = @"http://125.209.198.90:
         UIImage *image = [UIImage imageWithData:data];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [cell.imageView setImage:[self scaleImage:image]];
+            [cell.imageView setImage:[self centerCropImage:image toSize:CGSizeMake(self.view.frame.size.width, 250.0)]];
         });
     }] resume];
     
@@ -124,6 +124,20 @@ static NSString * const GET_CATEGORY_BEST_FROM_SERVER = @"http://125.209.198.90:
     DetailViewController *detailViewController = [[DetailViewController alloc] initWithWriting:writing];
     
     [self.navigationController pushViewController:detailViewController animated:YES];
+}
+
+- (UIImage *)centerCropImage:(UIImage *)image toSize:(CGSize)size
+{
+    float x = (image.size.width - size.width) / 2;
+    float y = (image.size.height - size.height) / 2;
+    
+    CGRect cropRect = CGRectMake(x, y, size.width, size.height);
+    CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], cropRect);
+    
+    UIImage *ceterCroppedImage = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    
+    return ceterCroppedImage;
 }
 
 - (UIImage *)scaleImage:(UIImage *)image
