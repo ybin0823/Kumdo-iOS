@@ -10,8 +10,8 @@
 
 @interface CategoryViewCell : UICollectionViewCell
 
-@property (strong, nonatomic) UILabel *label;
-@property (strong, nonatomic) UIImageView *imageView;
+@property (nonatomic, readonly) UILabel *label;
+@property (nonatomic, readonly) UIImageView *imageView;
 
 - (void)setAttributedText:(NSString *)text;
 

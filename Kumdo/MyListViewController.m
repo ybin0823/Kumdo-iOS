@@ -24,8 +24,6 @@
     YBImageManager *imageManager;
 }
 
-@synthesize mCollectionView = mCollectionView;
-
 static NSString * const reuseIdentifier = @"Cell";
 static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/mylist/";
 
@@ -41,7 +39,7 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
     [mCollectionView setDataSource:self];
     [mCollectionView setDelegate:self];
     
-    [self.mCollectionView registerClass:[YBWaterFallViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [mCollectionView registerClass:[YBWaterFallViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     [self.view addSubview:mCollectionView];
     

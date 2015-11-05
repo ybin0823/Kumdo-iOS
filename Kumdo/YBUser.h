@@ -11,15 +11,15 @@
 @interface YBUser : NSObject
 
 // XML elementName과 맞추기 위해 '_' convention을 사용.
-@property NSString *email;
-@property NSString *nickname;
-@property NSString *enc_id;
-@property NSURL *profile_image;
-@property NSString *age;
-@property NSString *gender;
-@property NSString *userId;
-@property NSString *name;
-@property NSString *birthday;
+@property (nonatomic) NSString *email;
+@property (nonatomic) NSString *nickname;
+@property (nonatomic) NSString *enc_id;
+@property (nonatomic) NSURL *profile_image;
+@property (nonatomic) NSString *age;
+@property (nonatomic) NSString *gender;
+@property (nonatomic) NSString *userId;
+@property (nonatomic) NSString *name;
+@property (nonatomic) NSString *birthday;
 
 + (instancetype)sharedInstance;
 

@@ -10,8 +10,8 @@
 
 @interface YBCategory : NSObject
 
-@property (strong, nonatomic) NSArray *images;
-@property (strong, nonatomic) NSArray *names;
+@property (nonatomic, readonly) NSArray *images;
+@property (nonatomic, readonly) NSArray *names;
 
 - (NSInteger)count;
 

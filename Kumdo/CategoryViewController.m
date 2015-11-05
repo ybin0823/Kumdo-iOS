@@ -23,8 +23,6 @@
     YBImageManager *imageManager;
 }
 
-@synthesize mCollectionView = mCollectionView;
-
 static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
@@ -39,7 +37,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [mCollectionView setDataSource:self];
     [mCollectionView setDelegate:self];
     
-    [self.mCollectionView registerClass:[CategoryViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [mCollectionView registerClass:[CategoryViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     [self.view addSubview:mCollectionView];
     

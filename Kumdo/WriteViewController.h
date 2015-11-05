@@ -17,6 +17,6 @@
 
 @interface WriteViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, YBFlowContentViewDelegate>
 
-@property (weak, nonatomic) id <WriteViewControllerDelegate> delegate;
+@property (nonatomic, weak) id <WriteViewControllerDelegate> delegate;
 
 @end

@@ -10,13 +10,13 @@
 
 @interface YBWriting : NSObject
 
-@property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSString *email;
-@property (strong, nonatomic) NSString *sentence;
-@property (strong, nonatomic) NSArray *words;
-@property (strong, nonatomic) NSString *imageUrl;
+@property (nonatomic) NSString *name;
+@property (nonatomic) NSString *email;
+@property (nonatomic) NSString *sentence;
+@property (nonatomic) NSArray *words;
+@property (nonatomic) NSString *imageUrl;
 @property int category;
-@property (strong, nonatomic) NSDate *date;
+@property (nonatomic) NSDate *date;
 
 +(instancetype)writingWithJSON:(id)json;
 
