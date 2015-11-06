@@ -15,6 +15,7 @@
     NSString *sentence;
     NSArray *words;
     NSURL *imageUrl;
+    NSArray *imageSize;
     NSInteger category;
     NSDate *date;
     
@@ -25,6 +26,7 @@
 @synthesize sentence = sentence;
 @synthesize words = words;
 @synthesize imageUrl = imageUrl;
+@synthesize imageSize = imageSize;
 @synthesize category = category;
 @synthesize date = date;
 
@@ -42,6 +44,7 @@
         email = [json valueForKey:@"email"];
         sentence = [json valueForKey:@"sentence"];
         imageUrl = [NSURL URLWithString:[json valueForKey:@"imageUrl"]];
+        imageSize = [json valueForKey:@"imageSize"];
         category = [[json valueForKey:@"category"] integerValue];
         words = [[json valueForKey:@"words"] componentsSeparatedByString:@","];
         
@@ -69,8 +72,8 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"Writing : [ name = %@, email = %@, sentence = %@, words = %@, imageUrl = %@, category = %ld, date = %@",
-            name, email, sentence, [self stringWithCommaFromWords], imageUrl, (long)category, date];
+    return [NSString stringWithFormat:@"Writing : [ name = %@, email = %@, sentence = %@, words = %@, imageUrl = %@, imageSize = %@, category = %ld, date = %@",
+            name, email, sentence, [self stringWithCommaFromWords], imageUrl, imageSize, (long)category, date];
 }
 
 @end

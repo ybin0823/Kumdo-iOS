@@ -88,8 +88,6 @@
     [self.view addSubview:viewController.view];
     [viewController didMoveToParentViewController:self];
     
-    [viewController viewWillAppear:YES];
-    
     [self setTitle:[viewController title]];
 }
 

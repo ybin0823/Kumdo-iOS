@@ -58,18 +58,6 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
     [mCollectionView registerClass:[YBWaterFallViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     [self.view addSubview:mCollectionView];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-    writings = nil;
-    imageManager = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
     
     // Load data from server
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
@@ -85,6 +73,7 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
             @autoreleasepool {
                 YBWriting *writing = [YBWriting writingWithJSON:json];
                 [writings addObject:writing];
+                NSLog(@"%@", [writing imageSize]);
             }
         }
         
@@ -92,6 +81,13 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
             [mCollectionView reloadData];
         });
     }] resume];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+    writings = nil;
+    imageManager = nil;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -123,14 +119,13 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Frame Size를 잡기 위해 image를 한 번 받아옴.
     YBWriting *writing = [writings objectAtIndex:indexPath.row];
-    NSData *data = [NSData dataWithContentsOfURL:[writing imageUrl]];
-    UIImage *image = [UIImage imageWithData:data];
 
-    CGFloat scaleFactor = (self.view.frame.size.width / 2) / image.size.width;
+    CGFloat width = [[[writing imageSize] objectAtIndex:0] floatValue];
+    CGFloat height = [[[writing imageSize] objectAtIndex:1] floatValue];
+    CGFloat scaleFactor = (self.view.frame.size.width / 2) / width;
     
-    return CGSizeMake(self.view.frame.size.width / 2, image.size.height * scaleFactor);
+    return CGSizeMake(self.view.frame.size.width / 2, height * scaleFactor);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

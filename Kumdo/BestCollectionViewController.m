@@ -39,7 +39,8 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     // Set collectionView and register cell classes
@@ -54,19 +55,6 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     [mCollectionView registerClass:[YBCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     [self.view addSubview:mCollectionView];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-
-    // Dispose of any resources that can be recreated.
-    writings = nil;
-    imageManager = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
     
     // Load data from server
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
@@ -84,11 +72,21 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
         }
         [self performSelectorOnMainThread:@selector(didReceiveData) withObject:nil waitUntilDone:NO];
         
+        // TODO perforSelectorOnMainThread와 비교해보기
         //        dispatch_async(dispatch_get_main_queue(), ^{
         //            [mCollectionView reloadData];
         //        });
         
     }] resume];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+
+    // Dispose of any resources that can be recreated.
+    writings = nil;
+    imageManager = nil;
 }
 
 - (void)didReceiveData

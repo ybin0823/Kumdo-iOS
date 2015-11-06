@@ -15,6 +15,7 @@
 @property (nonatomic) NSString *sentence;
 @property (nonatomic) NSArray *words;
 @property (nonatomic) NSURL *imageUrl;
+@property (nonatomic) NSArray *imageSize;
 @property NSInteger category;
 @property (nonatomic) NSDate *date;
 
