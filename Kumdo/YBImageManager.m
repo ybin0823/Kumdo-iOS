@@ -42,13 +42,7 @@
     // Create bitmap context with size, opaque, scale and push it onto the graphics stack
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(resizeWidth, resizeHeight), NO, [UIScreen mainScreen].scale);
     
-    // Obtain current graphic context
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    // Draw the content of the image into the newly create graphics context
-    CGContextTranslateCTM(context, 0.0, resizeHeight);
-    CGContextScaleCTM(context, 1.0, -1.0);
-    CGContextDrawImage(context, CGRectMake(0.0, 0.0, resizeWidth, resizeHeight), [image CGImage]);
+    [image drawInRect:CGRectMake(0, 0, resizeWidth, resizeHeight)];
     
     // Generate and return UIImage
     UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
