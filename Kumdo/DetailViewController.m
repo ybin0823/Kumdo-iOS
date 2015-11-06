@@ -64,43 +64,58 @@
 {
     UIImage *scaledImage = [imageManager scaleImage:image toSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.width)
                                          isMaintain:YES];
-    [self addContents:scaledImage];
+    [self addImageView:scaledImage];
+    [self addLabels:scaledImage.size];
 }
 
-- (void)addContents:(UIImage *)image
-{
-    float width = self.view.frame.size.width;
-    float height = width;
-    CGSize size;
-    
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, image.size.width > image.size.height ? height : image.size.height)];
 
+#pragma mark - Add imageView
+     
+- (void)addImageView:(UIImage *)image
+{
     if (image.size.width > image.size.height) {
-        [imageView setContentMode:UIViewContentModeScaleAspectFit];
-        [imageView setBackgroundColor:[UIColor blackColor]];
-        size.width = width;
-        size.height = width;
+        [self setDefaultSizeImageView:image];
     } else {
-        size.width = width;
-        size.height = image.size.height;
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, image.size.height)];
+        [imageView setImage:image];
+        
+        [scrollView setContentSize:CGSizeMake(image.size.width, image.size.height + 100)];
+        [scrollView addSubview:imageView];
     }
+}
+
+- (void)setDefaultSizeImageView:(UIImage *)image
+{
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
+    [imageView setContentMode:UIViewContentModeScaleAspectFit];
+    [imageView setBackgroundColor:[UIColor blackColor]];
     
     [imageView setImage:image];
-    
-    [scrollView setContentSize:CGSizeMake(image.size.width, image.size.height + 100)];
     [scrollView addSubview:imageView];
-
-    // Add sentence, words label
-    [self addSentenceLabelWithFrame:CGRectMake(0, 0, size.width, size.height - 50)];
-    [self addWordsLabelWithFrameh:CGRectMake(0, size.height - 50, size.width, 50)];
-    
-    // 작성자는 Image 왼쪽 아래, 작성날짜는 Image 오른쪽 아래에 표시된다
-    [self addNameLabelWithFrame:CGRectMake(0, size.height + 10, 100, 20)];
-    [self addDateLabelWithFrame:CGRectMake(width - 150, size.height + 10, 150, 20)];
 }
 
 
-#pragma mark - Add label on the image
+#pragma mark - Add label
+
+- (void)addLabels:(CGSize)size
+{
+    float width = self.view.frame.size.width;
+    CGFloat height;
+
+    if (size.width > size.height) {
+        height = width;
+    } else {
+        height = size.height;
+    }
+
+    // Add sentence, words label
+    [self addSentenceLabelWithFrame:CGRectMake(0, 0, width, height - 50)];
+    [self addWordsLabelWithFrameh:CGRectMake(0, height - 50, width, 50)];
+    
+    // 작성자는 Image 왼쪽 아래, 작성날짜는 Image 오른쪽 아래에 표시된다
+    [self addNameLabelWithFrame:CGRectMake(0, height + 10, 100, 20)];
+    [self addDateLabelWithFrame:CGRectMake(width - 150, height + 10, 150, 20)];
+}
 
 - (void)addSentenceLabelWithFrame:(CGRect)frame
 {
@@ -133,8 +148,6 @@
     
     return [[NSAttributedString alloc] initWithAttributedString:attributedString];
 }
-
-#pragma mark - Add label under the image
 
 - (void)addNameLabelWithFrame:(CGRect)frame
 {
