@@ -15,7 +15,7 @@
 @property (nonatomic) NSString *sentence;
 @property (nonatomic) NSArray *words;
 @property (nonatomic) NSString *imageUrl;
-@property int category;
+@property NSInteger category;
 @property (nonatomic) NSDate *date;
 
 +(instancetype)writingWithJSON:(id)json;

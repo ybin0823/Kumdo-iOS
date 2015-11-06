@@ -15,7 +15,7 @@
     NSString *sentence;
     NSArray *words;
     NSString *imageUrl;
-    int category;
+    NSInteger category;
     NSDate *date;
     
 }
@@ -42,7 +42,7 @@
         email = [json valueForKey:@"email"];
         sentence = [json valueForKey:@"sentence"];
         imageUrl = [json valueForKey:@"imageUrl"];
-        category = (int)[[json valueForKey:@"category"] integerValue];
+        category = [[json valueForKey:@"category"] integerValue];
         words = [[json valueForKey:@"words"] componentsSeparatedByString:@","];
         
         // 서버에는 시간이 milisecond 단위로 저장되어 있기 때문에 second 단위로 바꿔줘야 한다
@@ -69,8 +69,8 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"Writing : [ name = %@, email = %@, sentence = %@, words = %@, imageUrl = %@, category = %d, date = %@",
-            name, email, sentence, [self stringWithCommaFromWords], imageUrl, category, date];
+    return [NSString stringWithFormat:@"Writing : [ name = %@, email = %@, sentence = %@, words = %@, imageUrl = %@, category = %ld, date = %@",
+            name, email, sentence, [self stringWithCommaFromWords], imageUrl, (long)category, date];
 }
 
 @end
