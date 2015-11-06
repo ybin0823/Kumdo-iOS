@@ -44,7 +44,7 @@
     [imageManager setDelegate:self];
 
     // Load image from server and add Contents
-    [imageManager loadImageWithURL:[NSURL URLWithString:[mWriting imageUrl] ] receiveMainThread:YES withObject:nil];
+    [imageManager loadImageWithURL:[mWriting imageUrl] receiveMainThread:YES withObject:nil];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -14,7 +14,7 @@
     NSString *email;
     NSString *sentence;
     NSArray *words;
-    NSString *imageUrl;
+    NSURL *imageUrl;
     NSInteger category;
     NSDate *date;
     
@@ -41,7 +41,7 @@
         name = [json valueForKey:@"name"];
         email = [json valueForKey:@"email"];
         sentence = [json valueForKey:@"sentence"];
-        imageUrl = [json valueForKey:@"imageUrl"];
+        imageUrl = [NSURL URLWithString:[json valueForKey:@"imageUrl"]];
         category = [[json valueForKey:@"category"] integerValue];
         words = [[json valueForKey:@"words"] componentsSeparatedByString:@","];
         

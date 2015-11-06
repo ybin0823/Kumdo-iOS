@@ -95,8 +95,7 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     YBCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     YBWriting *writing = [writings objectAtIndex:indexPath.row];
     
-    NSURL *imageUrl = [NSURL URLWithString:[[writings objectAtIndex:indexPath.row] imageUrl]];
-    [imageManager loadImageWithURL:imageUrl receiveMainThread:YES withObject:cell];
+    [imageManager loadImageWithURL:[writing imageUrl] receiveMainThread:YES withObject:cell];
     
     [cell setSentenceWithAttributedText:writing.sentence];
     [cell.nameLabel setText:writing.name];

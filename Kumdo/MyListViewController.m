@@ -94,8 +94,7 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
     YBWaterFallViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     YBWriting *writing = [writings objectAtIndex:indexPath.row];
     
-    NSURL *imageUrl = [NSURL URLWithString:[writing imageUrl]];
-    [imageManager loadImageWithURL:imageUrl receiveMainThread:YES withObject:cell];
+    [imageManager loadImageWithURL:[writing imageUrl] receiveMainThread:YES withObject:cell];
     
     [cell.label setText:[writing stringWithCommaFromWords]];
     
@@ -111,8 +110,8 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     // Frame Size를 잡기 위해 image를 한 번 받아옴.
-    NSURL *imageUrl = [NSURL URLWithString:[[writings objectAtIndex:indexPath.row] imageUrl]];
-    NSData *data = [NSData dataWithContentsOfURL:imageUrl];
+    YBWriting *writing = [writings objectAtIndex:indexPath.row];
+    NSData *data = [NSData dataWithContentsOfURL:[writing imageUrl]];
     UIImage *image = [UIImage imageWithData:data];
 
     CGFloat scaleFactor = (self.view.frame.size.width / 2) / image.size.width;

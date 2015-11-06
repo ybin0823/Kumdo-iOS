@@ -14,7 +14,7 @@
 @property (nonatomic) NSString *email;
 @property (nonatomic) NSString *sentence;
 @property (nonatomic) NSArray *words;
-@property (nonatomic) NSString *imageUrl;
+@property (nonatomic) NSURL *imageUrl;
 @property NSInteger category;
 @property (nonatomic) NSDate *date;
 
