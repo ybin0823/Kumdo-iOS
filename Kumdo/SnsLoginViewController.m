@@ -38,8 +38,6 @@
     // Naver Login API를 활용해서 로그인을 한다
     [[NaverThirdPartyLoginConnection getSharedInstance] setIsNaverAppOauthEnable:YES];
     [[NaverThirdPartyLoginConnection getSharedInstance] setIsInAppOauthEnable:YES];
-    
-    // 로그인하여 받아온 유저 정보를 NSLog로 출력한다
 }
 
 - (void)didReceiveMemoryWarning {
@@ -98,13 +96,11 @@
     if (error) {
         NSLog(@"Error happened - %@", [error description]);
     } else {
-        BOOL success;
         NSXMLParser *userParser = [[NSXMLParser alloc] initWithData:receivedData];
         [userParser setDelegate:self];
         [userParser setShouldResolveExternalEntities:YES];
-        success = [userParser parse];
         
-        if (success) {
+        if ([userParser parse]) {
             NSLog(@"%@", [user description]);
         }
     }
@@ -115,10 +111,7 @@
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary<NSString *,NSString *> *)attributeDict
 {
     if ([elementName isEqualToString:@"response"]) {
-        if (!user) {
-            user = [YBUser sharedInstance];
-            return;
-        }
+        user = [YBUser sharedInstance];
     }
 }
 

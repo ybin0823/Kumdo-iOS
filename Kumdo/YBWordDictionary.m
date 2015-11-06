@@ -46,7 +46,7 @@
 {
     int flag = arc4random() % 2;
     int index;
-    NSLog(@"flag is %d", flag);
+
     if (flag == 1) {
         index = arc4random() % [adjectiveWords count];
         return [adjectiveWords objectAtIndex:index];
