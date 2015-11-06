@@ -37,16 +37,27 @@
 
 @synthesize delegate = delegate;
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    
+    if (self) {
+        user = [YBUser sharedInstance];
+        wordDictionary = [[YBWordDictionary alloc] init];
+        writing = [[YBWriting alloc] init];
+        usedWords = [[NSMutableSet alloc] init];
+        
+        NSLog(@"%@", [user description]);
+    }
+    
+    return self;
+}
+
+#pragma mark - Override method
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    user = [YBUser sharedInstance];
-    wordDictionary = [[YBWordDictionary alloc] init];
-    writing = [[YBWriting alloc] init];
-    usedWords = [[NSMutableSet alloc] init];
-    
-    NSLog(@"%@", [user description]);
     
     // 랜덤하게 불러온 글자로 word1, word2, word3의 텍스트를 변화해준다
     [nounWordButton setTitle:[wordDictionary randomNonunWord] forState:UIControlStateNormal];
@@ -61,6 +72,7 @@
     wordDictionary = nil;
     flowContentView = nil;
 }
+
 
 #pragma mark - Button method
 
@@ -96,6 +108,7 @@
     [[self delegate] writeViewControllerDidCancel:self];
 }
 
+
 #pragma mark - Pick image
 
 - (IBAction)showImagePickerForPhotoPicker:(id)sender
@@ -128,6 +141,9 @@
     }
 }
 
+
+#pragma mark - Check of contents length
+
 - (void)contentDidReachMaxLength
 {
     [editButton setEnabled:NO];
@@ -145,6 +161,9 @@
     
     [self presentViewController:alertController animated:YES completion:nil];
 }
+
+
+#pragma mark - Set Writing
 
 - (NSString *)makeSentenceFromSubViews
 {
@@ -180,6 +199,8 @@
     [writing setWords:[usedWords allObjects]];
 }
 
+#pragma mark - Alert
+
 - (void)displayCategorySelectAlert
 {
     YBCategory *categories = [[YBCategory alloc] init];
@@ -212,15 +233,5 @@
     [alertController addAction:defaultAction];
     [self presentViewController:alertController animated:YES completion:nil];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -25,10 +25,16 @@
     
     if (self) {
         mWriting = writing;
+        
+        imageManager = [[YBImageManager alloc] init];
+        [imageManager setDelegate:self];
     }
     
     return self;
 }
+
+
+#pragma mark - Override method
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,10 +44,6 @@
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0,  self.view.frame.size.width, self.view.frame.size.height)];
     [scrollView setDelegate:self];
     [self.view addSubview:scrollView];
-    
-    // Init image manager for using load image, scale image
-    imageManager = [[YBImageManager alloc] init];
-    [imageManager setDelegate:self];
 
     // Load image from server and add Contents
     [imageManager loadImageWithURL:[mWriting imageUrl] receiveMainThread:YES withObject:nil];
@@ -55,22 +57,14 @@
     imageManager = nil;
 }
 
+
+#pragma mark - Image manager delegate
+
 - (void)imageDidLoad:(UIImage *)image withObject:(id)object
 {
     UIImage *scaledImage = [imageManager scaleImage:image toSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.width)
                                          isMaintain:YES];
     [self addContents:scaledImage];
-}
-
-- (void)loadImageFrom:(NSURL *)url
-{
-    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    [[defaultSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        UIImage *image = [UIImage imageWithData:data];
-        
-        [self performSelectorOnMainThread:@selector(addContents:) withObject:image waitUntilDone:NO];
- 
-    }] resume];
 }
 
 - (void)addContents:(UIImage *)image
@@ -105,6 +99,9 @@
     [self addDateLabelWithFrame:CGRectMake(width - 150, size.height + 10, 150, 20)];
 }
 
+
+#pragma mark - Add label on the image
+
 - (void)addSentenceLabelWithFrame:(CGRect)frame
 {
     UILabel *sentenceLabel = [[UILabel alloc] initWithFrame:frame];
@@ -128,6 +125,17 @@
     [scrollView addSubview:wordsLabel];
 }
 
+- (NSAttributedString *)attributedString:(NSString *)str
+{
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:str];
+    [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor colorWithWhite:0.5 alpha:0.3]
+                             range:NSMakeRange(0, [attributedString length])];
+    
+    return [[NSAttributedString alloc] initWithAttributedString:attributedString];
+}
+
+#pragma mark - Add label under the image
+
 - (void)addNameLabelWithFrame:(CGRect)frame
 {
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:frame];
@@ -147,23 +155,5 @@
     [scrollView addSubview:dateLabel];
 }
 
-- (NSAttributedString *)attributedString:(NSString *)str
-{
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:str];
-    [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor colorWithWhite:0.5 alpha:0.3]
-                             range:NSMakeRange(0, [attributedString length])];
-    
-    return [[NSAttributedString alloc] initWithAttributedString:attributedString];
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

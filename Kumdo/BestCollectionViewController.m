@@ -39,6 +39,9 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     return self;
 }
 
+
+#pragma mark - Override method
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -94,6 +97,9 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     [mCollectionView reloadData];
 }
 
+
+#pragma mark - CollectionView
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;
@@ -119,12 +125,6 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     return cell;
 }
 
-- (void)imageDidLoad:(UIImage *)image withObject:(nullable id)object
-{
-    YBCollectionViewCell *cell = object;
-    [cell.imageView setImage:[imageManager centerCroppingImage:image toSize:CGSizeMake(self.view.frame.size.width, 250.0)]];
-}
-
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake(self.view.frame.size.width, 350);
@@ -138,14 +138,14 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - Image manager Delegate
+
+- (void)imageDidLoad:(UIImage *)image withObject:(nullable id)object
+{
+    YBCollectionViewCell *cell = object;
+    [cell.imageView setImage:[imageManager centerCroppingImage:image toSize:CGSizeMake(self.view.frame.size.width, 250.0)]];
 }
-*/
+
 
 @end

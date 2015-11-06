@@ -40,6 +40,9 @@ static NSString * const reuseIdentifier = @"Cell";
     return self;
 }
 
+
+#pragma mark - Override method
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -65,10 +68,8 @@ static NSString * const reuseIdentifier = @"Cell";
     imageManager = nil;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
+
+#pragma mark - CollectionView
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -84,12 +85,9 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     CategoryViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    // Set image of imageView in the cell
     UIImage *scaledImage = [imageManager scaleImageWithNamed:[categories.images objectAtIndex:indexPath.row]
                                                       toSize:CGSizeMake(self.view.frame.size.width, 250.0)];
     [cell.imageView setImage:scaledImage];
-    
-    // Set text of label in the cell
     [cell setAttributedText:[categories.names objectAtIndex:indexPath.row]];
     
     return cell;
@@ -111,15 +109,5 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     return 0;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -36,6 +36,9 @@
     return self;
 }
 
+
+#pragma mark - Override method
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -46,10 +49,19 @@
     [self displayFirstChildViewController];
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    mySegmentedControl = nil;
+    viewControllers = nil;
+}
+
+
+#pragma mark - Set custom segmented control
+
 - (void)setSegmentedControl
 {
     CGSize size = [[UIScreen mainScreen] bounds].size;
-
+    
     NSArray *images = [NSArray arrayWithObjects:[UIImage imageNamed:@"ic_home_white_36pt.png"], [UIImage imageNamed:@"ic_list_white_36pt.png"], [UIImage imageNamed:@"ic_collections_white_36pt.png"], nil];
     mySegmentedControl = [[YBSegmentedControl alloc] initWithImages:images];
     
@@ -61,11 +73,14 @@
     [self.view addSubview:mySegmentedControl];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    mySegmentedControl = nil;
-    viewControllers = nil;
+- (void)didchangeSegmentedIndex
+{
+    UIViewController *childeViewController = [viewControllers objectAtIndex:[mySegmentedControl selectedSegmentIndex]];
+    [self displayChildViewController:childeViewController];
 }
+
+
+#pragma mark - ChildViewController
 
 - (UIViewController *)makeChildViewController:(NSString *)className
 {
@@ -89,12 +104,6 @@
     [viewController didMoveToParentViewController:self];
     
     [self setTitle:[viewController title]];
-}
-
-- (void)didchangeSegmentedIndex
-{
-    UIViewController *childeViewController = [viewControllers objectAtIndex:[mySegmentedControl selectedSegmentIndex]];
-    [self displayChildViewController:childeViewController];
 }
 
 #pragma mark - Navigation

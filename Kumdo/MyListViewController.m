@@ -43,6 +43,9 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
     return self;
 }
 
+
+#pragma mark - Override method
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -90,6 +93,9 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
     imageManager = nil;
 }
 
+
+#pragma mark - CollectionView
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;
@@ -111,23 +117,6 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
     return cell;
 }
 
-- (void)imageDidLoad:(UIImage *)image withObject:(id)object
-{
-    YBWaterFallViewCell *cell = object;
-    [cell.imageView setImage:[imageManager scaleImage:image toSize:CGSizeMake(self.view.frame.size.width / 2, 0) isMaintain:YES]];
-}
-
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    YBWriting *writing = [writings objectAtIndex:indexPath.row];
-
-    CGFloat width = [[[writing imageSize] objectAtIndex:0] floatValue];
-    CGFloat height = [[[writing imageSize] objectAtIndex:1] floatValue];
-    CGFloat scaleFactor = (self.view.frame.size.width / 2) / width;
-    
-    return CGSizeMake(self.view.frame.size.width / 2, height * scaleFactor);
-}
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     YBWriting *writing = [writings objectAtIndex:indexPath.row];
@@ -136,6 +125,25 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
+#pragma mark - Waterfall layout delegate
+
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    YBWriting *writing = [writings objectAtIndex:indexPath.row];
+    
+    CGFloat width = [[[writing imageSize] objectAtIndex:0] floatValue];
+    CGFloat height = [[[writing imageSize] objectAtIndex:1] floatValue];
+    CGFloat scaleFactor = (self.view.frame.size.width / 2) / width;
+    
+    return CGSizeMake(self.view.frame.size.width / 2, height * scaleFactor);
+}
+
+#pragma mark - Image manager delegate
+- (void)imageDidLoad:(UIImage *)image withObject:(id)object
+{
+    YBWaterFallViewCell *cell = object;
+    [cell.imageView setImage:[imageManager scaleImage:image toSize:CGSizeMake(self.view.frame.size.width / 2, 0) isMaintain:YES]];
+}
 /*
 #pragma mark - Navigation
 

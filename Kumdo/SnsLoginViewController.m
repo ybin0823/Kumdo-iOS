@@ -32,6 +32,9 @@
     return self;
 }
 
+
+#pragma mark - Override method
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -57,6 +60,19 @@
     return NO;
 }
 
+
+#pragma mark - ThirdPartyLogin using Naver Login
+
+- (IBAction)didClickLoginBtn:(id)sender
+{
+    if (YES == [thirdPartyLoginConn isValidAccessTokenExpireTimeNow]) {
+        [self requestUserProfile];
+        return;
+    }
+    
+    [self requestThirdPartyLogin];
+}
+
 - (void)requestThirdPartyLogin
 {
     // NaverThirdPartyLoginConnection의 인스턴스에 서비스앱의 url scheme와 consumer key, consumer secret, 그리고 appName을 파라미터로 전달하여 3rd party OAuth 인증을 요청한다.
@@ -69,19 +85,47 @@
     [tlogin requestThirdPartyLogin];
 }
 
-- (IBAction)didClickLoginBtn:(id)sender
-{
-    if (YES == [thirdPartyLoginConn isValidAccessTokenExpireTimeNow]) {
-        [self requestUserProfile];
-        return;
-    }
 
-    [self requestThirdPartyLogin];
+#pragma mark - SampleOAuthConnectionDelegate
+- (void) presentWebviewControllerWithRequest:(NSURLRequest *)urlRequest   {
+    // FormSheet모달위에 FullScreen모달이 뜰 떄 애니메이션이 이상하게 동작하여 애니메이션이 없도록 함
+    
+    NLoginThirdPartyOAuth20InAppBrowserViewController *inAppBrowserViewController = [[NLoginThirdPartyOAuth20InAppBrowserViewController alloc] initWithRequest:urlRequest];
+    inAppBrowserViewController.parentOrientation = (UIInterfaceOrientation)[[UIDevice currentDevice] orientation];
+    [self presentViewController:inAppBrowserViewController animated:NO completion:nil];
 }
+
+
+#pragma mark - OAuth20 deleagate
+
+- (void)oauth20ConnectionDidOpenInAppBrowserForOAuth:(NSURLRequest *)request {
+    [self presentWebviewControllerWithRequest:request];
+}
+
+- (void)oauth20Connection:(NaverThirdPartyLoginConnection *)oauthConnection didFailWithError:(NSError *)error {
+    NSLog(@"%s=[%@]", __FUNCTION__, error);
+}
+
+- (void)oauth20ConnectionDidFinishRequestACTokenWithAuthCode {
+   NSLog(@"OAuth Success!");
+    [self requestUserProfile];
+    [self performSegueWithIdentifier:@"Start" sender:nil];
+}
+
+- (void)oauth20ConnectionDidFinishRequestACTokenWithRefreshToken {
+    NSLog(@"Refresh Success!");
+    [self requestUserProfile];
+    [self performSegueWithIdentifier:@"Start" sender:nil];
+}
+- (void)oauth20ConnectionDidFinishDeleteToken {
+    NSLog(@"로그아웃 완료");
+}
+
+
+#pragma mark - Request user profile and parse
 
 - (void)requestUserProfile
 {
-    // 사용자 프로필 호출
     NSString *urlString = @"https://openapi.naver.com/v1/nid/getUserProfile.xml";
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     
@@ -96,15 +140,21 @@
     if (error) {
         NSLog(@"Error happened - %@", [error description]);
     } else {
-        NSXMLParser *userParser = [[NSXMLParser alloc] initWithData:receivedData];
-        [userParser setDelegate:self];
-        [userParser setShouldResolveExternalEntities:YES];
-        
-        if ([userParser parse]) {
-            NSLog(@"%@", [user description]);
-        }
+        [self userProfileParse:receivedData];
     }
 }
+
+- (void)userProfileParse:(NSData *)data
+{
+    NSXMLParser *userParser = [[NSXMLParser alloc] initWithData:data];
+    [userParser setDelegate:self];
+    [userParser setShouldResolveExternalEntities:YES];
+    
+    if ([userParser parse]) {
+        NSLog(@"%@", [user description]);
+    }
+}
+
 
 #pragma mark - XML parser delegate
 
@@ -156,48 +206,6 @@
         [user setBirthday:currentString];
         currentString = nil;
     }
-}
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-#pragma mark - SampleOAuthConnectionDelegate
-- (void) presentWebviewControllerWithRequest:(NSURLRequest *)urlRequest   {
-    // FormSheet모달위에 FullScreen모달이 뜰 떄 애니메이션이 이상하게 동작하여 애니메이션이 없도록 함
-    
-    NLoginThirdPartyOAuth20InAppBrowserViewController *inAppBrowserViewController = [[NLoginThirdPartyOAuth20InAppBrowserViewController alloc] initWithRequest:urlRequest];
-    inAppBrowserViewController.parentOrientation = (UIInterfaceOrientation)[[UIDevice currentDevice] orientation];
-    [self presentViewController:inAppBrowserViewController animated:NO completion:nil];
-}
-
-#pragma mark - OAuth20 deleagate
-
-- (void)oauth20ConnectionDidOpenInAppBrowserForOAuth:(NSURLRequest *)request {
-    [self presentWebviewControllerWithRequest:request];
-}
-
-- (void)oauth20Connection:(NaverThirdPartyLoginConnection *)oauthConnection didFailWithError:(NSError *)error {
-    NSLog(@"%s=[%@]", __FUNCTION__, error);
-}
-
-- (void)oauth20ConnectionDidFinishRequestACTokenWithAuthCode {
-   NSLog(@"OAuth Success!");
-    [self requestUserProfile];
-    [self performSegueWithIdentifier:@"Start" sender:nil];
-}
-
-- (void)oauth20ConnectionDidFinishRequestACTokenWithRefreshToken {
-    NSLog(@"Refresh Success!");
-    [self requestUserProfile];
-    [self performSegueWithIdentifier:@"Start" sender:nil];
-}
-- (void)oauth20ConnectionDidFinishDeleteToken {
-    NSLog(@"로그아웃 완료");
 }
 
 @end
