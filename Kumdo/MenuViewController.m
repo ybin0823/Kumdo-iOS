@@ -21,65 +21,82 @@
 {
     YBSegmentedControl *mySegmentedControl;
     NSArray *viewControllers;
-    NSArray *titles;
+}
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    
+    if (self) {
+        viewControllers = [NSArray arrayWithObjects:[self makeChildViewController:NSStringFromClass(BestCollectionViewController.class)],
+                           [self makeChildViewController:NSStringFromClass(CategoryViewController.class)],
+                           [self makeChildViewController:NSStringFromClass(MyListViewController.class)], nil];
+    }
+    
+    return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-
     [[self.navigationController navigationBar] setBarTintColor:[UIColor primaryColor]];
 
-    CGSize size = [[UIScreen mainScreen] bounds].size;
+    [self setSegmentedControl];
     
-    // Set custome segmented control
+    [self displayFirstChildViewController];
+}
+
+- (void)setSegmentedControl
+{
+    CGSize size = [[UIScreen mainScreen] bounds].size;
+
     NSArray *images = [NSArray arrayWithObjects:[UIImage imageNamed:@"ic_home_white_36pt.png"], [UIImage imageNamed:@"ic_list_white_36pt.png"], [UIImage imageNamed:@"ic_collections_white_36pt.png"], nil];
     mySegmentedControl = [[YBSegmentedControl alloc] initWithImages:images];
+    
     mySegmentedControl.frame = CGRectMake(0, 0, size.width, 50);
     [mySegmentedControl setBackgroundColor:[UIColor primaryColor]];
-    [mySegmentedControl addTarget:self action:@selector(selectSegmentItem) forControlEvents:UIControlEventValueChanged];
+    
+    [mySegmentedControl addTarget:self action:@selector(didchangeSegmentedIndex) forControlEvents:UIControlEventValueChanged];
+    
     [self.view addSubview:mySegmentedControl];
-
-    
-    // Set view controllers
-    BestCollectionViewController *bestCollectionViewController = [[BestCollectionViewController alloc] init];
-    bestCollectionViewController.view.frame = CGRectMake(0, 50, size.width, size.height);
-    
-    CategoryViewController *categoryViewController = [[CategoryViewController alloc] init];
-    categoryViewController.view.frame = CGRectMake(0, 50, size.width, size.height);
-    
-    MyListViewController *myListViewController = [[MyListViewController alloc] init];
-    myListViewController.view.frame = CGRectMake(0, 50, size.width, size.height);
-    
-    viewControllers = [NSArray arrayWithObjects:bestCollectionViewController, categoryViewController, myListViewController, nil];
-    [self displayContent:[viewControllers objectAtIndex:[mySegmentedControl selectedSegmentIndex]]];
-    
-    // Set view controller titles
-    titles = [NSArray arrayWithObjects:@"홈", @"카테고리", @"내 목록", nil];
-    self.title = [titles objectAtIndex:[mySegmentedControl selectedSegmentIndex]];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     mySegmentedControl = nil;
     viewControllers = nil;
-    titles = nil;
 }
 
-//TODO method name 더 적합한 것이 없는지 고민해볼 것
-- (void)displayContent:(UIViewController *)viewController
+- (UIViewController *)makeChildViewController:(NSString *)className
+{
+    CGSize size = [[UIScreen mainScreen] bounds].size;
+    
+    UIViewController *childeViewController = [[NSClassFromString(className) alloc] init];
+    childeViewController.view.frame = CGRectMake(0, 50, size.width, size.height);
+    
+    return childeViewController;
+}
+
+- (void)displayFirstChildViewController
+{
+    [self displayChildViewController:[viewControllers objectAtIndex:0]];
+}
+
+- (void)displayChildViewController:(UIViewController *)viewController
 {
     [self addChildViewController:viewController];
     [self.view addSubview:viewController.view];
     [viewController didMoveToParentViewController:self];
     
-    self.title = [titles objectAtIndex:[mySegmentedControl selectedSegmentIndex]];
+    [viewController viewWillAppear:YES];
+    
+    [self setTitle:[viewController title]];
 }
 
-- (void)selectSegmentItem
+- (void)didchangeSegmentedIndex
 {
-    [self displayContent:[viewControllers objectAtIndex:[mySegmentedControl selectedSegmentIndex]]];
+    UIViewController *childeViewController = [viewControllers objectAtIndex:[mySegmentedControl selectedSegmentIndex]];
+    [self displayChildViewController:childeViewController];
 }
 
 #pragma mark - Navigation

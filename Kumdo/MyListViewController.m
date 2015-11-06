@@ -27,6 +27,22 @@
 static NSString * const reuseIdentifier = @"Cell";
 static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/mylist/";
 
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        self.title = @"내 목록";
+        
+        user = [YBUser sharedInstance];
+        
+        imageManager = [[YBImageManager alloc] init];
+        [imageManager setDelegate:self];
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -42,9 +58,18 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
     [mCollectionView registerClass:[YBWaterFallViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     [self.view addSubview:mCollectionView];
-    
-    // Load user info
-    user = [YBUser sharedInstance];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+    writings = nil;
+    imageManager = nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
     // Load data from server
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
@@ -67,17 +92,6 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
             [mCollectionView reloadData];
         });
     }] resume];
-    
-    // Init imageManager for using image load, image scale
-    imageManager = [[YBImageManager alloc] init];
-    [imageManager setDelegate:self];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-    writings = nil;
-    imageManager = nil;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView

@@ -25,6 +25,20 @@
 static NSString * const reuseIdentifier = @"Cell";
 static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best?category=-1";
 
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        self.title = @"홈";
+        
+        imageManager = [[YBImageManager alloc] init];
+        [imageManager setDelegate:self];
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -40,7 +54,20 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     [mCollectionView registerClass:[YBCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     [self.view addSubview:mCollectionView];
+}
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+
+    // Dispose of any resources that can be recreated.
+    writings = nil;
+    imageManager = nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
     // Load data from server
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     [[defaultSession dataTaskWithURL:[NSURL URLWithString:GET_BEST_FROM_SERVER] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -57,22 +84,11 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
         }
         [self performSelectorOnMainThread:@selector(didReceiveData) withObject:nil waitUntilDone:NO];
         
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [mCollectionView reloadData];
-//        });
+        //        dispatch_async(dispatch_get_main_queue(), ^{
+        //            [mCollectionView reloadData];
+        //        });
         
     }] resume];
-    
-    imageManager = [[YBImageManager alloc] init];
-    [imageManager setDelegate:self];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-
-    // Dispose of any resources that can be recreated.
-    writings = nil;
-    imageManager = nil;
 }
 
 - (void)didReceiveData

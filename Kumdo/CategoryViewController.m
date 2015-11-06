@@ -25,6 +25,21 @@
 
 static NSString * const reuseIdentifier = @"Cell";
 
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        self.title = @"카테고리";
+        
+        categories = [[YBCategory alloc] init];
+        
+        imageManager = [[YBImageManager alloc] init];
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -40,12 +55,6 @@ static NSString * const reuseIdentifier = @"Cell";
     [mCollectionView registerClass:[CategoryViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     [self.view addSubview:mCollectionView];
-    
-    // init category
-    categories = [[YBCategory alloc] init];
-    
-    // init imageManger for using image scale.
-    imageManager = [[YBImageManager alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,6 +63,11 @@ static NSString * const reuseIdentifier = @"Cell";
     // Dispose of any resources that can be recreated.
     categories = nil;
     imageManager = nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
