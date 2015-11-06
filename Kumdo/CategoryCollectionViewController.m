@@ -92,15 +92,14 @@ static NSString * const GET_CATEGORY_BEST_FROM_SERVER = @"http://125.209.198.90:
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return writings.count;
+    return [writings count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     YBCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     YBWriting *writing = [writings objectAtIndex:indexPath.row];
     
-    NSURL *imageUrl = [NSURL URLWithString:[[writings objectAtIndex:indexPath.row] imageUrl]];
-    [imageManager loadImageWithURL:imageUrl receiveMainThread:YES withObject:cell];
+    [imageManager loadImageWithURL:[writing imageUrl] receiveMainThread:YES withObject:cell];
     
     [cell setSentenceWithAttributedText:writing.sentence];
     [cell setWordsWithAttributedText:[writing stringWithCommaFromWords]];
@@ -127,37 +126,6 @@ static NSString * const GET_CATEGORY_BEST_FROM_SERVER = @"http://125.209.198.90:
     DetailViewController *detailViewController = [[DetailViewController alloc] initWithWriting:writing];
     
     [self.navigationController pushViewController:detailViewController animated:YES];
-}
-
-- (UIImage *)centerCropImage:(UIImage *)image toSize:(CGSize)size
-{
-    float x = (image.size.width - size.width) / 2;
-    float y = (image.size.height - size.height) / 2;
-    
-    CGRect cropRect = CGRectMake(x, y, size.width, size.height);
-    CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], cropRect);
-    
-    UIImage *ceterCroppedImage = [UIImage imageWithCGImage:imageRef];
-    CGImageRelease(imageRef);
-    
-    return ceterCroppedImage;
-}
-
-- (UIImage *)scaleImage:(UIImage *)image
-{
-    float resizeWidth = self.view.frame.size.width;
-    float resizeHeight = 250.0;
-    
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(resizeWidth, resizeHeight), NO, [UIScreen mainScreen].scale);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextTranslateCTM(context, 0.0, resizeHeight);
-    CGContextScaleCTM(context, 1.0, -1.0);
-    
-    CGContextDrawImage(context, CGRectMake(0.0, 0.0, resizeWidth, resizeHeight), [image CGImage]);
-    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return scaledImage;
 }
 
 /*
