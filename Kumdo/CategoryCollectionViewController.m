@@ -132,7 +132,7 @@ static NSString * const GET_CATEGORY_BEST_FROM_SERVER = @"http://125.209.198.90:
 
 #pragma mark - Image manager delegate
 
-- (void)imageDidLoad:(UIImage *)image withObject:(id)object
+- (void)didLoadImage:(UIImage *)image withObject:(id)object
 {
     YBCollectionViewCell *cell = object;
     [cell.imageView setImage:[imageManager centerCroppingImage:image toSize:CGSizeMake(self.view.frame.size.width, 250.0)]];

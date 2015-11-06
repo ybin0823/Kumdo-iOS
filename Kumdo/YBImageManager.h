@@ -11,7 +11,7 @@
 
 @protocol YBImageManagerDelegate <NSObject>
 
-- (void)imageDidLoad:(UIImage * _Nonnull)image withObject:(nullable id)object;
+- (void)didLoadImage:(UIImage * _Nonnull)image withObject:(nullable id)object;
 
 @end
 
@@ -21,7 +21,8 @@
 
 - (void)loadImageWithURL:(NSURL * _Nonnull)url receiveMainThread:(BOOL)isMainThread withObject:(nullable id)object;
 
-- (UIImage * _Nonnull)scaleImage:(UIImage * _Nonnull)image toSize:(CGSize)size isMaintain:(BOOL)isMaintain;
+- (UIImage * _Nonnull)scaleImageWith:(UIImage * _Nonnull)image toSize:(CGSize)size;
+- (UIImage * _Nonnull)maintainScaleRatioImage:(UIImage * _Nonnull)image withWidth:(CGFloat)width;
 - (UIImage * _Nonnull)scaleImageWithNamed:(NSString * _Nonnull)name toSize:(CGSize)size;
 
 - (UIImage * _Nonnull)centerCroppingImage:(UIImage * _Nonnull)image toSize:(CGSize)size;

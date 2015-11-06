@@ -125,6 +125,7 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
+
 #pragma mark - Waterfall layout delegate
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -138,20 +139,14 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
     return CGSizeMake(self.view.frame.size.width / 2, height * scaleFactor);
 }
 
+
 #pragma mark - Image manager delegate
-- (void)imageDidLoad:(UIImage *)image withObject:(id)object
+
+- (void)didLoadImage:(UIImage *)image withObject:(id)object
 {
     YBWaterFallViewCell *cell = object;
-    [cell.imageView setImage:[imageManager scaleImage:image toSize:CGSizeMake(self.view.frame.size.width / 2, 0) isMaintain:YES]];
+    CGFloat resizeWidth = self.view.frame.size.width / 2;
+    [cell.imageView setImage:[imageManager maintainScaleRatioImage:image withWidth:resizeWidth]];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

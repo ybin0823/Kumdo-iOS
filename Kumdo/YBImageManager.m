@@ -26,7 +26,7 @@
         
         if (isMainThread) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate imageDidLoad:image withObject:object];
+                [self.delegate didLoadImage:image withObject:object];
             });
         }
     }] resume];
@@ -53,17 +53,12 @@
     return scaledImage;
 }
 
-- (UIImage *)scaleImage:(UIImage *)image toSize:(CGSize)size isMaintain:(BOOL)isMaintain
+- (UIImage *)maintainScaleRatioImage:(UIImage *)image withWidth:(CGFloat)width
 {
-    if (!isMaintain) {
-        return [self scaleImageWith:image toSize:size];
-    }
-    
-    CGFloat scaleFactor = size.width / image.size.width;
-    CGFloat resizeWidth = size.width;
+    CGFloat scaleFactor = width / image.size.width;
     CGFloat resizeHeight = image.size.height * scaleFactor;
     
-    return [self scaleImageWith:image toSize:CGSizeMake(resizeWidth, resizeHeight)];
+    return [self scaleImageWith:image toSize:CGSizeMake(width, resizeHeight)];
 }
 
 - (UIImage *)scaleImageWithNamed:(NSString *)name toSize:(CGSize)size

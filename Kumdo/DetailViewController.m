@@ -60,10 +60,9 @@
 
 #pragma mark - Image manager delegate
 
-- (void)imageDidLoad:(UIImage *)image withObject:(id)object
+- (void)didLoadImage:(UIImage *)image withObject:(id)object
 {
-    UIImage *scaledImage = [imageManager scaleImage:image toSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.width)
-                                         isMaintain:YES];
+    UIImage *scaledImage = [imageManager maintainScaleRatioImage:image withWidth:self.view.frame.size.width];
     [self addImageView:scaledImage];
     [self addLabels:scaledImage.size];
 }

@@ -141,7 +141,7 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
 
 #pragma mark - Image manager Delegate
 
-- (void)imageDidLoad:(UIImage *)image withObject:(nullable id)object
+- (void)didLoadImage:(UIImage *)image withObject:(nullable id)object
 {
     YBCollectionViewCell *cell = object;
     [cell.imageView setImage:[imageManager centerCroppingImage:image toSize:CGSizeMake(self.view.frame.size.width, 250.0)]];
