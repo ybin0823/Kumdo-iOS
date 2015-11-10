@@ -10,6 +10,7 @@
 #import "YBCollectionViewCell.h"
 #import "DetailViewController.h"
 #import "YBWriting.h"
+#import "YBEmptyView.h"
 
 @interface CategoryCollectionViewController ()
 
@@ -21,6 +22,7 @@
     NSMutableArray *writings;
     NSInteger mCategory;
     YBImageManager *imageManager;
+    YBEmptyView *emptyView;
 }
 
 static NSString * const reuseIdentifier = @"Cell";
@@ -88,6 +90,7 @@ static NSString * const GET_CATEGORY_BEST_FROM_SERVER = @"http://125.209.198.90:
     // Dispose of any resources that can be recreated.
     writings = nil;
     imageManager = nil;
+    emptyView = nil;
 }
 
 #pragma mark - CollectionView
@@ -99,6 +102,15 @@ static NSString * const GET_CATEGORY_BEST_FROM_SERVER = @"http://125.209.198.90:
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    if (writings.count == 0) {
+        emptyView = [[YBEmptyView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        [self.view addSubview:emptyView];
+    } else {
+        if (emptyView) {
+            [emptyView setHidden:YES];
+        }
+    }
+    
     return [writings count];
 }
 

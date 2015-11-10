@@ -10,6 +10,7 @@
 #import "YBCollectionViewCell.h"
 #import "DetailViewController.h"
 #import "YBWriting.h"
+#import "YBEmptyView.h"
 
 @interface BestCollectionViewController ()
 
@@ -20,6 +21,7 @@
     UICollectionView *mCollectionView;
     NSMutableArray *writings;
     YBImageManager *imageManager;
+    YBEmptyView *emptyView;
 }
 
 static NSString * const reuseIdentifier = @"Cell";
@@ -90,6 +92,7 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     // Dispose of any resources that can be recreated.
     writings = nil;
     imageManager = nil;
+    emptyView = nil;
 }
 
 - (void)didReceiveData
@@ -107,6 +110,16 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    if ([writings count] == 0) {
+        emptyView = [[YBEmptyView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        [emptyView setBackgroundColor:[UIColor yellowColor]];
+        [self.view addSubview:emptyView];
+    } else {
+        if (emptyView) {
+            [emptyView setHidden:YES];
+        }
+    }
+    
     return writings.count;
 }
 

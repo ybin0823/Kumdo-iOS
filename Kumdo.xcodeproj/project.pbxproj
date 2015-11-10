@@ -30,6 +30,7 @@
 		4E18533B1BD0D183000F1818 /* friend.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4E1853371BD0D183000F1818 /* friend.jpg */; settings = {ASSET_TAGS = (); }; };
 		4E18533C1BD0D183000F1818 /* romance.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4E1853381BD0D183000F1818 /* romance.jpg */; settings = {ASSET_TAGS = (); }; };
 		4E1853541BD0ED20000F1818 /* CategoryViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1853531BD0ED20000F1818 /* CategoryViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		4E21A9571BF1DDDC00C6B6A5 /* YBEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E21A9561BF1DDDC00C6B6A5 /* YBEmptyView.m */; settings = {ASSET_TAGS = (); }; };
 		4E2B6A631BE9E42C00244941 /* YBWaterFallViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B6A621BE9E42C00244941 /* YBWaterFallViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		4E3EC3011BBD105700C73CFE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3EC3001BBD105700C73CFE /* main.m */; };
 		4E3EC3041BBD105700C73CFE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3EC3031BBD105700C73CFE /* AppDelegate.m */; };
@@ -107,6 +108,8 @@
 		4E1853381BD0D183000F1818 /* romance.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = romance.jpg; path = ../../../../sample/romance.jpg; sourceTree = "<group>"; };
 		4E1853521BD0ED20000F1818 /* CategoryViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewCell.h; sourceTree = "<group>"; };
 		4E1853531BD0ED20000F1818 /* CategoryViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewCell.m; sourceTree = "<group>"; };
+		4E21A9551BF1DDDC00C6B6A5 /* YBEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBEmptyView.h; sourceTree = "<group>"; };
+		4E21A9561BF1DDDC00C6B6A5 /* YBEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBEmptyView.m; sourceTree = "<group>"; };
 		4E2B6A611BE9E42C00244941 /* YBWaterFallViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBWaterFallViewCell.h; sourceTree = "<group>"; };
 		4E2B6A621BE9E42C00244941 /* YBWaterFallViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBWaterFallViewCell.m; sourceTree = "<group>"; };
 		4E3EC2FC1BBD105700C73CFE /* Kumdo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kumdo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -308,6 +311,8 @@
 				4E78DEAF1BEB1D4A009EA580 /* YBImageManager.m */,
 				4E78DEB51BEB3B98009EA580 /* UIColor+YBColorAdditions.h */,
 				4E78DEB61BEB3B98009EA580 /* UIColor+YBColorAdditions.m */,
+				4E21A9551BF1DDDC00C6B6A5 /* YBEmptyView.h */,
+				4E21A9561BF1DDDC00C6B6A5 /* YBEmptyView.m */,
 			);
 			path = Kumdo;
 			sourceTree = "<group>";
@@ -518,6 +523,7 @@
 				4E6D92C31BE060F20061CBA6 /* YBCollectionViewCell.m in Sources */,
 				4E6688991BCB87F600D25A7C /* WriteViewController.m in Sources */,
 				4E743BA81BD628B5009CBF99 /* FlowContentViewController.m in Sources */,
+				4E21A9571BF1DDDC00C6B6A5 /* YBEmptyView.m in Sources */,
 				4E1853311BD0D126000F1818 /* CategoryViewController.m in Sources */,
 				4E66889F1BCB882200D25A7C /* SnsLoginViewController.m in Sources */,
 				4E1852B51BCE11D7000F1818 /* NLoginThirdPartyOAuth20InAppBrowserViewController.m in Sources */,
