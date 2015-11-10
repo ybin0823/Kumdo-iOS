@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CategoryViewCell : UICollectionViewCell
+@interface CategoryViewCell : UITableViewCell
 
 @property (nonatomic, readonly) UILabel *label;
 @property (nonatomic, readonly) UIImageView *imageView;

@@ -7,11 +7,12 @@
 //
 
 #import "MenuViewController.h"
-#import "BestCollectionViewController.h"
-#import "CategoryViewController.h"
+#import "CategoryTableViewController.h"
+#import "BestTableViewController.h"
 #import "MyListViewController.h"
 #import "YBSegmentedControl.h"
 #import "UIColor+YBColorAdditions.h"
+
 
 @interface MenuViewController ()
 
@@ -28,8 +29,8 @@
     self = [super initWithCoder:aDecoder];
     
     if (self) {
-        viewControllers = [NSArray arrayWithObjects:[self makeChildViewController:NSStringFromClass(BestCollectionViewController.class)],
-                           [self makeChildViewController:NSStringFromClass(CategoryViewController.class)],
+        viewControllers = [NSArray arrayWithObjects:[self makeChildViewController:NSStringFromClass(BestTableViewController.class)],
+                           [self makeChildViewController:NSStringFromClass(CategoryTableViewController.class)],
                            [self makeChildViewController:NSStringFromClass(MyListViewController.class)], nil];
     }
     
@@ -37,7 +38,7 @@
 }
 
 
-#pragma mark - Override method
+#pragma mark - Override method#import "BestTableViewController.h"
 
 - (void)viewDidLoad {
     [super viewDidLoad];

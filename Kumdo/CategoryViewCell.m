@@ -17,24 +17,28 @@
 @synthesize label = label;
 @synthesize imageView = imageView;
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithFrame:frame];
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
     if (self) {
-        imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-        [imageView setBackgroundColor:[UIColor yellowColor]];
-        [self addSubview:imageView];
+        imageView = [[UIImageView alloc] init];
         
-        label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        label = [[UILabel alloc] init];
         [label setTextColor:[UIColor whiteColor]];
         [label setFont:[UIFont boldSystemFontOfSize:35]];
         [label setTextAlignment:NSTextAlignmentCenter];
-        
-        [self addSubview:label];
     }
     
     return self;
+}
+- (void)layoutSubviews
+{
+    [imageView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    [self addSubview:imageView];
+    
+    [label setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    [self addSubview:label];
 }
 
 - (void)setAttributedText:(NSString *)text
