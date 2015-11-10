@@ -80,7 +80,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="4hG-Sn-KyH">
-                        <barButtonItem key="rightBarButtonItem" image="ic_create_white.png" id="1TZ-RG-A8h">
+                        <barButtonItem key="rightBarButtonItem" image="ic_create_white" id="1TZ-RG-A8h">
                             <connections>
                                 <segue destination="0sB-m3-5w4" kind="presentation" identifier="LoadWrite" id="Jpu-jk-KFm"/>
                             </connections>
@@ -180,14 +180,14 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Emu-YI-qaX">
                                 <rect key="frame" x="0.0" y="89" width="375" height="440"/>
-                                <state key="normal" image="ic_image_48pt.png"/>
+                                <state key="normal" image="ic_image_48pt"/>
                                 <connections>
                                     <action selector="showImagePickerForPhotoPicker:" destination="K8f-dZ-Vfz" eventType="touchUpInside" id="nvv-yb-OHC"/>
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKL-KU-seG">
                                 <rect key="frame" x="263" y="543" width="102" height="48"/>
-                                <state key="normal" image="ic_image_48pt.png"/>
+                                <state key="normal" image="ic_image_48pt"/>
                                 <connections>
                                     <action selector="showImagePickerForPhotoPicker:" destination="K8f-dZ-Vfz" eventType="touchUpInside" id="wn7-FY-3a2"/>
                                 </connections>
@@ -197,12 +197,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="Write" id="yCS-1J-U05" userLabel="Title">
                         <barButtonItem key="backBarButtonItem" title="Back" id="OiA-HT-GS9"/>
-                        <barButtonItem key="leftBarButtonItem" image="ic_arrow_back_white_36pt.png" id="KDW-If-YAZ">
+                        <barButtonItem key="leftBarButtonItem" image="ic_arrow_back_white_36pt" id="KDW-If-YAZ">
                             <connections>
                                 <action selector="cancel:" destination="K8f-dZ-Vfz" id="MOk-Jh-ftN"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="ic_save_white_36pt.png" id="6os-Ja-3aL">
+                        <barButtonItem key="rightBarButtonItem" image="ic_save_white_36pt" id="6os-Ja-3aL">
                             <connections>
                                 <action selector="save:" destination="K8f-dZ-Vfz" id="iF9-yO-pNJ"/>
                             </connections>
@@ -228,9 +228,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_arrow_back_white_36pt.png" width="36" height="36"/>
-        <image name="ic_create_white.png" width="24" height="24"/>
-        <image name="ic_image_48pt.png" width="48" height="48"/>
-        <image name="ic_save_white_36pt.png" width="36" height="36"/>
+        <image name="ic_arrow_back_white_36pt" width="36" height="36"/>
+        <image name="ic_create_white" width="24" height="24"/>
+        <image name="ic_image_48pt" width="48" height="48"/>
+        <image name="ic_save_white_36pt" width="36" height="36"/>
     </resources>
 </document>

@@ -22,7 +22,7 @@
     self = [super init];
     
     if (self) {
-        images = [NSArray arrayWithObjects:@"romance.jpg", @"friend.jpg", @"family.jpg", @"adventure.jpg", nil];
+        images = [NSArray arrayWithObjects:@"romance", @"friend", @"family", @"adventure", nil];
         names = [NSArray arrayWithObjects:@"연애/사랑", @"친구/우정", @"가족", @"모험/여행", nil];
     }
     
