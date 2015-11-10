@@ -56,11 +56,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Kumdo/WriteViewController.m"
-            timestampString = "468502801.366294"
+            timestampString = "468824898.370725"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "-save:"
             landmarkType = "5">
          </BreakpointContent>
@@ -88,11 +88,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Kumdo/WriteViewController.m"
-            timestampString = "468502801.366294"
+            timestampString = "468830661.108392"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
             landmarkName = "-displayCategorySelectAlert"
             landmarkType = "5">
             <Locations>
@@ -151,11 +151,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Kumdo/WriteViewController.m"
-            timestampString = "468502801.366294"
+            timestampString = "468830661.108392"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
             landmarkName = "-displayCategorySelectAlert"
             landmarkType = "5">
          </BreakpointContent>
@@ -246,7 +246,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "145"
             endingLineNumber = "145"
-            landmarkName = "-imageDidLoad:withObject:"
+            landmarkName = "-didLoadImage:withObject:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

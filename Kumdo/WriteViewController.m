@@ -37,6 +37,8 @@
 
 @synthesize delegate = delegate;
 
+static NSString * const UPLOAD_DATA_TO_SERVER = @"http://125.209.198.90:3000/upload";
+
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
@@ -195,7 +197,6 @@
     [writing setName:[user name]];
     [writing setEmail:[user email]];
     [writing setSentence:[self makeSentenceFromSubViews]];
-    [writing setDate:[NSDate date]];
     [writing setWords:[usedWords allObjects]];
 }
 
@@ -213,6 +214,7 @@
                                                                handler:^(UIAlertAction * action) {
                                                                    writing.category = i;
                                                                    NSLog(@"writing : %@", [writing description]);
+                                                                   [self uploadData];
                                                                }];
         [alertController addAction:categoryAction];
     }
@@ -234,4 +236,59 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
+- (void)uploadData
+{
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:UPLOAD_DATA_TO_SERVER]];
+    [request setHTTPMethod:@"POST"];
+    NSString *boundary = [NSString stringWithFormat:@"Boundary+%08X%08X", arc4random(), arc4random()];
+    [request addValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary] forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    
+    NSData *imageData = UIImageJPEGRepresentation([backgroundImage image], 1.0);
+    
+    NSData *data = [self createBodyWithBoundary:boundary name:writing.name email:writing.email sentence:writing.sentence words:[writing stringWithCommaFromWords] category:writing.category imageData:imageData];
+
+    [defaultSession uploadTaskWithStreamedRequest:request];
+
+    [[defaultSession uploadTaskWithRequest:request fromData:data completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSLog(@"%@", response);
+        if (error) {
+            NSLog(@"%@", error);
+        }
+        NSLog(@"ddd");
+    }] resume];
+}
+
+- (NSData *) createBodyWithBoundary:(NSString *)boundary name:(NSString*)name email:(NSString*)email sentence:(NSString *)sentence words:(NSString *)words category:(NSInteger)cateogry imageData:(NSData*)imageData
+{
+    NSMutableData *body = [NSMutableData data];
+    
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"name\"\r\n\r\n%@\r\n", name] dataUsingEncoding:NSUTF8StringEncoding]];
+
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"email\"\r\n\r\n%@\r\n", email] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"sentence\"\r\n\r\n%@\r\n", sentence] dataUsingEncoding:NSUTF8StringEncoding]];
+
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"words\"\r\n\r\n%@\r\n", words] dataUsingEncoding:NSUTF8StringEncoding]];
+
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"category\"\r\n\r\n%ld\r\n", (long)cateogry] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"date\"\r\n\r\n%f\r\n", [[NSDate date] timeIntervalSince1970] * 1000] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"image\"; filename=\"%@.jpg\"\r\n", email] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:imageData];
+
+    [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    return body;
+}
 @end
