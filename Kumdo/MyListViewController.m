@@ -76,7 +76,6 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
             @autoreleasepool {
                 YBWriting *writing = [YBWriting writingWithJSON:json];
                 [writings addObject:writing];
-                NSLog(@"%@", [writing imageSize]);
             }
         }
         
