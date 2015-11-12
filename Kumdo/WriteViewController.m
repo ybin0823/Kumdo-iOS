@@ -256,7 +256,10 @@ static NSString * const UPLOAD_DATA_TO_SERVER = @"http://125.209.198.90:3000/upl
         if (error) {
             NSLog(@"%@", error);
         }
-        NSLog(@"ddd");
+        
+        NSLog(@"Save Success!");
+        
+        [self performSegueWithIdentifier:@"LoadMenu" sender:self];
     }] resume];
 }
 

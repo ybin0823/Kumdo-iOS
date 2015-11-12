@@ -82,7 +82,7 @@
                     <navigationItem key="navigationItem" title="Title" id="4hG-Sn-KyH">
                         <barButtonItem key="rightBarButtonItem" image="ic_create_white" id="1TZ-RG-A8h">
                             <connections>
-                                <segue destination="0sB-m3-5w4" kind="presentation" identifier="LoadWrite" id="Jpu-jk-KFm"/>
+                                <segue destination="0sB-m3-5w4" kind="presentation" identifier="LoadWrite" modalTransitionStyle="crossDissolve" id="Jpu-jk-KFm"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -220,6 +220,7 @@
                         <outlet property="nounWordButton" destination="bAS-Xk-gCJ" id="0TZ-Jn-eN2"/>
                         <outlet property="takePictureButton" destination="Emu-YI-qaX" id="jeh-xs-Kbc"/>
                         <outlet property="verbWordButton" destination="wGO-Rh-YfU" id="BpM-o2-wzU"/>
+                        <segue destination="erv-Ug-tez" kind="presentation" identifier="LoadMenu" modalTransitionStyle="crossDissolve" id="Pie-Ce-Ykt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ghJ-1B-wIe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -233,4 +234,7 @@
         <image name="ic_image_48pt" width="48" height="48"/>
         <image name="ic_save_white_36pt" width="36" height="36"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Pie-Ce-Ykt"/>
+    </inferredMetricsTieBreakers>
 </document>

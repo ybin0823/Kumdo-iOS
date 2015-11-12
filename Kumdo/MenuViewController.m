@@ -23,19 +23,6 @@
     NSArray *viewControllers;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    
-    if (self) {
-        viewControllers = [NSArray arrayWithObjects:[self makeChildViewController:NSStringFromClass(BestCollectionViewController.class)],
-                           [self makeChildViewController:NSStringFromClass(CategoryViewController.class)],
-                           [self makeChildViewController:NSStringFromClass(MyListViewController.class)], nil];
-    }
-    
-    return self;
-}
-
 
 #pragma mark - Override method
 
@@ -45,6 +32,10 @@
     [[self.navigationController navigationBar] setBarTintColor:[UIColor primaryColor]];
 
     [self setSegmentedControl];
+    
+    viewControllers = [NSArray arrayWithObjects:[self makeChildViewController:NSStringFromClass(BestCollectionViewController.class)],
+                       [self makeChildViewController:NSStringFromClass(CategoryViewController.class)],
+                       [self makeChildViewController:NSStringFromClass(MyListViewController.class)], nil];
     
     [self displayFirstChildViewController];
 }
