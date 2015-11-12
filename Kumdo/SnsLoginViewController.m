@@ -63,25 +63,15 @@
 
 #pragma mark - ThirdPartyLogin using Naver Login
 
-- (IBAction)didClickLoginBtn:(id)sender
-{
-    if (YES == [thirdPartyLoginConn isValidAccessTokenExpireTimeNow]) {
-        [self requestUserProfile];
-        return;
-    }
-    
-    [self requestThirdPartyLogin];
-}
-
 - (void)requestThirdPartyLogin
 {
     // NaverThirdPartyLoginConnection의 인스턴스에 서비스앱의 url scheme와 consumer key, consumer secret, 그리고 appName을 파라미터로 전달하여 3rd party OAuth 인증을 요청한다.
-    NSLog(@"requestThirdPartyLogin");
     NaverThirdPartyLoginConnection *tlogin = [NaverThirdPartyLoginConnection getSharedInstance];
     [tlogin setConsumerKey:kConsumerKey];
     [tlogin setConsumerSecret:kConsumerSecret];
     [tlogin setAppName:kServiceAppName];
     [tlogin setServiceUrlScheme:kServiceAppUrlScheme];
+    
     [tlogin requestThirdPartyLogin];
 }
 
@@ -89,7 +79,6 @@
 #pragma mark - SampleOAuthConnectionDelegate
 - (void) presentWebviewControllerWithRequest:(NSURLRequest *)urlRequest   {
     // FormSheet모달위에 FullScreen모달이 뜰 떄 애니메이션이 이상하게 동작하여 애니메이션이 없도록 함
-    
     NLoginThirdPartyOAuth20InAppBrowserViewController *inAppBrowserViewController = [[NLoginThirdPartyOAuth20InAppBrowserViewController alloc] initWithRequest:urlRequest];
     inAppBrowserViewController.parentOrientation = (UIInterfaceOrientation)[[UIDevice currentDevice] orientation];
     [self presentViewController:inAppBrowserViewController animated:NO completion:nil];

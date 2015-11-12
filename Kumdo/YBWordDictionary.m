@@ -33,26 +33,32 @@
 - (NSString *)randomNonunWord
 {
     int index = arc4random() % [nounWords count];
-    return [nounWords objectAtIndex:index];
+    NSString *word = @"#";
+    
+    return [word stringByAppendingString:[nounWords objectAtIndex:index]];
 }
 
 - (NSString *)randomVerbWord
 {
     int index = arc4random() % [verbWords count];
-    return [verbWords objectAtIndex:index];
+    NSString *word = @"#";
+    
+    return [word stringByAppendingString:[verbWords objectAtIndex:index]];
 }
 
 - (NSString *)randomAdjectiveOrAdverbWord
 {
     int flag = arc4random() % 2;
     int index;
+    NSString *word = @"#";
 
     if (flag == 1) {
         index = arc4random() % [adjectiveWords count];
-        return [adjectiveWords objectAtIndex:index];
+        return [word stringByAppendingString:[adjectiveWords objectAtIndex:index]];
+    } else {
+        index = arc4random() % [adverbWords count];
     }
     
-    index = arc4random() % [adverbWords count];
-    return [adverbWords objectAtIndex:index];
+    return [word stringByAppendingString:[adverbWords objectAtIndex:index]];
 }
 @end

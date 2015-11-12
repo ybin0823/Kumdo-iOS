@@ -24,19 +24,6 @@
     NSArray *viewControllers;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    
-    if (self) {
-        viewControllers = [NSArray arrayWithObjects:[self makeChildViewController:NSStringFromClass(BestTableViewController.class)],
-                           [self makeChildViewController:NSStringFromClass(CategoryTableViewController.class)],
-                           [self makeChildViewController:NSStringFromClass(MyListViewController.class)], nil];
-    }
-    
-    return self;
-}
-
 
 #pragma mark - Override method#import "BestTableViewController.h"
 
@@ -47,6 +34,10 @@
 
     [self setSegmentedControl];
     
+    viewControllers = [NSArray arrayWithObjects:[self makeChildViewController:NSStringFromClass(BestTableViewController.class)],
+                       [self makeChildViewController:NSStringFromClass(CategoryTableViewController.class)],
+                       [self makeChildViewController:NSStringFromClass(MyListViewController.class)], nil];
+
     [self displayFirstChildViewController];
 }
 

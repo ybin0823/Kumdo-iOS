@@ -35,7 +35,7 @@
         [self addSubview:label];
         
         subLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 260, frame.size.width, 100)];
-        [subLabel setText:@"새로 고침을 하고 싶으시면 아래로 당겨주세요."];
+        [subLabel setText:@"새로운 글을 작성해 주세요."];
         [subLabel setNumberOfLines:0];
         [subLabel setTextColor:[UIColor grayColor]];
         [subLabel setTextAlignment:NSTextAlignmentCenter];
