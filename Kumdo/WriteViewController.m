@@ -177,18 +177,28 @@ static NSString * const UPLOAD_DATA_TO_SERVER = @"http://125.209.198.90:3000/upl
                 if ([subView isKindOfClass:[UILabel class]]) {
                     UILabel *label = (UILabel *)subView;
                     [sentence appendString:label.text];
+                    
+                    // For add space between words
                     [sentence appendString:@" "];
                 }
                 
                 if ([subView isKindOfClass:[UITextField class]]) {
                     UITextField *textField = (UITextField *)subView;
+                    
+                    if ([[textField text] length] == 0) {
+                        continue;
+                    }
+                    
                     [sentence appendString:textField.text];
+                    
+                    // For add space between words
                     [sentence appendString:@" "];
                 }
             }
         }
         return [NSString stringWithString:sentence];
     }
+    
     return nil;
 }
 
@@ -259,7 +269,7 @@ static NSString * const UPLOAD_DATA_TO_SERVER = @"http://125.209.198.90:3000/upl
         
         NSLog(@"Save Success!");
         
-        [self performSegueWithIdentifier:@"LoadMenu" sender:self];
+        [self performSelectorOnMainThread:@selector(didFinishUpload:) withObject:nil waitUntilDone:NO];
     }] resume];
 }
 
@@ -294,4 +304,10 @@ static NSString * const UPLOAD_DATA_TO_SERVER = @"http://125.209.198.90:3000/upl
     
     return body;
 }
+
+- (void)didFinishUpload:(id)sender
+{
+    [self performSegueWithIdentifier:@"LoadMenu" sender:self];
+}
+
 @end
