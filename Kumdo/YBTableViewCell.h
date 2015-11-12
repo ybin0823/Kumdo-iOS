@@ -19,5 +19,7 @@
 - (void)setSentenceWithAttributedText:(NSString *)text;
 - (void)setWordsWithAttributedText:(NSString *)text;
 - (void)setFormattedDate:(NSDate *)date;
+- (void)setDefaultImage;
+- (void)setImageWithAnimation:(UIImage *)image;
 
 @end

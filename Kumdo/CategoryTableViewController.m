@@ -73,7 +73,7 @@ static NSString * const reuseIdentifier = @"Cell";
     CategoryViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     UIImage *scaledImage = [imageManager scaleImageWithNamed:[categories.images objectAtIndex:indexPath.row]
-                                                      toSize:CGSizeMake(self.view.frame.size.width, 250.0)];
+                                                      toSize:CGSizeMake(self.view.frame.size.width, 200.0)];
     [cell.imageView setImage:scaledImage];
     [cell setAttributedText:[categories.names objectAtIndex:indexPath.row]];
     

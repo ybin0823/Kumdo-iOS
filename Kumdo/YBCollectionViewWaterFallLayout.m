@@ -73,10 +73,12 @@
 - (CGSize)collectionViewContentSize
 {
     CGFloat height = 0;
+    
+    // 맨 아래까지 스크롤 시 마지막 이미지가 짤리지 않도록 height를 120만큼 더 준다
     if ([itemPositions[0] CGPointValue].y > [itemPositions[1] CGPointValue].y) {
-        height = [itemPositions[0] CGPointValue].y;
+        height = [itemPositions[0] CGPointValue].y + 120;
     } else {
-        height = [itemPositions[1] CGPointValue].y;
+        height = [itemPositions[1] CGPointValue].y + 120;
     }
     
     return CGSizeMake(self.collectionView.frame.size.width, height);

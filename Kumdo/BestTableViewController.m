@@ -21,6 +21,7 @@
     NSMutableArray *writings;
     YBImageManager *imageManager;
     YBEmptyView *emptyView;
+    NSCache *cache;
 }
 
 static NSString * const reuseIdentifier = @"Cell";
@@ -35,6 +36,8 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
         
         imageManager = [[YBImageManager alloc] init];
         [imageManager setDelegate:self];
+        
+        cache = [[NSCache alloc] init];
     }
     
     return self;
@@ -91,8 +94,10 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     if ([writings count] == 0 && emptyView == nil) {
         emptyView = [[YBEmptyView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         [self.view addSubview:emptyView];
-    } else {
-        [emptyView setHidden:YES];
+    }
+    
+    if ([writings count] > 0) {
+        [emptyView removeFromSuperview];
     }
     
     return [writings count];
@@ -104,7 +109,15 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     YBTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     YBWriting *writing = [writings objectAtIndex:indexPath.row];
     
-    [imageManager loadImageWithURL:[writing imageUrl] receiveMainThread:YES withObject:cell];
+    if ([cache objectForKey:[writing imageUrl]] != nil) {
+        [cell.imageView setImage:[cache objectForKey:[writing imageUrl]]];
+    } else {
+        // Set default image
+        [cell setDefaultImage];
+        
+         //If cache don't have image, then download from remote
+        [imageManager loadImageWithURL:[writing imageUrl] receiveMainThread:YES withArray:[NSArray arrayWithObjects:cell, writing, nil]];
+    }
     
     [cell setSentenceWithAttributedText:writing.sentence];
     [cell.nameLabel setText:writing.name];
@@ -130,16 +143,6 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     return height * scale + 100;
 }
 
-
-#pragma mark - Image manager Delegate
-
-- (void)didLoadImage:(UIImage *)image withObject:(nullable id)object
-{
-    YBTableViewCell *cell = object;
-    [cell.imageView setImage:[imageManager maintainScaleRatioImage:image withWidth:self.view.frame.size.width]];
-}
-
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     YBWriting *writing = [writings objectAtIndex:indexPath.row];
@@ -147,5 +150,20 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
+
+
+#pragma mark - Image manager Delegate
+
+- (void)didLoadImage:(UIImage *)image withArray:(nullable NSArray *)array
+{
+    YBTableViewCell *cell = [array objectAtIndex:0];
+    YBWriting *writing = [array objectAtIndex:1];
+    UIImage *resizedImage = [imageManager maintainScaleRatioImage:image withWidth:self.view.frame.size.width];
+    
+    [cache setObject:resizedImage forKey:[writing imageUrl]];
+
+    [cell setImageWithAnimation:resizedImage];
+}
+
 
 @end

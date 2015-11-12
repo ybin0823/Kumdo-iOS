@@ -32,6 +32,21 @@
     }] resume];
 }
 
+- (void)loadImageWithURL:(NSURL *)url receiveMainThread:(BOOL)isMainThread withArray:(NSArray *)array
+{
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    
+    [[defaultSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        UIImage *image = [UIImage imageWithData:data];
+        
+        if (isMainThread) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate didLoadImage:image withArray:array];
+            });
+        }
+    }] resume];
+}
+
 #pragma mark scale & resize
 
 - (UIImage *)scaleImageWith:(UIImage *)image toSize:(CGSize)size

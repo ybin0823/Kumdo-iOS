@@ -13,4 +13,7 @@
 @property (nonatomic, readonly) UIImageView *imageView;
 @property (nonatomic, readonly) UILabel *label;
 
+- (void)setDefaultImage;
+- (void)setImageWithAnimation:(UIImage *)image;
+
 @end

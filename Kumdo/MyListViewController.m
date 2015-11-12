@@ -24,6 +24,7 @@
     YBUser *user;
     YBImageManager *imageManager;
     YBEmptyView *emptyView;
+    NSCache *cache;
 }
 
 static NSString * const reuseIdentifier = @"Cell";
@@ -40,6 +41,8 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
         
         imageManager = [[YBImageManager alloc] init];
         [imageManager setDelegate:self];
+        
+        cache = [[NSCache alloc] init];
     }
     
     return self;
@@ -108,8 +111,10 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
     if ([writings count] == 0 && emptyView == nil) {
         emptyView = [[YBEmptyView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         [self.view addSubview:emptyView];
-    } else {
-        [emptyView setHidden:YES];
+    }
+    
+    if ([writings count] > 0) {
+        [emptyView removeFromSuperview];
     }
     
     return [writings count];
@@ -119,8 +124,13 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
     YBWaterFallViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     YBWriting *writing = [writings objectAtIndex:indexPath.row];
     
-    [imageManager loadImageWithURL:[writing imageUrl] receiveMainThread:YES withObject:cell];
-    
+    if ([cache objectForKey:[writing imageUrl]] != nil) {
+        [cell.imageView setImage:[cache objectForKey:[writing imageUrl]]];
+    } else {
+        [cell setDefaultImage];
+        [imageManager loadImageWithURL:[writing imageUrl] receiveMainThread:YES withArray:[NSArray arrayWithObjects:cell, writing, nil]];
+    }
+
     [cell.label setText:[writing stringWithCommaFromWords]];
     
     return cell;
@@ -151,11 +161,15 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
 
 #pragma mark - Image manager delegate
 
-- (void)didLoadImage:(UIImage *)image withObject:(id)object
+- (void)didLoadImage:(UIImage *)image withArray:(nullable NSArray *)array
 {
-    YBWaterFallViewCell *cell = object;
-    CGFloat resizeWidth = self.view.frame.size.width / 2;
-    [cell.imageView setImage:[imageManager maintainScaleRatioImage:image withWidth:resizeWidth]];
+    YBWaterFallViewCell *cell = [array objectAtIndex:0];
+    YBWriting *writing = [array objectAtIndex:1];
+    UIImage *resizedImage = [imageManager maintainScaleRatioImage:image withWidth:self.view.frame.size.width / 2];
+    
+    [cache setObject:resizedImage forKey:[writing imageUrl]];
+    
+    [cell setImageWithAnimation:resizedImage];
 }
 
 @end

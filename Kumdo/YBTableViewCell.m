@@ -94,4 +94,18 @@
     [dateLabel setText:[dateFormat stringFromDate:date]];
 }
 
+- (void)setDefaultImage
+{
+    [self.imageView setContentMode:UIViewContentModeCenter];
+    [self.imageView setImage:[UIImage imageNamed:@"defaultImage"]];
+}
+
+- (void)setImageWithAnimation:(UIImage *)image
+{
+    [UIView transitionWithView:self.imageView duration:0.5f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        [self.imageView setContentMode:UIViewContentModeScaleToFill];
+        [self.imageView setImage:image];
+    } completion:nil];
+}
+
 @end
