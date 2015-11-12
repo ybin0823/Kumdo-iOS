@@ -107,7 +107,6 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
 {
     if ([writings count] == 0) {
         emptyView = [[YBEmptyView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-        [emptyView setBackgroundColor:[UIColor yellowColor]];
         [self.view addSubview:emptyView];
     } else {
         if (emptyView) {
