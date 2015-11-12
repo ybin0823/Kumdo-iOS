@@ -105,13 +105,11 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if ([writings count] == 0) {
+    if ([writings count] == 0 && emptyView == nil) {
         emptyView = [[YBEmptyView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         [self.view addSubview:emptyView];
     } else {
-        if (emptyView) {
-            [emptyView setHidden:YES];
-        }
+        [emptyView setHidden:YES];
     }
     
     return [writings count];
