@@ -54,22 +54,20 @@
 {
     [super layoutSubviews];
     
-    [imageView setFrame:CGRectMake(0, 0, self.frame.size.width, 250)];
+    [imageView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 100)];
     [self addSubview:imageView];
     
-    [sentenceLabel setFrame:CGRectMake(0, 0, self.frame.size.width, 230)];
+    [sentenceLabel setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 120)];
     [self addSubview:sentenceLabel];
     
-    [wordsLabel setFrame:CGRectMake(0, 230, self.frame.size.width, 20)];
+    [wordsLabel setFrame:CGRectMake(0, self.frame.size.height - 120, self.frame.size.width, 20)];
     [self addSubview:wordsLabel];
     
-    [nameLabel setFrame:CGRectMake(0, 250, 100, 20)];
+    [nameLabel setFrame:CGRectMake(0, self.frame.size.height - 100, 100, 20)];
     [self addSubview:nameLabel];
     
-    [dateLabel setFrame:CGRectMake(self.frame.size.width - 150, 250, 150, 20)];
+    [dateLabel setFrame:CGRectMake(self.frame.size.width - 150, self.frame.size.height - 100, 150, 20)];
     [self addSubview:dateLabel];
-    
-    
 }
 
 - (void)setSentenceWithAttributedText:(NSString *)text

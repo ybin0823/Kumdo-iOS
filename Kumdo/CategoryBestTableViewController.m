@@ -49,7 +49,8 @@ static NSString * const GET_CATEGORY_BEST_FROM_SERVER = @"http://125.209.198.90:
 {
     [super viewDidLoad];
     
-    [[self tableView] registerClass:[YBTableViewCell class] forCellReuseIdentifier:reuseIdentifier];
+    [self.tableView registerClass:[YBTableViewCell class] forCellReuseIdentifier:reuseIdentifier];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     // Load data from server
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
@@ -94,6 +95,13 @@ static NSString * const GET_CATEGORY_BEST_FROM_SERVER = @"http://125.209.198.90:
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if ([writings count] == 0 && emptyView == nil) {
+        emptyView = [[YBEmptyView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        [self.view addSubview:emptyView];
+    } else {
+        [emptyView setHidden:YES];
+    }
+    
     return [writings count];
 }
 
@@ -114,12 +122,18 @@ static NSString * const GET_CATEGORY_BEST_FROM_SERVER = @"http://125.209.198.90:
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // 이 부분의 값을 지정해두면 cell을 좀 더 빨리 그릴 수 있어서 성능 상 좋다
     return 350.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 350.0f;
+    YBWriting *writing = [writings objectAtIndex:indexPath.row];
+    CGFloat width = [[writing.imageSize objectAtIndex:0] floatValue];
+    CGFloat height = [[writing.imageSize objectAtIndex:1] floatValue];
+    CGFloat scale = self.view.frame.size.width / width;
+    
+    return height * scale + 100;
 }
 
 
@@ -128,7 +142,7 @@ static NSString * const GET_CATEGORY_BEST_FROM_SERVER = @"http://125.209.198.90:
 - (void)didLoadImage:(UIImage *)image withObject:(nullable id)object
 {
     YBTableViewCell *cell = object;
-    [cell.imageView setImage:[imageManager centerCroppingImage:image toSize:CGSizeMake(self.view.frame.size.width, 250.0)]];
+    [cell.imageView setImage:[imageManager maintainScaleRatioImage:image withWidth:self.view.frame.size.width]];
 }
 
 

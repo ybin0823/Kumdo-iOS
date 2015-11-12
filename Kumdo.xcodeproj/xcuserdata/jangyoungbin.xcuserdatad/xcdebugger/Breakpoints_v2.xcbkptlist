@@ -289,12 +289,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Kumdo/BestTableViewController.m"
-            timestampString = "468848284.707526"
+            timestampString = "469011565.728669"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "74"
             endingLineNumber = "74"
-            landmarkName = "-didReceiveData"
+            landmarkName = "-didReceiveMemoryWarning"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -305,12 +305,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Kumdo/BestTableViewController.m"
-            timestampString = "468849088.078031"
+            timestampString = "469011565.728669"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "-tableView:numberOfRowsInSection:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
