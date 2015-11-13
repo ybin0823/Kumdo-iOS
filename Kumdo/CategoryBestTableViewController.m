@@ -24,6 +24,8 @@
     YBImageManager *imageManager;
     YBEmptyView *emptyView;
     NSCache *cache;
+    NSURLSessionConfiguration *defaultSessionConfiguration;
+    NSURLSession *defaultSession;
 }
 
 static NSString * const reuseIdentifier = @"Cell";
@@ -40,6 +42,9 @@ static NSString * const GET_CATEGORY_BEST_FROM_SERVER = @"http://125.209.198.90:
         [imageManager setDelegate:self];
         
         cache = [[NSCache alloc] init];
+        
+        defaultSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        defaultSession = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
     }
     
     return self;
@@ -56,7 +61,6 @@ static NSString * const GET_CATEGORY_BEST_FROM_SERVER = @"http://125.209.198.90:
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     // Load data from server
-    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     NSMutableString *url = [NSMutableString stringWithString:GET_CATEGORY_BEST_FROM_SERVER];
     [url appendFormat:@"%ld", (long)mCategory];
     
@@ -82,6 +86,8 @@ static NSString * const GET_CATEGORY_BEST_FROM_SERVER = @"http://125.209.198.90:
     writings = nil;
     imageManager = nil;
     emptyView = nil;
+    defaultSessionConfiguration = nil;
+    defaultSession = nil;
 }
 
 - (void)didReceiveData

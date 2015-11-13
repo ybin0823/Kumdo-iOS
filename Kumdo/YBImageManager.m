@@ -11,16 +11,40 @@
 @implementation YBImageManager
 {
     __weak id <YBImageManagerDelegate> delegate;
+    NSURLSessionConfiguration *defaultSessionConfiguration;
+    NSURLSession *defaultSession;
 }
 
 @synthesize delegate = delegate;
+
++ (instancetype)sharedInstance
+{
+    static dispatch_once_t oncePredicate;
+    static YBImageManager *shared = nil;
+    
+    dispatch_once(&oncePredicate, ^{
+        shared = [[self alloc] init];
+    });
+    
+    return shared;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        defaultSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        defaultSession = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
+    }
+    
+    return self;
+}
 
 #pragma mark load
 
 - (void)loadImageWithURL:(NSURL *)url receiveMainThread:(BOOL)isMainThread withObject:(nullable id)object
 {
-    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    
     [[defaultSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         UIImage *image = [UIImage imageWithData:data];
         
@@ -34,8 +58,6 @@
 
 - (void)loadImageWithURL:(NSURL *)url receiveMainThread:(BOOL)isMainThread withArray:(NSArray *)array
 {
-    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    
     [[defaultSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         UIImage *image = [UIImage imageWithData:data];
         

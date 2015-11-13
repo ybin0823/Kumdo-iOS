@@ -25,6 +25,8 @@
     YBImageManager *imageManager;
     YBEmptyView *emptyView;
     NSCache *cache;
+    NSURLSessionConfiguration *defaultSessionConfiguration;
+    NSURLSession *defaultSession;
 }
 
 static NSString * const reuseIdentifier = @"Cell";
@@ -39,10 +41,13 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
         
         user = [YBUser sharedInstance];
         
-        imageManager = [[YBImageManager alloc] init];
+        imageManager = [YBImageManager sharedInstance];
         [imageManager setDelegate:self];
         
         cache = [[NSCache alloc] init];
+        
+        defaultSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        defaultSession = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
     }
     
     return self;
@@ -68,7 +73,6 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
     [self.view addSubview:mCollectionView];
     
     // Load data from server
-    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     NSMutableString *url = [NSMutableString stringWithString:GET_MYLIST_FROM_SERVER];
     [url appendString:[user email]];
     
@@ -94,8 +98,9 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
     writings = nil;
-    imageManager = nil;
     emptyView = nil;
+    defaultSessionConfiguration = nil;
+    defaultSession = nil;
 }
 
 

@@ -22,6 +22,9 @@
     YBImageManager *imageManager;
     YBEmptyView *emptyView;
     NSCache *cache;
+    
+    NSURLSessionConfiguration *defaultSessionConfiguration;
+    NSURLSession *defaultSession;
 }
 
 static NSString * const reuseIdentifier = @"Cell";
@@ -34,10 +37,13 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     if (self) {
         self.title = @"홈";
         
-        imageManager = [[YBImageManager alloc] init];
+        imageManager = [YBImageManager  sharedInstance];
         [imageManager setDelegate:self];
         
         cache = [[NSCache alloc] init];
+        
+        defaultSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        defaultSession = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
     }
     
     return self;
@@ -51,7 +57,6 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     // Load data from server
-    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     [[defaultSession dataTaskWithURL:[NSURL URLWithString:GET_BEST_FROM_SERVER] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSLog(@"Got response %@ with error %@. \n", response, error);
         
@@ -73,8 +78,9 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     [super didReceiveMemoryWarning];
     
     writings = nil;
-    imageManager = nil;
     emptyView = nil;
+    defaultSessionConfiguration = nil;
+    defaultSession = nil;
 }
 
 - (void)didReceiveData

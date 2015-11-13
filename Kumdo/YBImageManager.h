@@ -21,6 +21,8 @@
 
 @property (nonatomic, weak) id <YBImageManagerDelegate> delegate;
 
++ (instancetype _Nonnull)sharedInstance;
+
 - (void)loadImageWithURL:(NSURL * _Nonnull)url receiveMainThread:(BOOL)isMainThread withObject:(nullable id)object;
 - (void)loadImageWithURL:(NSURL * _Nonnull)url receiveMainThread:(BOOL)isMainThread withArray:(nullable NSArray *)array;
 
