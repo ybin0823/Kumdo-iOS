@@ -33,7 +33,7 @@ static NSString * const reuseIdentifier = @"Cell";
         
         categories = [[YBCategory alloc] init];
         
-        imageManager = [YBImageManager sharedInstance];
+        imageManager = [[YBImageManager alloc] init];
     }
     
     return self;
@@ -52,6 +52,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [super didReceiveMemoryWarning];
     
     categories = nil;
+    imageManager = nil;
 }
 
 #pragma mark - Table view data source

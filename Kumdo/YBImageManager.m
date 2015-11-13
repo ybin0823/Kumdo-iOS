@@ -17,18 +17,6 @@
 
 @synthesize delegate = delegate;
 
-+ (instancetype)sharedInstance
-{
-    static dispatch_once_t oncePredicate;
-    static YBImageManager *shared = nil;
-    
-    dispatch_once(&oncePredicate, ^{
-        shared = [[self alloc] init];
-    });
-    
-    return shared;
-}
-
 - (instancetype)init
 {
     self = [super init];

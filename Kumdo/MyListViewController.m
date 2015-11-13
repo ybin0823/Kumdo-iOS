@@ -41,7 +41,7 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
         
         user = [YBUser sharedInstance];
         
-        imageManager = [YBImageManager sharedInstance];
+        imageManager = [[YBImageManager alloc] init];
         [imageManager setDelegate:self];
         
         cache = [[NSCache alloc] init];
@@ -98,6 +98,7 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
     writings = nil;
+    imageManager = nil;
     emptyView = nil;
     defaultSessionConfiguration = nil;
     defaultSession = nil;

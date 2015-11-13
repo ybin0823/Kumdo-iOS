@@ -37,7 +37,7 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     if (self) {
         self.title = @"홈";
         
-        imageManager = [YBImageManager  sharedInstance];
+        imageManager = [[YBImageManager  alloc] init];
         [imageManager setDelegate:self];
         
         cache = [[NSCache alloc] init];
@@ -78,6 +78,7 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     [super didReceiveMemoryWarning];
     
     writings = nil;
+    imageManager = nil;
     emptyView = nil;
     defaultSessionConfiguration = nil;
     defaultSession = nil;

@@ -26,7 +26,7 @@
     if (self) {
         mWriting = writing;
         
-        imageManager = [YBImageManager sharedInstance];
+        imageManager = [[YBImageManager alloc] init];
         [imageManager setDelegate:self];
     }
     
@@ -54,6 +54,7 @@
     // Dispose of any resources that can be recreated.
     mWriting = nil;
     scrollView = nil;
+    imageManager = nil;
 }
 
 
