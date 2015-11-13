@@ -17,5 +17,7 @@
 @interface YBCollectionViewWaterFallLayout : UICollectionViewLayout
 
 @property (nonatomic, weak) id <YBCollectionViewDelegateWaterFallLayout> delegate;
+@property (nonatomic) CGFloat minimumInteritemSpacing;
+@property (nonatomic) CGFloat minimumLineSpacing;
 
 @end

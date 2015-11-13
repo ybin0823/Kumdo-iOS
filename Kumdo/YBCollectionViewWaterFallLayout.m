@@ -15,11 +15,14 @@
     NSDictionary *mLayoutInformation;
     UIEdgeInsets sectionInset;
     NSMutableArray *itemPositions; // item position for left column, right column.
+    CGFloat minimumInteritemSpacing;
+    CGFloat minimumLineSpacing;
 }
 
 
 @synthesize delegate = delegate;
-
+@synthesize minimumInteritemSpacing;
+@synthesize minimumLineSpacing;
 
 - (instancetype)init
 {
@@ -27,6 +30,8 @@
     
     if (self) {
         sectionInset = UIEdgeInsetsZero;
+        minimumInteritemSpacing = 1.5f;
+        minimumLineSpacing = 3.0f;
     }
     
     return self;
@@ -57,12 +62,21 @@
             CGSize itemSize = [self.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:indexPath]; // each cell x, y, width, height
             
             CGPoint itemPosition = [[itemPositions objectAtIndex:(item % 2)] CGPointValue];
-            itemPosition.x = itemSize.width * (item % 2); // 오른쪽 column(1)이면 item width만큼 x가 옮겨진다
             
-            attributes.frame = CGRectMake(itemPosition.x, itemPosition.y, itemSize.width, itemSize.height);
+            /* 
+             * 가로 이미지의 경우 오론쪽 이미지는 interitemSpacing만큼 옮겨진 다음, 왼쪽 이미지, 오른쪽 이미지가 interitemSpaing 만큼 width가 줄어든다.
+             * 따라서 interitemSpacing은 lineSpacing의 1/2이어야 같은 크기만큼 spacing이 생긴다
+             */
+            if (item % 2 == 1) {
+               itemPosition.x = itemSize.width * (item % 2) + minimumInteritemSpacing; // 오른쪽 column(1)이면 item width + interitemSpacing 만큼 x가 옮겨진다
+            } else {
+                itemPosition.x = itemSize.width * (item % 2); // 왼쪽 column(0)이면 item width만큼 x가 옮겨진다
+            }
+            
+            attributes.frame = CGRectMake(itemPosition.x, itemPosition.y, itemSize.width - minimumInteritemSpacing, itemSize.height);
             [cellInformation setObject:attributes forKey:indexPath];
             
-            itemPosition.y += itemSize.height;
+            itemPosition.y += itemSize.height + minimumLineSpacing;
             itemPositions[item % 2] = [NSValue valueWithCGPoint:itemPosition];
         }
     }
