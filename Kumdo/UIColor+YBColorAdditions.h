@@ -12,5 +12,6 @@
 
 + (UIColor *)primaryColor;
 + (UIColor *)transParentColor;
++ (UIColor *)navyColor;
 
 @end

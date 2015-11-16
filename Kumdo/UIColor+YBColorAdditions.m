@@ -20,4 +20,8 @@
     return [UIColor colorWithWhite:0.5f alpha:0.5f];
 }
 
++ (UIColor *)navyColor
+{
+    return [UIColor colorWithRed:0.0f green:0.0f blue:102.0f/255.0f alpha:1.0f];
+}
 @end

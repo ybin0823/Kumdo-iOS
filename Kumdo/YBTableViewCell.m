@@ -43,8 +43,10 @@
         [wordsLabel setFont:[UIFont systemFontOfSize:16 weight:2]];
         
         nameLabel = [[UILabel alloc] init];
+        [nameLabel setTextColor:[UIColor navyColor]];
         
         dateLabel = [[UILabel alloc] init];
+        [dateLabel setTextColor:[UIColor grayColor]];
         [dateLabel setTextAlignment:NSTextAlignmentRight];
     }
     
@@ -64,10 +66,10 @@
     [wordsLabel setFrame:CGRectMake(0, self.frame.size.height - 120, self.frame.size.width, 20)];
     [self addSubview:wordsLabel];
     
-    [nameLabel setFrame:CGRectMake(0, self.frame.size.height - 100, 100, 20)];
+    [nameLabel setFrame:CGRectMake(10, self.frame.size.height - 100, 100, 20)];
     [self addSubview:nameLabel];
     
-    [dateLabel setFrame:CGRectMake(self.frame.size.width - 150, self.frame.size.height - 100, 150, 20)];
+    [dateLabel setFrame:CGRectMake(self.frame.size.width - 160, self.frame.size.height - 100, 150, 20)];
     [self addSubview:dateLabel];
 }
 
@@ -90,13 +92,6 @@
 - (void)setFormattedDate:(NSDate *)date
 {
     YBTimeManager *timeManager = [[YBTimeManager alloc] init];
-    NSLog(@"%@", [timeManager stringWithDate:date]);
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-
-    
-    NSDateComponents *timeComponents = [gregorian components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitTimeZone) fromDate:date];
-    
-    NSLog(@"%ld:%ld:%ld, %@", (long)[timeComponents hour], (long)[timeComponents minute], (long)[timeComponents second], [timeComponents timeZone]);
     [dateLabel setText:[timeManager stringWithDate:date]];
 }
 

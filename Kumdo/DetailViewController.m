@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 #import "YBTimeManager.h"
+#import "UIColor+YBColorAdditions.h"
 
 @interface DetailViewController ()
 
@@ -113,8 +114,8 @@
     [self addWordsLabelWithFrameh:CGRectMake(0, height - 50, width, 50)];
     
     // 작성자는 Image 왼쪽 아래, 작성날짜는 Image 오른쪽 아래에 표시된다
-    [self addNameLabelWithFrame:CGRectMake(0, height + 10, 100, 20)];
-    [self addDateLabelWithFrame:CGRectMake(width - 150, height + 10, 150, 20)];
+    [self addNameLabelWithFrame:CGRectMake(10, height + 10, 100, 20)];
+    [self addDateLabelWithFrame:CGRectMake(width - 160, height + 10, 150, 20)];
 }
 
 - (void)addSentenceLabelWithFrame:(CGRect)frame
@@ -153,6 +154,7 @@
 {
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:frame];
     [nameLabel setText:[mWriting name]];
+    [nameLabel setTextColor:[UIColor navyColor]];
     
     [scrollView addSubview:nameLabel];
 }
@@ -163,6 +165,7 @@
     UILabel *dateLabel = [[UILabel alloc] initWithFrame:frame];
     [dateLabel setText:[timeManager stringWithDate:[mWriting date]]];
     [dateLabel setTextAlignment:NSTextAlignmentRight];
+    [dateLabel setTextColor:[UIColor grayColor]];
     
     [scrollView addSubview:dateLabel];
 }
