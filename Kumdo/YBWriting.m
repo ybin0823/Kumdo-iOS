@@ -7,6 +7,7 @@
 //
 
 #import "YBWriting.h"
+#import "NSDate+YBOtherMethod.h"
 
 @implementation YBWriting
 {
@@ -49,7 +50,7 @@
         words = [[json valueForKey:@"words"] componentsSeparatedByString:@","];
         
         // 서버에는 시간이 milisecond 단위로 저장되어 있기 때문에 second 단위로 바꿔줘야 한다
-        date = [NSDate dateWithTimeIntervalSince1970:[[json valueForKey:@"date"] doubleValue] / 1000];
+        date = [NSDate dateWithTimeIntervalSince1970MiliSecond:[[json valueForKey:@"date"] doubleValue]];
     }
     
     return self;

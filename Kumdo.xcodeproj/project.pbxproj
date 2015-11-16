@@ -37,6 +37,8 @@
 		4E743BA81BD628B5009CBF99 /* FlowContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E743BA71BD628B5009CBF99 /* FlowContentViewController.m */; settings = {ASSET_TAGS = (); }; };
 		4E78DEB01BEB1D4A009EA580 /* YBImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E78DEAF1BEB1D4A009EA580 /* YBImageManager.m */; settings = {ASSET_TAGS = (); }; };
 		4E78DEB71BEB3B98009EA580 /* UIColor+YBColorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E78DEB61BEB3B98009EA580 /* UIColor+YBColorAdditions.m */; settings = {ASSET_TAGS = (); }; };
+		4E8350591BF9A9C70059AE18 /* NSDate+YBOtherMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8350581BF9A9C70059AE18 /* NSDate+YBOtherMethod.m */; settings = {ASSET_TAGS = (); }; };
+		4E83505E1BF9AA6F0059AE18 /* YBTimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E83505D1BF9AA6F0059AE18 /* YBTimeManager.m */; settings = {ASSET_TAGS = (); }; };
 		4EBF3A8D1BD9D19200E37EEC /* YBCollectionViewWaterFallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF3A8C1BD9D19200E37EEC /* YBCollectionViewWaterFallLayout.m */; settings = {ASSET_TAGS = (); }; };
 		4EBF3A901BDA116600E37EEC /* YBSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF3A8F1BDA116600E37EEC /* YBSegmentedControl.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -119,6 +121,10 @@
 		4E78DEAF1BEB1D4A009EA580 /* YBImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageManager.m; sourceTree = "<group>"; };
 		4E78DEB51BEB3B98009EA580 /* UIColor+YBColorAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+YBColorAdditions.h"; sourceTree = "<group>"; };
 		4E78DEB61BEB3B98009EA580 /* UIColor+YBColorAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+YBColorAdditions.m"; sourceTree = "<group>"; };
+		4E8350571BF9A9C70059AE18 /* NSDate+YBOtherMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+YBOtherMethod.h"; sourceTree = "<group>"; };
+		4E8350581BF9A9C70059AE18 /* NSDate+YBOtherMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+YBOtherMethod.m"; sourceTree = "<group>"; };
+		4E83505C1BF9AA6F0059AE18 /* YBTimeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBTimeManager.h; sourceTree = "<group>"; };
+		4E83505D1BF9AA6F0059AE18 /* YBTimeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBTimeManager.m; sourceTree = "<group>"; };
 		4EBF3A8B1BD9D19200E37EEC /* YBCollectionViewWaterFallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCollectionViewWaterFallLayout.h; sourceTree = "<group>"; };
 		4EBF3A8C1BD9D19200E37EEC /* YBCollectionViewWaterFallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCollectionViewWaterFallLayout.m; sourceTree = "<group>"; };
 		4EBF3A8E1BDA116600E37EEC /* YBSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSegmentedControl.h; sourceTree = "<group>"; };
@@ -194,6 +200,8 @@
 		4E3EC2FE1BBD105700C73CFE /* Kumdo */ = {
 			isa = PBXGroup;
 			children = (
+				4E83505B1BF9AA4A0059AE18 /* manager */,
+				4E83505A1BF9A9CF0059AE18 /* category */,
 				4E72BA231BD47D6C00068B57 /* model */,
 				4E1852AB1BCE11D7000F1818 /* Resources */,
 				4E1852AD1BCE11D7000F1818 /* thirdPartyModule */,
@@ -234,10 +242,6 @@
 				4E6C8D351BE72B7C00F9964F /* YBFlowContentView.m */,
 				4E2B6A611BE9E42C00244941 /* YBWaterFallViewCell.h */,
 				4E2B6A621BE9E42C00244941 /* YBWaterFallViewCell.m */,
-				4E78DEAE1BEB1D4A009EA580 /* YBImageManager.h */,
-				4E78DEAF1BEB1D4A009EA580 /* YBImageManager.m */,
-				4E78DEB51BEB3B98009EA580 /* UIColor+YBColorAdditions.h */,
-				4E78DEB61BEB3B98009EA580 /* UIColor+YBColorAdditions.m */,
 				4E21A9551BF1DDDC00C6B6A5 /* YBEmptyView.h */,
 				4E21A9561BF1DDDC00C6B6A5 /* YBEmptyView.m */,
 			);
@@ -283,6 +287,28 @@
 				4E743B9D1BD600D7009CBF99 /* YBWordDictionary.m */,
 			);
 			name = model;
+			sourceTree = "<group>";
+		};
+		4E83505A1BF9A9CF0059AE18 /* category */ = {
+			isa = PBXGroup;
+			children = (
+				4E8350571BF9A9C70059AE18 /* NSDate+YBOtherMethod.h */,
+				4E8350581BF9A9C70059AE18 /* NSDate+YBOtherMethod.m */,
+				4E78DEB51BEB3B98009EA580 /* UIColor+YBColorAdditions.h */,
+				4E78DEB61BEB3B98009EA580 /* UIColor+YBColorAdditions.m */,
+			);
+			name = category;
+			sourceTree = "<group>";
+		};
+		4E83505B1BF9AA4A0059AE18 /* manager */ = {
+			isa = PBXGroup;
+			children = (
+				4E78DEAE1BEB1D4A009EA580 /* YBImageManager.h */,
+				4E78DEAF1BEB1D4A009EA580 /* YBImageManager.m */,
+				4E83505C1BF9AA6F0059AE18 /* YBTimeManager.h */,
+				4E83505D1BF9AA6F0059AE18 /* YBTimeManager.m */,
+			);
+			name = manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -427,6 +453,7 @@
 				4E72BA2F1BD4BFD200068B57 /* YBCategory.m in Sources */,
 				4E72BA261BD47D8000068B57 /* YBWriting.m in Sources */,
 				4E1853541BD0ED20000F1818 /* CategoryViewCell.m in Sources */,
+				4E8350591BF9A9C70059AE18 /* NSDate+YBOtherMethod.m in Sources */,
 				4E3EC3041BBD105700C73CFE /* AppDelegate.m in Sources */,
 				4E6688991BCB87F600D25A7C /* WriteViewController.m in Sources */,
 				4E21A9621BF1F4FE00C6B6A5 /* YBTableViewCell.m in Sources */,
@@ -441,6 +468,7 @@
 				4E21A9651BF1F57300C6B6A5 /* BestTableViewController.m in Sources */,
 				4E2B6A631BE9E42C00244941 /* YBWaterFallViewCell.m in Sources */,
 				4E1853341BD0D131000F1818 /* MyListViewController.m in Sources */,
+				4E83505E1BF9AA6F0059AE18 /* YBTimeManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

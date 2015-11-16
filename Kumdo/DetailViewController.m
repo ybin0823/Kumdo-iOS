@@ -7,6 +7,7 @@
 //
 
 #import "DetailViewController.h"
+#import "YBTimeManager.h"
 
 @interface DetailViewController ()
 
@@ -158,10 +159,9 @@
 
 - (void)addDateLabelWithFrame:(CGRect)frame
 {
+    YBTimeManager *timeManager = [[YBTimeManager alloc] init];
     UILabel *dateLabel = [[UILabel alloc] initWithFrame:frame];
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"YYYY-MM-dd"];
-    [dateLabel setText:[dateFormat stringFromDate:[mWriting date]]];
+    [dateLabel setText:[timeManager stringWithDate:[mWriting date]]];
     [dateLabel setTextAlignment:NSTextAlignmentRight];
     
     [scrollView addSubview:dateLabel];

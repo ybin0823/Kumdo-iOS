@@ -8,6 +8,7 @@
 
 #import "YBTableViewCell.h"
 #import "UIColor+YBColorAdditions.h"
+#import "YBTimeManager.h"
 
 @implementation YBTableViewCell
 {
@@ -88,10 +89,15 @@
 
 - (void)setFormattedDate:(NSDate *)date
 {
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"YYYY-MM-dd"];
+    YBTimeManager *timeManager = [[YBTimeManager alloc] init];
+    NSLog(@"%@", [timeManager stringWithDate:date]);
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+
     
-    [dateLabel setText:[dateFormat stringFromDate:date]];
+    NSDateComponents *timeComponents = [gregorian components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitTimeZone) fromDate:date];
+    
+    NSLog(@"%ld:%ld:%ld, %@", (long)[timeComponents hour], (long)[timeComponents minute], (long)[timeComponents second], [timeComponents timeZone]);
+    [dateLabel setText:[timeManager stringWithDate:date]];
 }
 
 - (void)setDefaultImage
