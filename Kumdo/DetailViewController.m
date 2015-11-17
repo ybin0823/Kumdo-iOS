@@ -7,8 +7,9 @@
 //
 
 #import "DetailViewController.h"
-#import "YBTimeManager.h"
-#import "UIColor+YBColorAdditions.h"
+#import "ContentsView.h"
+#import "SubInfoView.h"
+#import "SubFuncView.h"
 
 @interface DetailViewController ()
 
@@ -19,6 +20,10 @@
     YBWriting *mWriting;
     UIScrollView *scrollView;
     YBImageManager *imageManager;
+    
+    ContentsView *contentsView;
+    SubInfoView *subInfoView;
+    SubFuncView *subFuncView;
 }
 
 - (instancetype)initWithWriting:(YBWriting *)writing
@@ -30,6 +35,10 @@
         
         imageManager = [[YBImageManager alloc] init];
         [imageManager setDelegate:self];
+        
+        contentsView = [[ContentsView alloc] init];
+        subInfoView = [[SubInfoView alloc] init];
+        subFuncView = [[SubFuncView alloc] init];
     }
     
     return self;
@@ -43,9 +52,26 @@
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
+    CGSize size = [self frameSize];
+    
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0,  self.view.frame.size.width, self.view.frame.size.height)];
     [scrollView setDelegate:self];
+    [scrollView setContentSize:size];
     [self.view addSubview:scrollView];
+    
+    [contentsView setFrame:CGRectMake(0, 0, size.width, size.height - 150)];
+    [contentsView setSentenceWithAttributedText:[mWriting sentence]];
+    [contentsView setWordsWithAttributedText:[mWriting stringWithCommaFromWords]];
+    [scrollView addSubview:contentsView];
+    
+    [subInfoView setFrame:CGRectMake(0, size.height - 150, size.width, 30)];
+    [subInfoView setNameLabelText:[mWriting name]];
+    [subInfoView setFormattedDate:[mWriting date]];
+    [scrollView addSubview:subInfoView];
+    
+    // 스크롤 시 맨 아래 view가 짤리는 것을 막기 위해 height 50정도 여유를 둔다
+    [subFuncView setFrame:CGRectMake(0, size.height - 120, size.width, 70)];
+    [scrollView addSubview:subFuncView];
 
     // Load image from server and add Contents
     [imageManager loadImageWithURL:[mWriting imageUrl] receiveMainThread:YES withObject:nil];
@@ -53,122 +79,31 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
     mWriting = nil;
     scrollView = nil;
     imageManager = nil;
+    
+    contentsView = nil;
+    subInfoView = nil;
+    subFuncView = nil;
 }
 
+- (CGSize)frameSize
+{
+    CGFloat width = [[mWriting.imageSize objectAtIndex:0] floatValue];
+    CGFloat height = [[mWriting.imageSize objectAtIndex:1] floatValue];
+    CGFloat scale = self.view.frame.size.width / width;
+
+    return CGSizeMake(self.view.frame.size.width, height * scale + 150);
+}
 
 #pragma mark - Image manager delegate
 
 - (void)didLoadImage:(UIImage *)image withObject:(id)object
 {
     UIImage *scaledImage = [imageManager maintainScaleRatioImage:image withWidth:self.view.frame.size.width];
-    [self addImageView:scaledImage];
-    [self addLabels:scaledImage.size];
+    [contentsView setImage:scaledImage animation:NO];
 }
-
-
-#pragma mark - Add imageView
-     
-- (void)addImageView:(UIImage *)image
-{
-    if (image.size.width > image.size.height) {
-        [self setDefaultSizeImageView:image];
-    } else {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, image.size.height)];
-        [imageView setImage:image];
-        
-        [scrollView setContentSize:CGSizeMake(image.size.width, image.size.height + 100)];
-        [scrollView addSubview:imageView];
-    }
-}
-
-- (void)setDefaultSizeImageView:(UIImage *)image
-{
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
-    [imageView setContentMode:UIViewContentModeScaleAspectFit];
-    [imageView setBackgroundColor:[UIColor blackColor]];
-    
-    [imageView setImage:image];
-    [scrollView addSubview:imageView];
-}
-
-
-#pragma mark - Add label
-
-- (void)addLabels:(CGSize)size
-{
-    float width = self.view.frame.size.width;
-    CGFloat height;
-
-    if (size.width > size.height) {
-        height = width;
-    } else {
-        height = size.height;
-    }
-
-    // Add sentence, words label
-    [self addSentenceLabelWithFrame:CGRectMake(0, 0, width, height - 50)];
-    [self addWordsLabelWithFrameh:CGRectMake(0, height - 50, width, 50)];
-    
-    // 작성자는 Image 왼쪽 아래, 작성날짜는 Image 오른쪽 아래에 표시된다
-    [self addNameLabelWithFrame:CGRectMake(10, height + 10, 100, 20)];
-    [self addDateLabelWithFrame:CGRectMake(width - 160, height + 10, 150, 20)];
-}
-
-- (void)addSentenceLabelWithFrame:(CGRect)frame
-{
-    UILabel *sentenceLabel = [[UILabel alloc] initWithFrame:frame];
-    [sentenceLabel setTextAlignment:NSTextAlignmentCenter];
-    [sentenceLabel setTextColor:[UIColor whiteColor]];
-    [sentenceLabel setFont:[UIFont systemFontOfSize:22 weight:2]];
-    [sentenceLabel setAttributedText:[self attributedString:[mWriting sentence]]];
-    [sentenceLabel setNumberOfLines:0];
-    
-    [scrollView addSubview:sentenceLabel];
-}
-
-- (void)addWordsLabelWithFrameh:(CGRect)frame
-{
-    UILabel *wordsLabel = [[UILabel alloc] initWithFrame:frame];
-    [wordsLabel setTextAlignment:NSTextAlignmentCenter];
-    [wordsLabel setTextColor:[UIColor whiteColor]];
-    [wordsLabel setFont:[UIFont systemFontOfSize:14 weight:2]];
-    [wordsLabel setAttributedText:[self attributedString:[mWriting stringWithCommaFromWords]]];
-    
-    [scrollView addSubview:wordsLabel];
-}
-
-- (NSAttributedString *)attributedString:(NSString *)str
-{
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:str];
-    [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor colorWithWhite:0.5 alpha:0.3]
-                             range:NSMakeRange(0, [attributedString length])];
-    
-    return [[NSAttributedString alloc] initWithAttributedString:attributedString];
-}
-
-- (void)addNameLabelWithFrame:(CGRect)frame
-{
-    UILabel *nameLabel = [[UILabel alloc] initWithFrame:frame];
-    [nameLabel setText:[mWriting name]];
-    [nameLabel setTextColor:[UIColor navyColor]];
-    
-    [scrollView addSubview:nameLabel];
-}
-
-- (void)addDateLabelWithFrame:(CGRect)frame
-{
-    YBTimeManager *timeManager = [[YBTimeManager alloc] init];
-    UILabel *dateLabel = [[UILabel alloc] initWithFrame:frame];
-    [dateLabel setText:[timeManager stringWithDate:[mWriting date]]];
-    [dateLabel setTextAlignment:NSTextAlignmentRight];
-    [dateLabel setTextColor:[UIColor grayColor]];
-    
-    [scrollView addSubview:dateLabel];
-}
-
 
 @end
