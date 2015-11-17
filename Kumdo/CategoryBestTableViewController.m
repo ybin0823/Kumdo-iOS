@@ -122,19 +122,19 @@ static NSString * const GET_CATEGORY_BEST_FROM_SERVER = @"http://125.209.198.90:
     YBWriting *writing = [writings objectAtIndex:indexPath.row];
     
     if ([cache objectForKey:[writing imageUrl]] != nil) {
-        [cell.imageView setImage:[cache objectForKey:[writing imageUrl]]];
+        [cell.contentsView setImage:[cache objectForKey:[writing imageUrl]] animation:NO];
     } else {
         // Set default image
-        [cell setDefaultImage];
+        [cell.contentsView setDefaultImage];
         
         //If cache don't have image, then download from remote
         [imageManager loadImageWithURL:[writing imageUrl] receiveMainThread:YES withArray:[NSArray arrayWithObjects:cell, writing, nil]];
     }
     
-    [cell setSentenceWithAttributedText:writing.sentence];
-    [cell.nameLabel setText:writing.name];
-    [cell setWordsWithAttributedText:[writing stringWithCommaFromWords]];
-    [cell setFormattedDate:writing.date];
+    [cell.contentsView setSentenceWithAttributedText:writing.sentence];
+    [cell.contentsView setWordsWithAttributedText:[writing stringWithCommaFromWords]];
+    [cell.subInfoView setNameLabelText:writing.name];
+    [cell.subInfoView setFormattedDate:writing.date];
     
     return cell;
 }
@@ -174,7 +174,7 @@ static NSString * const GET_CATEGORY_BEST_FROM_SERVER = @"http://125.209.198.90:
     
     [cache setObject:resizedImage forKey:[writing imageUrl]];
     
-    [cell setImageWithAnimation:resizedImage];
+    [cell.contentsView setImage:resizedImage animation:YES];
 }
 
 

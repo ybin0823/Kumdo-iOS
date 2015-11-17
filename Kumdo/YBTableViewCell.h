@@ -7,19 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ContentsView.h"
+#import "SubInfoView.h"
 
 @interface YBTableViewCell : UITableViewCell
 
-@property (nonatomic, readonly) UIImageView *imageView;
-@property (nonatomic, readonly) UILabel *sentenceLabel;
-@property (nonatomic, readonly) UILabel *wordsLabel;
-@property (nonatomic, readonly) UILabel *nameLabel;
-@property (nonatomic, readonly) UILabel *dateLabel;
-
-- (void)setSentenceWithAttributedText:(NSString *)text;
-- (void)setWordsWithAttributedText:(NSString *)text;
-- (void)setFormattedDate:(NSDate *)date;
-- (void)setDefaultImage;
-- (void)setImageWithAnimation:(UIImage *)image;
+@property (nonatomic, readonly) ContentsView *contentsView;
+@property (nonatomic, readonly) SubInfoView *subInfoView;
 
 @end

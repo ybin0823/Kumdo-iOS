@@ -41,6 +41,8 @@
 		4E83505E1BF9AA6F0059AE18 /* YBTimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E83505D1BF9AA6F0059AE18 /* YBTimeManager.m */; settings = {ASSET_TAGS = (); }; };
 		4EBF3A8D1BD9D19200E37EEC /* YBCollectionViewWaterFallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF3A8C1BD9D19200E37EEC /* YBCollectionViewWaterFallLayout.m */; settings = {ASSET_TAGS = (); }; };
 		4EBF3A901BDA116600E37EEC /* YBSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF3A8F1BDA116600E37EEC /* YBSegmentedControl.m */; settings = {ASSET_TAGS = (); }; };
+		4EDF496A1BFAFC6D009EC434 /* ContentsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDF49691BFAFC6D009EC434 /* ContentsView.m */; settings = {ASSET_TAGS = (); }; };
+		4EDF496D1BFAFC79009EC434 /* SubInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDF496C1BFAFC79009EC434 /* SubInfoView.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +131,10 @@
 		4EBF3A8C1BD9D19200E37EEC /* YBCollectionViewWaterFallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCollectionViewWaterFallLayout.m; sourceTree = "<group>"; };
 		4EBF3A8E1BDA116600E37EEC /* YBSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSegmentedControl.h; sourceTree = "<group>"; };
 		4EBF3A8F1BDA116600E37EEC /* YBSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSegmentedControl.m; sourceTree = "<group>"; };
+		4EDF49681BFAFC6D009EC434 /* ContentsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentsView.h; sourceTree = "<group>"; };
+		4EDF49691BFAFC6D009EC434 /* ContentsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentsView.m; sourceTree = "<group>"; };
+		4EDF496B1BFAFC79009EC434 /* SubInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubInfoView.h; sourceTree = "<group>"; };
+		4EDF496C1BFAFC79009EC434 /* SubInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubInfoView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +224,10 @@
 				4E6688A11BCB883B00D25A7C /* MenuViewController.m */,
 				4E21A9601BF1F4FE00C6B6A5 /* YBTableViewCell.h */,
 				4E21A9611BF1F4FE00C6B6A5 /* YBTableViewCell.m */,
+				4EDF49681BFAFC6D009EC434 /* ContentsView.h */,
+				4EDF49691BFAFC6D009EC434 /* ContentsView.m */,
+				4EDF496B1BFAFC79009EC434 /* SubInfoView.h */,
+				4EDF496C1BFAFC79009EC434 /* SubInfoView.m */,
 				4E21A9631BF1F57300C6B6A5 /* BestTableViewController.h */,
 				4E21A9641BF1F57300C6B6A5 /* BestTableViewController.m */,
 				4E1853521BD0ED20000F1818 /* CategoryViewCell.h */,
@@ -460,9 +470,11 @@
 				4E743BA81BD628B5009CBF99 /* FlowContentViewController.m in Sources */,
 				4E21A9571BF1DDDC00C6B6A5 /* YBEmptyView.m in Sources */,
 				4E21A96B1BF20AB100C6B6A5 /* CategoryBestTableViewController.m in Sources */,
+				4EDF496A1BFAFC6D009EC434 /* ContentsView.m in Sources */,
 				4E66889F1BCB882200D25A7C /* SnsLoginViewController.m in Sources */,
 				4E1852B51BCE11D7000F1818 /* NLoginThirdPartyOAuth20InAppBrowserViewController.m in Sources */,
 				4E743B9E1BD600D7009CBF99 /* YBWordDictionary.m in Sources */,
+				4EDF496D1BFAFC79009EC434 /* SubInfoView.m in Sources */,
 				4EBF3A8D1BD9D19200E37EEC /* YBCollectionViewWaterFallLayout.m in Sources */,
 				4E3EC3011BBD105700C73CFE /* main.m in Sources */,
 				4E21A9651BF1F57300C6B6A5 /* BestTableViewController.m in Sources */,
