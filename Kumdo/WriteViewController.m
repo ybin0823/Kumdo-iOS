@@ -20,9 +20,8 @@
 {
     __weak id<WriteViewControllerDelegate> delegate;
     
-    __weak IBOutlet UIImageView *backgroundImage;
     __weak IBOutlet UIButton *takePictureButton;
-    __weak IBOutlet UIButton *changePictureButton;
+    
     __weak IBOutlet UIButton *nounWordButton;
     __weak IBOutlet UIButton *verbWordButton;
     __weak IBOutlet UIButton *adjectiveOrAdverbWordButton;
@@ -30,9 +29,12 @@
     
     YBUser *user;
     YBWordDictionary *wordDictionary;
-    YBFlowContentView *flowContentView;
     YBWriting *writing;
     NSMutableSet *usedWords;
+    
+    UIScrollView *scrollView;
+    UIImageView *imageView;
+    YBFlowContentView *flowContentView;
 }
 
 @synthesize delegate = delegate;
@@ -48,6 +50,8 @@ static NSString * const UPLOAD_DATA_TO_SERVER = @"http://125.209.198.90:3000/upl
         wordDictionary = [[YBWordDictionary alloc] init];
         writing = [[YBWriting alloc] init];
         usedWords = [[NSMutableSet alloc] init];
+        
+        scrollView = [[UIScrollView alloc] init];
         
         NSLog(@"%@", [user description]);
     }
@@ -115,6 +119,8 @@ static NSString * const UPLOAD_DATA_TO_SERVER = @"http://125.209.198.90:3000/upl
 
 - (IBAction)showImagePickerForPhotoPicker:(id)sender
 {
+    takePictureButton.hidden = YES;
+    
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.modalPresentationStyle = UIModalPresentationCurrentContext;
     imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -128,21 +134,38 @@ static NSString * const UPLOAD_DATA_TO_SERVER = @"http://125.209.198.90:3000/upl
     UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
     
     [self dismissViewControllerAnimated:YES completion:NULL];
-    [backgroundImage setImage:image];
-    takePictureButton.hidden = YES;
-    changePictureButton.hidden = NO;
     
+    // Set ScrollView
+    CGFloat width = self.view.frame.size.width;
+    CGFloat height = image.size.height;
+    CGFloat scale = width / image.size.width;
+    
+    [scrollView setFrame:CGRectMake(0, 80, width, 450)];
+    [scrollView setContentSize:CGSizeMake(width, height * scale)];
+    [self.view addSubview:scrollView];
+    
+    // Set ImageView
+    if (width > height * scale) {
+        // image 높이가 작을 경우 scrollView의 가운데 위치한다
+        imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, scrollView.frame.size.height / 2 - (height * scale / 2), width, height * scale)];
+    } else {
+        imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, height * scale)];
+    }
+
+    [imageView setImage:image];
+    [scrollView addSubview:imageView];
+
+    
+    // Set flowContentView
     // image를 선택하면, word와 edit버튼이 추가될 수 있도록 flowContentView를 생성한다.
-    // 글자의 최대 길이는 200자
-    // TODO method 분리. (적절한 메소드명이 떠오르지 않음)
+    // 글자의 최대 길이는 200자 or 이미지 높이만큼 추가된다.
     if (flowContentView == NULL) {
-        flowContentView = [[YBFlowContentView alloc] initWithFrame:CGRectMake(0, 80, backgroundImage.frame.size.width, backgroundImage.frame.size.height)];
+        flowContentView = [[YBFlowContentView alloc] initWithFrame:CGRectMake(0, 0, imageView.frame.size.width, imageView.frame.size.height)];
         [flowContentView setMaxLength:200];
         [flowContentView setDelegate:self];
-        [self.view addSubview:flowContentView];
+        [imageView addSubview:flowContentView];
     }
 }
-
 
 #pragma mark - Check of contents length
 
@@ -255,7 +278,7 @@ static NSString * const UPLOAD_DATA_TO_SERVER = @"http://125.209.198.90:3000/upl
     
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     
-    NSData *imageData = UIImageJPEGRepresentation([backgroundImage image], 1.0);
+    NSData *imageData = UIImageJPEGRepresentation([imageView image], 1.0);
     
     NSData *data = [self createBodyWithBoundary:boundary name:writing.name email:writing.email sentence:writing.sentence words:[writing stringWithCommaFromWords] category:writing.category imageData:imageData];
 

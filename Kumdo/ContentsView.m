@@ -29,6 +29,7 @@
         [sentenceLabel setTextAlignment:NSTextAlignmentCenter];
         [sentenceLabel setTextColor:[UIColor whiteColor]];
         [sentenceLabel setFont:[UIFont systemFontOfSize:22 weight:2]];
+        [sentenceLabel setNumberOfLines:0];
         
         wordsLabel = [[UILabel alloc] init];
         [wordsLabel setTextAlignment:NSTextAlignmentCenter];

@@ -159,10 +159,6 @@
                                     <action selector="addEdit:" destination="K8f-dZ-Vfz" eventType="touchUpInside" id="9SP-JV-afY"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a5y-MZ-oOw">
-                                <rect key="frame" x="0.0" y="82" width="375" height="453"/>
-                                <color key="backgroundColor" red="0.84856376262626265" green="0.84856376262626265" blue="0.84856376262626265" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGO-Rh-YfU">
                                 <rect key="frame" x="142" y="614" width="90" height="45"/>
                                 <color key="backgroundColor" red="0.7961200223276429" green="0.95134943181818177" blue="0.38739016426158995" alpha="1" colorSpace="calibratedRGB"/>
@@ -178,16 +174,10 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Emu-YI-qaX">
                                 <rect key="frame" x="0.0" y="89" width="375" height="440"/>
+                                <color key="backgroundColor" red="0.84856376259999999" green="0.84856376259999999" blue="0.84856376259999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="ic_image_48pt"/>
                                 <connections>
                                     <action selector="showImagePickerForPhotoPicker:" destination="K8f-dZ-Vfz" eventType="touchUpInside" id="nvv-yb-OHC"/>
-                                </connections>
-                            </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKL-KU-seG">
-                                <rect key="frame" x="263" y="543" width="102" height="48"/>
-                                <state key="normal" image="ic_image_48pt"/>
-                                <connections>
-                                    <action selector="showImagePickerForPhotoPicker:" destination="K8f-dZ-Vfz" eventType="touchUpInside" id="wn7-FY-3a2"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -212,8 +202,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="adjectiveOrAdverbWordButton" destination="HS8-wB-Uga" id="3i3-L2-aFN"/>
-                        <outlet property="backgroundImage" destination="a5y-MZ-oOw" id="XsA-z9-RLt"/>
-                        <outlet property="changePictureButton" destination="tKL-KU-seG" id="bWf-6T-Keu"/>
                         <outlet property="editButton" destination="YCh-Ic-Crq" id="EtT-K0-9U9"/>
                         <outlet property="nounWordButton" destination="bAS-Xk-gCJ" id="0TZ-Jn-eN2"/>
                         <outlet property="takePictureButton" destination="Emu-YI-qaX" id="jeh-xs-Kbc"/>
@@ -234,6 +222,6 @@
         <image name="ic_save_white_36pt" width="36" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="FUX-2U-dvF"/>
+        <segue reference="Pie-Ce-Ykt"/>
     </inferredMetricsTieBreakers>
 </document>
