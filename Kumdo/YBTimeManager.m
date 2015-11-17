@@ -38,19 +38,19 @@ typedef NS_ENUM(NSInteger, YBDateComparisonResult) {
             return @"방금 전";
             
         case YBMinutesAgo:
-            return [NSString stringWithFormat:@"%ld분 전", [componentsOfNow minute] - [componentsOfDate minute]];
+            return [NSString stringWithFormat:@"%ld분 전", (long)[componentsOfNow minute] - (long)[componentsOfDate minute]];
             
         case YBHoursAgo:
             // 59분 이하의 차이는 분으로 표시.
             // now의 minute가 date의 minute보다 작으므로 음수가 나오기 때문에 date minute에서 now의 minute을 빼준다
             if ([componentsOfNow minute] - [componentsOfDate minute] < 0) {
-                return [NSString stringWithFormat:@"%ld분 전", 60 - ([componentsOfDate minute] - [componentsOfNow minute])];
+                return [NSString stringWithFormat:@"%ld분 전", 60 - ((long)[componentsOfDate minute] - (long)[componentsOfNow minute])];
             }
             
-            return [NSString stringWithFormat:@"%ld시간 전", [componentsOfNow hour] - [componentsOfDate hour]];
+            return [NSString stringWithFormat:@"%ld시간 전", (long)[componentsOfNow hour] - (long)[componentsOfDate hour]];
             
         case YBDaysAgo:
-            return [NSString stringWithFormat:@"%ld일 전", [componentsOfNow day] - [componentsOfDate day]];
+            return [NSString stringWithFormat:@"%ld일 전", (long)[componentsOfNow day] - (long)[componentsOfDate day]];
         case YBThisYear:
             [dateFormat setDateFormat:@"M월 d일 ah:mm"];
             return [dateFormat stringFromDate:date];

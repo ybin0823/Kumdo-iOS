@@ -64,7 +64,7 @@ static NSString * const GET_CATEGORY_BEST_FROM_SERVER = @"http://125.209.198.90:
     NSMutableString *url = [NSMutableString stringWithString:GET_CATEGORY_BEST_FROM_SERVER];
     [url appendFormat:@"%ld", (long)mCategory];
     
-    [[defaultSession dataTaskWithURL:[NSURL URLWithString:url] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    [[defaultSession dataTaskWithURL:[NSURL URLWithString:[NSString stringWithString:url]] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSLog(@"Got response %@ with error %@. \n", response, error);
         
         writings = [[NSMutableArray alloc] init];

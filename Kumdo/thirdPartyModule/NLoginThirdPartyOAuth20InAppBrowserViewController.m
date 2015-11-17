@@ -309,7 +309,7 @@
     [self drawRotateLayout:[[UIApplication sharedApplication] statusBarOrientation]];
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     if (kThirdParty_IS_IPAD) {
         return UIInterfaceOrientationMaskAll;
     } else if ([[NaverThirdPartyLoginConnection getSharedInstance] isOnlyPortraitSupportedInIphone]) {
