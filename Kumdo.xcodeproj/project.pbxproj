@@ -43,6 +43,7 @@
 		4EBF3A901BDA116600E37EEC /* YBSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF3A8F1BDA116600E37EEC /* YBSegmentedControl.m */; settings = {ASSET_TAGS = (); }; };
 		4EDF496A1BFAFC6D009EC434 /* ContentsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDF49691BFAFC6D009EC434 /* ContentsView.m */; settings = {ASSET_TAGS = (); }; };
 		4EDF496D1BFAFC79009EC434 /* SubInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDF496C1BFAFC79009EC434 /* SubInfoView.m */; settings = {ASSET_TAGS = (); }; };
+		4EDF49701BFB0394009EC434 /* SubFuncView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDF496F1BFB0394009EC434 /* SubFuncView.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +136,8 @@
 		4EDF49691BFAFC6D009EC434 /* ContentsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentsView.m; sourceTree = "<group>"; };
 		4EDF496B1BFAFC79009EC434 /* SubInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubInfoView.h; sourceTree = "<group>"; };
 		4EDF496C1BFAFC79009EC434 /* SubInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubInfoView.m; sourceTree = "<group>"; };
+		4EDF496E1BFB0394009EC434 /* SubFuncView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubFuncView.h; sourceTree = "<group>"; };
+		4EDF496F1BFB0394009EC434 /* SubFuncView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubFuncView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +231,8 @@
 				4EDF49691BFAFC6D009EC434 /* ContentsView.m */,
 				4EDF496B1BFAFC79009EC434 /* SubInfoView.h */,
 				4EDF496C1BFAFC79009EC434 /* SubInfoView.m */,
+				4EDF496E1BFB0394009EC434 /* SubFuncView.h */,
+				4EDF496F1BFB0394009EC434 /* SubFuncView.m */,
 				4E21A9631BF1F57300C6B6A5 /* BestTableViewController.h */,
 				4E21A9641BF1F57300C6B6A5 /* BestTableViewController.m */,
 				4E1853521BD0ED20000F1818 /* CategoryViewCell.h */,
@@ -453,6 +458,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E78DEB01BEB1D4A009EA580 /* YBImageManager.m in Sources */,
+				4EDF49701BFB0394009EC434 /* SubFuncView.m in Sources */,
 				4E21A9681BF20A9B00C6B6A5 /* CategoryTableViewController.m in Sources */,
 				4E743B9B1BD5D25C009CBF99 /* YBUser.m in Sources */,
 				4E6688A21BCB883B00D25A7C /* MenuViewController.m in Sources */,

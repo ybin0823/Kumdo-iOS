@@ -12,8 +12,9 @@
 
 @implementation YBTableViewCell
 {
-    ContentsView *contentsView;
-    SubInfoView *subInfoView;
+    ContentsView *contentsView;     // image, sentence, words 주요 내용
+    SubInfoView *subInfoView;       // name, date. 작성자와 작성날짜
+    SubFuncView *subFuncView;       // like, comment, more. 추가 기능
 }
 
 @synthesize contentsView = contentsView;
@@ -26,6 +27,7 @@
     if (self) {
         contentsView = [[ContentsView alloc] init];
         subInfoView = [[SubInfoView alloc] init];
+        subFuncView = [[SubFuncView alloc] init];
     }
     
     return self;
@@ -38,8 +40,11 @@
     [contentsView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 100)];
     [self addSubview:contentsView];
     
-    [subInfoView setFrame:CGRectMake(0, self.frame.size.height - 100, self.frame.size.width, 100)];
+    [subInfoView setFrame:CGRectMake(0, self.frame.size.height - 100, self.frame.size.width, 30)];
     [self addSubview:subInfoView];
+    
+    [subFuncView setFrame:CGRectMake(0, self.frame.size.height - 70, self.frame.size.width, 70)];
+    [self addSubview:subFuncView];
 }
 
 @end

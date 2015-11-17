@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ContentsView.h"
 #import "SubInfoView.h"
+#import "SubFuncView.h"
 
 @interface YBTableViewCell : UITableViewCell
 

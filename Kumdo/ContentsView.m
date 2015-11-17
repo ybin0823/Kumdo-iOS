@@ -39,11 +39,6 @@
     return self;
 }
 
-- (void)drawRect:(CGRect)rect
-{
-    NSLog(@"drawRect");
-}
-
 - (void)layoutSubviews
 {
     CGFloat width = self.frame.size.width;
