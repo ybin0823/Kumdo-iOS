@@ -7,6 +7,7 @@
 //
 
 #import "YBWaterFallViewCell.h"
+#import "UIColor+YBColorAdditions.h"
 
 @implementation YBWaterFallViewCell
 {
@@ -26,6 +27,7 @@
         
         label = [[UILabel alloc] init];
         [label setTextAlignment:NSTextAlignmentCenter];
+        [label setFont:[UIFont systemFontOfSize:16.0f weight:2.0f]];
         [label setTextColor:[UIColor whiteColor]];
     }
     
@@ -53,6 +55,14 @@
         [self.imageView setContentMode:UIViewContentModeScaleToFill];
         [self.imageView setImage:image];
     } completion:nil];
+}
+
+- (void)setAttributedText:(NSString *)text
+{
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text];
+    [attributedString addAttribute:NSBackgroundColorAttributeName value:[UIColor transParentColor]
+                             range:NSMakeRange(0, [attributedString length])];
+    [self.label setAttributedText:[[NSAttributedString alloc] initWithAttributedString:attributedString]];
 }
 
 @end

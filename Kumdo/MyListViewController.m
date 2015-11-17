@@ -137,7 +137,7 @@ static NSString * const GET_MYLIST_FROM_SERVER = @"http://125.209.198.90:3000/my
         [imageManager loadImageWithURL:[writing imageUrl] receiveMainThread:YES withArray:[NSArray arrayWithObjects:cell, writing, nil]];
     }
 
-    [cell.label setText:[writing stringWithCommaFromWords]];
+    [cell setAttributedText:[writing stringWithCommaFromWords]];
     
     return cell;
 }

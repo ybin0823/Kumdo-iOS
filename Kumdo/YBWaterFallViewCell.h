@@ -15,5 +15,6 @@
 
 - (void)setDefaultImage;
 - (void)setImageWithAnimation:(UIImage *)image;
+- (void)setAttributedText:(NSString *)text;
 
 @end
