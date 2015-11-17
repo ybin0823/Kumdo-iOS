@@ -23,11 +23,9 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tf3-Kc-sEq">
-                                <rect key="frame" x="56" y="474" width="262" height="49"/>
-                                <color key="backgroundColor" red="0.1843137255" green="0.79215686269999996" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
-                                <state key="normal" title="네이버 아이디로 로그인">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tf3-Kc-sEq">
+                                <rect key="frame" x="37" y="454" width="301" height="69"/>
+                                <state key="normal" image="Naver_Login_Green">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -229,12 +227,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Naver_Login_Green" width="1156" height="250"/>
         <image name="ic_arrow_back_white_36pt" width="36" height="36"/>
         <image name="ic_create_white" width="24" height="24"/>
         <image name="ic_image_48pt" width="48" height="48"/>
         <image name="ic_save_white_36pt" width="36" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Pie-Ce-Ykt"/>
+        <segue reference="FUX-2U-dvF"/>
     </inferredMetricsTieBreakers>
 </document>
