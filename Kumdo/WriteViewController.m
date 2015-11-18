@@ -119,8 +119,6 @@ static NSString * const UPLOAD_DATA_TO_SERVER = @"http://125.209.198.90:3000/upl
 
 - (IBAction)showImagePickerForPhotoPicker:(id)sender
 {
-    takePictureButton.hidden = YES;
-    
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.modalPresentationStyle = UIModalPresentationCurrentContext;
     imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -134,6 +132,8 @@ static NSString * const UPLOAD_DATA_TO_SERVER = @"http://125.209.198.90:3000/upl
     UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
     
     [self dismissViewControllerAnimated:YES completion:NULL];
+    
+    takePictureButton.hidden = YES;
     
     // Set ScrollView
     CGFloat width = self.view.frame.size.width;
