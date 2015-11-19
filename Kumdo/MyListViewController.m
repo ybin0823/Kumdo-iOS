@@ -24,7 +24,10 @@
     YBUser *user;
     YBImageManager *imageManager;
     YBEmptyView *emptyView;
+    
+    // MyList에서는 Cell과 달리 훨씬 작은 image를 캐싱하여야 하기 때문에, 별도의 cache를 사용한다.
     NSCache *cache;
+    
     NSURLSessionConfiguration *defaultSessionConfiguration;
     NSURLSession *defaultSession;
 }

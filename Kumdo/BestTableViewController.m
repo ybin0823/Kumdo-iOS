@@ -11,6 +11,7 @@
 #import "DetailViewController.h"
 #import "YBWriting.h"
 #import "YBEmptyView.h"
+#import "YBCacheManager.h"
 
 @interface BestTableViewController ()
 
@@ -21,7 +22,8 @@
     NSMutableArray *writings;
     YBImageManager *imageManager;
     YBEmptyView *emptyView;
-    NSCache *cache;
+
+    YBCacheManager *cacheManager;
     
     NSURLSessionConfiguration *defaultSessionConfiguration;
     NSURLSession *defaultSession;
@@ -40,7 +42,7 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
         imageManager = [[YBImageManager  alloc] init];
         [imageManager setDelegate:self];
         
-        cache = [[NSCache alloc] init];
+        cacheManager = [YBCacheManager sharedInstance];
         
         defaultSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
         defaultSession = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
@@ -82,6 +84,7 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     emptyView = nil;
     defaultSessionConfiguration = nil;
     defaultSession = nil;
+    [[cacheManager cache] removeAllObjects];
 }
 
 - (void)didReceiveData
@@ -116,8 +119,9 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     YBTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     YBWriting *writing = [writings objectAtIndex:indexPath.row];
     
-    if ([cache objectForKey:[writing imageUrl]] != nil) {
-        [cell.contentsView setImage:[cache objectForKey:[writing imageUrl]] animation:NO];
+    if ([[cacheManager cache] objectForKey:[writing imageUrl]] != nil) {
+        UIImage *image = [[cacheManager cache] objectForKey:[writing imageUrl]];
+        [cell.contentsView setImage:image animation:NO];
     } else {
         // Set default image
         [cell.contentsView setDefaultImage];
@@ -167,8 +171,8 @@ static NSString * const GET_BEST_FROM_SERVER = @"http://125.209.198.90:3000/best
     YBWriting *writing = [array objectAtIndex:1];
     UIImage *resizedImage = [imageManager maintainScaleRatioImage:image withWidth:self.view.frame.size.width];
     
-    [cache setObject:resizedImage forKey:[writing imageUrl]];
-
+    [[cacheManager cache] setObject:resizedImage forKey:[writing imageUrl]];
+    
     [cell.contentsView setImage:resizedImage animation:YES];
 }
 
