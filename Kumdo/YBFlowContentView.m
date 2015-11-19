@@ -48,10 +48,8 @@
     return self;
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    NSLog(@"maxLength : %lu", (unsigned long)maxLength);
-}
+
+#pragma mark - Add textField
 
 - (void)addTextField
 {
@@ -63,17 +61,25 @@
     }
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(x, y, defaultSubViewWidth, defaultSubViewHeight)];
     [textField setDelegate:self];
-    [textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    [textField addTarget:self action:@selector(textFieldEditingChanged:) forControlEvents:UIControlEventEditingChanged];
     [textField setBackgroundColor:[UIColor colorWithWhite:0.5 alpha:0.5]];
     [textField setTextColor:[UIColor whiteColor]];
     [textField becomeFirstResponder];
+    
+    [textField setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [textField setReturnKeyType:UIReturnKeyDone];
+    
     [self addSubview:textField];
 }
 
-- (IBAction) textFieldDidChange: (UITextField*) textField
+- (IBAction)textFieldEditingChanged:(UITextField*) textField
 {
+    // 글자가 수 대로 textField size변경
     [textField sizeToFit];
 }
+
+
+#pragma mark - UITextFieldDelegate
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
@@ -86,11 +92,19 @@
     return YES;
 }
 
--(void)textFieldDidEndEditing:(UITextField *)textField
+- (void)textFieldDidEndEditing:(UITextField *)textField
 {
     currentLength += textField.text.length;
     [self isMaxLength];
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    return [textField resignFirstResponder];
+}
+
+
+#pragma mark - Add label
 
 - (void)addLabelWithText:(NSString *)text
 {
@@ -112,6 +126,8 @@
     currentLength += label.text.length;
     [self isMaxLength];
 }
+
+#pragma mark - Calculate Subview Position
 
 - (void)calculateSubViewPosition
 {
