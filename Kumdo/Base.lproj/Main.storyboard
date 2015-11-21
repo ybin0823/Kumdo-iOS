@@ -180,6 +180,13 @@
                                     <action selector="showImagePickerForPhotoPicker:" destination="K8f-dZ-Vfz" eventType="touchUpInside" id="nvv-yb-OHC"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qat-91-KBU">
+                                <rect key="frame" x="275" y="543" width="90" height="50"/>
+                                <state key="normal" title="Delete"/>
+                                <connections>
+                                    <action selector="deleteView:" destination="K8f-dZ-Vfz" eventType="touchUpInside" id="Bqs-06-xKt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -202,6 +209,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="adjectiveOrAdverbWordButton" destination="HS8-wB-Uga" id="3i3-L2-aFN"/>
+                        <outlet property="deleteButton" destination="Qat-91-KBU" id="YKZ-tL-2qS"/>
                         <outlet property="editButton" destination="YCh-Ic-Crq" id="EtT-K0-9U9"/>
                         <outlet property="nounWordButton" destination="bAS-Xk-gCJ" id="0TZ-Jn-eN2"/>
                         <outlet property="takePictureButton" destination="Emu-YI-qaX" id="jeh-xs-Kbc"/>

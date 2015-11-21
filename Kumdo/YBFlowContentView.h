@@ -23,5 +23,6 @@
 
 - (void)addTextField;
 - (void)addLabelWithText:(NSString *)text;
+- (void)removeLastSubview;
 
 @end

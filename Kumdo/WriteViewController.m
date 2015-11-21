@@ -26,6 +26,7 @@
     __weak IBOutlet UIButton *verbWordButton;
     __weak IBOutlet UIButton *adjectiveOrAdverbWordButton;
     __weak IBOutlet UIButton *editButton;
+    __weak IBOutlet UIButton *deleteButton;
     
     YBUser *user;
     YBWordDictionary *wordDictionary;
@@ -114,6 +115,13 @@ static NSString * const UPLOAD_DATA_TO_SERVER = @"http://125.209.198.90:3000/upl
     [[self delegate] writeViewControllerDidCancel:self];
 }
 
+- (IBAction)deleteView:(id)sender
+{
+    if (flowContentView != NULL) {
+        [flowContentView removeLastSubview];
+        [self setButtonEnabled:YES];
+    }
+}
 
 #pragma mark - Pick image
 
@@ -171,10 +179,7 @@ static NSString * const UPLOAD_DATA_TO_SERVER = @"http://125.209.198.90:3000/upl
 
 - (void)contentDidReachMaxLength
 {
-    [editButton setEnabled:NO];
-    [nounWordButton setEnabled:NO];
-    [verbWordButton setEnabled:NO];
-    [adjectiveOrAdverbWordButton setEnabled:NO];
+    [self setButtonEnabled:NO];
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Max Length!"
                                                                              message:@"Content length is the max"
@@ -185,6 +190,25 @@ static NSString * const UPLOAD_DATA_TO_SERVER = @"http://125.209.198.90:3000/upl
     [alertController addAction:defaultAction];
     
     [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)setButtonEnabled:(BOOL)isEnable
+{
+    [editButton setEnabled:isEnable];
+    [editButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+    [editButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
+    [nounWordButton setEnabled:isEnable];
+    [nounWordButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+    [nounWordButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
+    [verbWordButton setEnabled:isEnable];
+    [verbWordButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+    [verbWordButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+
+    [adjectiveOrAdverbWordButton setEnabled:isEnable];
+    [adjectiveOrAdverbWordButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+    [adjectiveOrAdverbWordButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 }
 
 

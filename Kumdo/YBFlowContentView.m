@@ -40,7 +40,7 @@
         x = marginLeft;
         y = marginTop;
         defaultSubViewWidth = 80;
-        defaultSubViewHeight = 30;
+        defaultSubViewHeight = 20;
         maxLength = 9999;
         currentLength = 0;
     }
@@ -59,6 +59,7 @@
         NSLog(@"You can't add subView : maxHeight!");
         return;
     }
+    
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(x, y, defaultSubViewWidth, defaultSubViewHeight)];
     [textField setDelegate:self];
     [textField addTarget:self action:@selector(textFieldEditingChanged:) forControlEvents:UIControlEventEditingChanged];
@@ -138,7 +139,7 @@
     UIView *lastSubView = [[self subviews] lastObject];
     x += lastSubView.frame.size.width;
     x += marginRight;
-    
+
     if (x + defaultSubViewWidth > maxWidth) {
         x = marginLeft;
         y += defaultSubViewHeight;
@@ -156,12 +157,28 @@
     return NO;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)removeLastSubview
+{
+    UIView *willRemoveSubview = [[self subviews] lastObject];
+    
+    if ([willRemoveSubview isKindOfClass:[UILabel class]]) {
+        UILabel *label = (UILabel *)willRemoveSubview;
+        currentLength -= label.text.length;
+    } else if ([willRemoveSubview isKindOfClass:[UITextField class]]) {
+        UITextField *textField = (UITextField *)willRemoveSubview;
+        currentLength -= textField.text.length;
+    }
+    
+    [willRemoveSubview removeFromSuperview];
+    
+    UIView *lastSubview = [[self subviews] lastObject];
+    x = lastSubview.frame.origin.x;
+    y = lastSubview.frame.origin.y;
+    
+    if (lastSubview == nil) {
+        x = marginLeft;
+        y = marginTop;
+    }
 }
-*/
 
 @end
