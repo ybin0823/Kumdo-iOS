@@ -105,7 +105,6 @@ static NSString * const UPLOAD_DATA_TO_SERVER = @"http://125.209.198.90:3000/upl
 - (IBAction)addWord:(id)sender
 {
     if (flowContentView != NULL) {
-        [usedWords addObject:[[sender titleLabel] text]];
         [flowContentView addLabelWithText:[[sender titleLabel] text]];
     }
 }
@@ -227,6 +226,7 @@ static NSString * const UPLOAD_DATA_TO_SERVER = @"http://125.209.198.90:3000/upl
                     
                     // For add space between words
                     [sentence appendString:@" "];
+                    [usedWords addObject:label.text];
                 }
                 
                 if ([subView isKindOfClass:[UITextField class]]) {
